@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/juniper-networks/refs/heads/main/json-schema/juniper-networks-contrail-virtual-network-schema.json",
+  "title": "Juniper Contrail Virtual Network",
+  "description": "Schema for a Juniper Contrail (Tungsten Fabric) virtual network object. Virtual networks are the core networking abstraction in Contrail SDN, representing isolated Layer 2/3 network segments. Each virtual network is backed by VXLAN or MPLS-over-GRE tunnels across the compute fabric, with BGP EVPN providing the control plane for MAC/IP route distribution. Virtual networks can be connected to each other through network policies, service chains, or shared route targets. Contrail automatically manages distributed routing, distributed DHCP, DNS, and metadata services within each virtual network.",
+  "type": "object",
+  "required": ["fq_name"],
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Virtual network UUID assigned by Contrail upon creation."
+    },
+    "fq_name": {
+      "type": "array",
+      "description": "Fully qualified name as a hierarchical path: [domain, project, virtual-network-name]. The default domain is 'default-domain'.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable display name for the virtual network."
+    },
+    "parent_type": {
+      "type": "string",
+      "const": "project",
+      "description": "Parent object type. Virtual networks always belong to a project."
+    },
+    "parent_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the parent project."
+    },
+    "virtual_network_properties": {
+      "type": "object",
+      "description": "Core virtual network properties controlling forwarding behavior and VXLAN encapsulation.",
+      "properties": {
+        "vxlan_network_identifier": {
+          "type": ["integer", "null"],
+          "description": "User-configured VXLAN Network Identifier (VNI). If null, Contrail auto-assigns from the global VNI pool.",
+          "minimum": 1,
+          "maximum": 16777215
+        },
+        "forwarding_mode": {
+          "type": "string",
+          "enum": ["l2_l3", "l2", "l3"],
+          "description": "Forwarding mode. 'l2_l3' enables both bridging and routing (most common), 'l2' for pure bridging, 'l3' for pure routing.",
+          "default": "l2_l3"
+        },
+        "rpf": {
+          "type": "string",
+          "enum": ["enable", "disable"],
+          "description": "Reverse Path Forwarding check. When enabled, packets with source addresses not in the routing table are dropped.",
+          "default": "enable"
+        },
+        "allow_transit": {
+          "type": "boolean",
+          "description": "Whether transit traffic (traffic neither sourced from nor destined to this VN) is allowed through the network."
+        },
+        "mirror_destination": {
+          "type": "boolean",
+          "description": "Whether this virtual network is a traffic mirror destination network."
+        }
+      }
+    },
+    "network_ipam_refs": {
+      "type": "array",
+      "description": "References to IP Address Management (IPAM) objects with subnet configurations. Each reference links an IPAM object and defines the subnets allocated from it.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Fully qualified name of the referenced IPAM object."
+          },
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "IPAM object UUID."
+          },
+          "attr": {
+            "type": "object",
+            "properties": {
+              "ipam_subnets": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/IpamSubnet"
+                },
+                "description": "Subnet configurations allocated from this IPAM."
+              }
+            }
+          }
+        }
+      }
+    },
+    "network_policy_refs": {
+      "type": "array",
+      "description": "References to network policies attached to this virtual network. Policies control traffic flow between virtual networks.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "attr": {
+            "type": "object",
+            "properties": {
+              "sequence": {
+                "type": "object",
+                "properties": {
+                  "major": {
+                    "type": "integer"
+                  },
+                  "minor": {
+                    "type": "integer"
+                  }
+                },
+                "description": "Policy evaluation order."
+              }
+            }
+          }
+        }
+      }
+    },
+    "route_target_list": {
+      "type": "object",
+      "description": "BGP route targets for the virtual network. Route targets control VPN route import/export between VRFs on gateway routers.",
+      "properties": {
+        "route_target": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^target:\\d+:\\d+$"
+          },
+          "description": "List of route targets in format target:ASN:number."
+        }
+      }
+    },
+    "import_route_target_list": {
+      "type": "object",
+      "description": "Additional import-only route targets.",
+      "properties": {
+        "route_target": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "export_route_target_list": {
+      "type": "object",
+      "description": "Additional export-only route targets.",
+      "properties": {
+        "route_target": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "is_shared": {
+      "type": "boolean",
+      "description": "Whether the virtual network is shared across all projects in the domain. Shared networks are accessible by workloads in any project.",
+      "default": false
+    },
+    "router_external": {
+      "type": "boolean",
+      "description": "Whether the virtual network provides external (internet/WAN) connectivity. External networks are connected to physical gateway routers via BGP.",
+      "default": false
+    },
+    "flood_unknown_unicast": {
+      "type": "boolean",
+      "description": "Whether to flood unknown unicast traffic within the virtual network. When false (default), Contrail uses proxy ARP/ND to avoid flooding.",
+      "default": false
+    },
+    "multi_policy_service_chains_enabled": {
+      "type": "boolean",
+      "description": "Whether multiple service chains can be applied to traffic between this network and connected networks."
+    }
+  },
+  "$defs": {
+    "IpamSubnet": {
+      "type": "object",
+      "description": "Subnet configuration within an IPAM reference, defining the IP address range and gateway for workloads in the virtual network.",
+      "properties": {
+        "subnet": {
+          "type": "object",
+          "properties": {
+            "ip_prefix": {
+              "type": "string",
+              "description": "IP address prefix (e.g., 10.1.1.0)."
+            },
+            "ip_prefix_len": {
+              "type": "integer",
+              "description": "Prefix length (e.g., 24 for /24).",
+              "minimum": 0,
+              "maximum": 128
+            }
+          },
+          "required": ["ip_prefix", "ip_prefix_len"]
+        },
+        "default_gateway": {
+          "type": "string",
+          "description": "Default gateway IP address for the subnet. Contrail distributes this gateway across all compute nodes hosting workloads in the subnet."
+        },
+        "dns_server_address": {
+          "type": "string",
+          "description": "DNS server IP address provided to workloads via DHCP."
+        },
+        "enable_dhcp": {
+          "type": "boolean",
+          "description": "Whether Contrail provides distributed DHCP service for this subnet.",
+          "default": true
+        },
+        "addr_from_start": {
+          "type": "boolean",
+          "description": "Whether to allocate IP addresses from the start of the subnet range.",
+          "default": true
+        },
+        "allocation_pools": {
+          "type": "array",
+          "description": "Specific IP ranges within the subnet available for dynamic allocation.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "string",
+                "description": "First IP in the allocation range."
+              },
+              "end": {
+                "type": "string",
+                "description": "Last IP in the allocation range."
+              }
+            }
+          }
+        },
+        "subnet_uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Subnet unique identifier."
+        }
+      }
+    }
+  }
+}

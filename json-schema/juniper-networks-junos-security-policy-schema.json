@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/juniper-networks/refs/heads/main/json-schema/juniper-networks-junos-security-policy-schema.json",
+  "title": "Junos Security Policy Rule",
+  "description": "Schema for a Junos OS security policy rule as configured on SRX Series firewalls and vSRX virtual firewalls. Security policies are the primary mechanism for controlling traffic flow between security zones on Juniper SRX platforms. Rules are organized in from-zone/to-zone pairs and evaluated in top-down order. Each rule matches traffic by source address, destination address, and application, then applies an action (permit, deny, reject) along with optional logging, counting, and UTM/IDP security profile enforcement. Policies are configured under the security policies hierarchy and can be managed via CLI, J-Web, Junos Space Security Director, or the REST/NETCONF API.",
+  "type": "object",
+  "required": ["name", "match", "then"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique policy rule name within the from-zone/to-zone context. Maximum 63 characters.",
+      "maxLength": 63,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9._-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Policy rule description for documentation and audit purposes.",
+      "maxLength": 900
+    },
+    "from_zone": {
+      "type": "string",
+      "description": "Source security zone name. Traffic must originate from an interface bound to this zone."
+    },
+    "to_zone": {
+      "type": "string",
+      "description": "Destination security zone name. Traffic must be destined for an interface bound to this zone."
+    },
+    "match": {
+      "type": "object",
+      "description": "Traffic match criteria. All criteria must match for the rule to apply.",
+      "properties": {
+        "source_address": {
+          "type": "array",
+          "description": "Source address match list. References address book entries defined in the from-zone. Use 'any' to match all source addresses.",
+          "items": {
+            "type": "string"
+          },
+          "default": ["any"]
+        },
+        "destination_address": {
+          "type": "array",
+          "description": "Destination address match list. References address book entries defined in the to-zone. Use 'any' to match all destination addresses.",
+          "items": {
+            "type": "string"
+          },
+          "default": ["any"]
+        },
+        "application": {
+          "type": "array",
+          "description": "Application match list. References predefined or custom application definitions that match traffic by protocol and port. Use 'any' to match all applications.",
+          "items": {
+            "type": "string"
+          },
+          "default": ["any"]
+        },
+        "source_identity": {
+          "type": "array",
+          "description": "Source identity match list for user firewall (JIMS/Active Directory integrated) policies. References user, group, or role identities.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dynamic_application": {
+          "type": "array",
+          "description": "Application identification match list for AppID-based policies on SRX4000+ platforms. References Juniper application signatures.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["source_address", "destination_address", "application"]
+    },
+    "then": {
+      "type": "object",
+      "description": "Action and service profile assignment when traffic matches the rule.",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["permit", "deny", "reject"],
+          "description": "Policy action. 'permit' allows traffic, 'deny' silently drops traffic, 'reject' drops traffic and sends an ICMP destination-unreachable or TCP RST."
+        },
+        "log": {
+          "type": "object",
+          "description": "Logging configuration for matched traffic.",
+          "properties": {
+            "session_init": {
+              "type": "boolean",
+              "description": "Log at session initiation. Generates a log entry when the first packet of a new session matches this rule.",
+              "default": false
+            },
+            "session_close": {
+              "type": "boolean",
+              "description": "Log at session close. Generates a log entry with session summary when the session ends.",
+              "default": false
+            }
+          }
+        },
+        "count": {
+          "type": "boolean",
+          "description": "Enable per-rule packet and byte counters.",
+          "default": false
+        },
+        "permit": {
+          "type": "object",
+          "description": "Additional options when action is permit.",
+          "properties": {
+            "application_services": {
+              "type": "object",
+              "description": "Security service profiles to apply to permitted traffic.",
+              "properties": {
+                "utm_policy": {
+                  "type": "string",
+                  "description": "Unified Threat Management policy name for content security (antivirus, web filtering, anti-spam, content filtering)."
+                },
+                "idp_policy": {
+                  "type": "string",
+                  "description": "Intrusion Detection and Prevention policy name."
+                },
+                "ssl_proxy": {
+                  "type": "object",
+                  "description": "SSL forward proxy configuration for HTTPS inspection.",
+                  "properties": {
+                    "profile_name": {
+                      "type": "string",
+                      "description": "SSL proxy profile name."
+                    }
+                  }
+                },
+                "application_firewall_rule_set": {
+                  "type": "string",
+                  "description": "Application firewall rule set name for Layer 7 application control."
+                }
+              }
+            },
+            "tunnel": {
+              "type": "object",
+              "description": "IPsec tunnel encapsulation for VPN traffic.",
+              "properties": {
+                "ipsec_vpn": {
+                  "type": "string",
+                  "description": "IPsec VPN tunnel name."
+                },
+                "pair_policy": {
+                  "type": "string",
+                  "description": "Paired policy name for bidirectional VPN tunnels."
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["action"]
+    },
+    "scheduler_name": {
+      "type": "string",
+      "description": "Scheduler name for time-based policy activation. The rule is only active during the defined schedule windows."
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/juniper-networks/refs/heads/main/json-schema/juniper-networks-mist-device-schema.json",
+  "title": "Juniper Mist Device",
+  "description": "Schema for a Juniper Mist managed device. Devices include Mist-managed access points (AP12, AP32, AP33, AP34, AP43, AP45, AP63, AP64), EX-series switches (EX2300, EX3400, EX4100, EX4300, EX4400, EX4650), and SRX/SSR gateways (SRX300, SRX320, SRX340, SRX345, SRX1500, SSR120, SSR130). Each device is claimed to an organization, optionally assigned to a site, and managed through the Mist cloud. Devices receive configuration from the cloud, report telemetry, and can be placed on floor plan maps for location-aware management.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Device unique identifier assigned by the Mist cloud upon claiming."
+    },
+    "org_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Organization identifier the device is claimed to."
+    },
+    "site_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Site identifier the device is assigned to. Null if the device is in the organization inventory but not assigned to a site."
+    },
+    "name": {
+      "type": "string",
+      "description": "Device display name. Defaults to the device model and MAC address if not set.",
+      "maxLength": 64
+    },
+    "type": {
+      "type": "string",
+      "enum": ["ap", "switch", "gateway"],
+      "description": "Device type. 'ap' for wireless access points, 'switch' for EX-series wired switches, 'gateway' for SRX/SSR WAN gateways."
+    },
+    "model": {
+      "type": "string",
+      "description": "Hardware model identifier. Examples: AP45, AP63, EX4100-48P, EX4400-24T, SRX320, SSR130."
+    },
+    "serial": {
+      "type": "string",
+      "description": "Hardware serial number printed on the device chassis. Used for device claiming via claim code or serial number."
+    },
+    "mac": {
+      "type": "string",
+      "description": "Device primary MAC address in colon-separated format (e.g., 5c:5b:35:aa:bb:cc). Serves as the device unique hardware identifier.",
+      "pattern": "^[0-9a-f]{2}(:[0-9a-f]{2}){5}$"
+    },
+    "ip": {
+      "type": "string",
+      "description": "Device management IP address. Assigned via DHCP or static configuration."
+    },
+    "version": {
+      "type": "string",
+      "description": "Current firmware version running on the device. Mist manages firmware upgrades through the cloud."
+    },
+    "hw_rev": {
+      "type": "string",
+      "description": "Hardware revision identifier."
+    },
+    "map_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Floor plan map ID where the device is placed. Used for indoor location and RF planning visualization."
+    },
+    "x": {
+      "type": "number",
+      "description": "X coordinate position on the floor plan map in pixels."
+    },
+    "y": {
+      "type": "number",
+      "description": "Y coordinate position on the floor plan map in pixels."
+    },
+    "orientation": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 359,
+      "description": "AP mounting orientation in degrees (0-359) relative to the map north direction. Affects directional antenna patterns and location calculation accuracy."
+    },
+    "height": {
+      "type": "number",
+      "description": "AP mounting height above floor level in meters. Used for 3D location calculation and RF propagation modeling."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes for operational documentation."
+    },
+    "created_time": {
+      "type": "number",
+      "description": "Device creation timestamp in epoch seconds."
+    },
+    "modified_time": {
+      "type": "number",
+      "description": "Last modification timestamp in epoch seconds."
+    }
+  }
+}

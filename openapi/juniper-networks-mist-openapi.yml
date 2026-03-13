@@ -1,0 +1,1118 @@
+openapi: 3.1.0
+info:
+  title: Juniper Mist Cloud API
+  description: >-
+    RESTful API for the Juniper Mist AI-driven cloud platform. Mist provides
+    centralized management of wireless access points, wired switches, and
+    SD-WAN gateways through a single cloud dashboard. The API enables
+    programmatic access to organization, site, device, and client management
+    as well as monitoring, analytics, and configuration automation. Mist uses
+    AI and machine learning to optimize wireless performance, detect anomalies,
+    and provide proactive insights. The API follows REST conventions with
+    JSON request and response bodies.
+  version: '1.0'
+  contact:
+    name: Juniper Mist Developer Support
+    url: https://www.juniper.net/documentation/product/us/en/mist/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+  termsOfService: https://www.juniper.net/us/en/legal-notices.html
+servers:
+  - url: https://api.mist.com/api/v1
+    description: Mist Global Cloud API (US region)
+  - url: https://api.eu.mist.com/api/v1
+    description: Mist EU Cloud API (EU region)
+  - url: https://api.gc1.mist.com/api/v1
+    description: Mist GovCloud API (US Government)
+security:
+  - apiToken: []
+  - csrfToken: []
+tags:
+  - name: Authentication
+    description: Login, logout, two-factor authentication, and API token management.
+  - name: Organizations
+    description: Organization-level settings, licenses, and inventory management.
+  - name: Sites
+    description: Site creation, configuration, and management within organizations.
+  - name: Devices
+    description: Access points, switches, and gateway device management.
+  - name: WLANs
+    description: Wireless LAN configuration including SSIDs, security, and VLAN assignment.
+  - name: Clients
+    description: Wireless and wired client session monitoring and statistics.
+  - name: Insights
+    description: AI-driven network insights, anomaly detection, and Marvis recommendations.
+  - name: Inventory
+    description: Device claiming, unclaiming, and inventory management.
+  - name: Maps
+    description: Floor plan and map management for site RF planning.
+  - name: Alarms
+    description: Alarm monitoring, acknowledgment, and notification configuration.
+paths:
+  /self:
+    get:
+      operationId: getSelf
+      summary: Get current user information
+      description: >-
+        Returns the profile of the currently authenticated user, including
+        organization and site-level privileges, email, and name.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Current user profile returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /self/apitokens:
+    get:
+      operationId: listApiTokens
+      summary: List API tokens
+      description: >-
+        Returns all API tokens created by the authenticated user. API tokens
+        provide bearer token authentication as an alternative to session-based
+        login and are scoped to the user's permissions.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: API tokens returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createApiToken
+      summary: Create API token
+      description: >-
+        Creates a new API token for the authenticated user. The token inherits
+        the user's organization and site privileges.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: API token created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orgs:
+    get:
+      operationId: listOrgs
+      summary: List organizations
+      description: >-
+        Returns all organizations the authenticated user has access to.
+        Organizations are the top-level container for sites, devices, and
+        configuration.
+      tags:
+        - Organizations
+      responses:
+        '200':
+          description: Organizations returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orgs/{org_id}:
+    get:
+      operationId: getOrg
+      summary: Get organization
+      description: Returns the details of a specific organization.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: Organization returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateOrg
+      summary: Update organization
+      description: Updates the settings of an organization.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      responses:
+        '200':
+          description: Organization updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /orgs/{org_id}/sites:
+    get:
+      operationId: listOrgSites
+      summary: List organization sites
+      description: >-
+        Returns all sites belonging to an organization. Sites represent physical
+        locations such as offices, campuses, or retail stores.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: Sites returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Site'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createSite
+      summary: Create site
+      description: >-
+        Creates a new site within an organization. Sites are the primary
+        grouping for devices and network configuration.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          description: Site created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /sites/{site_id}:
+    get:
+      operationId: getSite
+      summary: Get site
+      description: Returns the details of a specific site.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: Site returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSite
+      summary: Update site
+      description: Updates the configuration of a site.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          description: Site updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSite
+      summary: Delete site
+      description: Deletes a site and all associated configuration.
+      tags:
+        - Sites
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: Site deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /sites/{site_id}/devices:
+    get:
+      operationId: listSiteDevices
+      summary: List site devices
+      description: >-
+        Returns all devices assigned to a site, including access points,
+        switches, and gateways.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+        - name: type
+          in: query
+          description: Filter by device type.
+          schema:
+            type: string
+            enum:
+              - ap
+              - switch
+              - gateway
+      responses:
+        '200':
+          description: Devices returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sites/{site_id}/devices/{device_id}:
+    get:
+      operationId: getSiteDevice
+      summary: Get device
+      description: Returns details for a specific device at a site.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSiteDevice
+      summary: Update device
+      description: Updates the configuration of a specific device.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+        - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+      responses:
+        '200':
+          description: Device updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sites/{site_id}/wlans:
+    get:
+      operationId: listSiteWlans
+      summary: List site WLANs
+      description: >-
+        Returns all WLAN configurations for a site. Each WLAN defines an SSID
+        with associated security, VLAN, and radio settings.
+      tags:
+        - WLANs
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: WLANs returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Wlan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSiteWlan
+      summary: Create WLAN
+      description: >-
+        Creates a new WLAN (SSID) at a site with specified security, VLAN,
+        and radio configuration.
+      tags:
+        - WLANs
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wlan'
+      responses:
+        '200':
+          description: WLAN created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wlan'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sites/{site_id}/stats/clients:
+    get:
+      operationId: listSiteClientStats
+      summary: List client statistics
+      description: >-
+        Returns statistics for wireless clients connected at a site, including
+        signal strength, data usage, and connection quality metrics.
+      tags:
+        - Clients
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+        - name: start
+          in: query
+          description: Start time epoch in seconds.
+          schema:
+            type: integer
+        - name: end
+          in: query
+          description: End time epoch in seconds.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of results.
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Client statistics returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientStat'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sites/{site_id}/insights/marvis:
+    get:
+      operationId: listMarvisActions
+      summary: List Marvis actions
+      description: >-
+        Returns AI-driven Marvis actions for a site. Marvis uses machine
+        learning to identify network issues, anomalies, and optimization
+        opportunities. Actions include recommended fixes for AP health,
+        client connectivity, and capacity issues.
+      tags:
+        - Insights
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+        - name: start
+          in: query
+          description: Start time epoch in seconds.
+          schema:
+            type: integer
+        - name: end
+          in: query
+          description: End time epoch in seconds.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Marvis actions returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarvisAction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orgs/{org_id}/inventory:
+    get:
+      operationId: listOrgInventory
+      summary: List organization inventory
+      description: >-
+        Returns all devices in the organization inventory, including claimed
+        devices that may or may not be assigned to sites.
+      tags:
+        - Inventory
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - name: serial
+          in: query
+          description: Filter by device serial number.
+          schema:
+            type: string
+        - name: model
+          in: query
+          description: Filter by device model.
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter by device type.
+          schema:
+            type: string
+            enum:
+              - ap
+              - switch
+              - gateway
+      responses:
+        '200':
+          description: Inventory returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateOrgInventory
+      summary: Update inventory assignment
+      description: >-
+        Assigns or unassigns devices from sites within the organization
+        inventory. Used to move devices between sites or release them
+        from site assignment.
+      tags:
+        - Inventory
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                op:
+                  type: string
+                  enum:
+                    - assign
+                    - unassign
+                  description: Operation to perform.
+                site_id:
+                  type: string
+                  format: uuid
+                  description: Target site ID for assignment.
+                macs:
+                  type: array
+                  items:
+                    type: string
+                  description: List of device MAC addresses.
+                serials:
+                  type: array
+                  items:
+                    type: string
+                  description: List of device serial numbers.
+      responses:
+        '200':
+          description: Inventory updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: array
+                    items:
+                      type: string
+                  error:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sites/{site_id}/maps:
+    get:
+      operationId: listSiteMaps
+      summary: List site maps
+      description: >-
+        Returns all floor plan maps for a site. Maps are used for indoor
+        location, RF planning, and device placement visualization.
+      tags:
+        - Maps
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: Maps returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Map'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sites/{site_id}/alarms:
+    get:
+      operationId: listSiteAlarms
+      summary: List site alarms
+      description: >-
+        Returns active and recent alarms for a site. Alarms indicate
+        device health issues, connectivity problems, and configuration
+        anomalies detected by the Mist platform.
+      tags:
+        - Alarms
+      parameters:
+        - $ref: '#/components/parameters/SiteId'
+        - name: start
+          in: query
+          description: Start time epoch in seconds.
+          schema:
+            type: integer
+        - name: end
+          in: query
+          description: End time epoch in seconds.
+          schema:
+            type: integer
+        - name: type
+          in: query
+          description: Filter by alarm type.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Alarms returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alarm'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    apiToken:
+      type: http
+      scheme: bearer
+      description: >-
+        API token authentication. Generate tokens via the Mist dashboard under
+        Organization > Settings > API Token or via POST /self/apitokens.
+        Pass the token in the Authorization header as Bearer {token}.
+    csrfToken:
+      type: apiKey
+      in: header
+      name: X-CSRFToken
+      description: >-
+        CSRF token for session-based authentication. Obtained from the login
+        response and required for all mutating operations when using cookie
+        authentication.
+  parameters:
+    OrgId:
+      name: org_id
+      in: path
+      required: true
+      description: Organization unique identifier.
+      schema:
+        type: string
+        format: uuid
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Device unique identifier.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions for the requested operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    Admin:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Admin user unique identifier.
+        name:
+          type: string
+          description: Admin display name.
+        email:
+          type: string
+          format: email
+          description: Admin email address.
+        privileges:
+          type: array
+          description: List of organization and site-level privileges.
+          items:
+            type: object
+            properties:
+              scope:
+                type: string
+                enum:
+                  - org
+                  - site
+              org_id:
+                type: string
+                format: uuid
+              site_id:
+                type: string
+                format: uuid
+              role:
+                type: string
+                enum:
+                  - admin
+                  - write
+                  - read
+                  - helpdesk
+    ApiToken:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Token identifier.
+        key:
+          type: string
+          description: API token value. Only returned on creation.
+        created_time:
+          type: number
+          description: Creation timestamp in epoch seconds.
+        last_used:
+          type: number
+          description: Last usage timestamp in epoch seconds.
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Organization unique identifier.
+        name:
+          type: string
+          description: Organization name.
+        orggroup_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Organization group membership IDs.
+        session_expiry:
+          type: integer
+          description: Session timeout in minutes.
+        msp_id:
+          type: string
+          format: uuid
+          description: Managed service provider ID if applicable.
+        created_time:
+          type: number
+          description: Creation timestamp in epoch seconds.
+        modified_time:
+          type: number
+          description: Last modification timestamp in epoch seconds.
+    Site:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Site unique identifier.
+        org_id:
+          type: string
+          format: uuid
+          description: Parent organization ID.
+        name:
+          type: string
+          description: Site name.
+        timezone:
+          type: string
+          description: Site timezone in IANA format (e.g., America/Los_Angeles).
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        address:
+          type: string
+          description: Physical address of the site.
+        latlng:
+          type: object
+          properties:
+            lat:
+              type: number
+              description: Latitude.
+            lng:
+              type: number
+              description: Longitude.
+        sitegroup_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Site group membership IDs.
+        rftemplate_id:
+          type: string
+          format: uuid
+          description: RF template applied to the site.
+        networktemplate_id:
+          type: string
+          format: uuid
+          description: Network template applied to the site.
+        created_time:
+          type: number
+          description: Creation timestamp in epoch seconds.
+        modified_time:
+          type: number
+          description: Last modification timestamp in epoch seconds.
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Device unique identifier.
+        org_id:
+          type: string
+          format: uuid
+          description: Organization ID.
+        site_id:
+          type: string
+          format: uuid
+          description: Site ID the device is assigned to.
+        name:
+          type: string
+          description: Device name.
+        type:
+          type: string
+          enum:
+            - ap
+            - switch
+            - gateway
+          description: Device type.
+        model:
+          type: string
+          description: Device hardware model (e.g., AP45, EX4100-48P, SRX320).
+        serial:
+          type: string
+          description: Device serial number.
+        mac:
+          type: string
+          description: Device MAC address.
+        ip:
+          type: string
+          description: Device management IP address.
+        version:
+          type: string
+          description: Current firmware version.
+        map_id:
+          type: string
+          format: uuid
+          description: Map where the device is placed.
+        x:
+          type: number
+          description: X coordinate on the map in pixels.
+        'y':
+          type: number
+          description: Y coordinate on the map in pixels.
+    Wlan:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: WLAN unique identifier.
+        ssid:
+          type: string
+          description: SSID name broadcast by access points.
+        enabled:
+          type: boolean
+          description: Whether the WLAN is enabled.
+        auth:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - open
+                - psk
+                - eap
+                - wep
+              description: Authentication type.
+            psk:
+              type: string
+              description: Pre-shared key for PSK authentication.
+          description: Authentication configuration.
+        band:
+          type: string
+          enum:
+            - '2.4'
+            - '5'
+            - '6'
+            - both
+          description: Radio band for the WLAN.
+        vlan_enabled:
+          type: boolean
+          description: Whether VLAN tagging is enabled.
+        vlan_id:
+          type: integer
+          description: VLAN ID for client traffic.
+        hide_ssid:
+          type: boolean
+          description: Whether to hide the SSID from broadcast.
+        band_steer:
+          type: boolean
+          description: Whether band steering is enabled.
+        client_limit_down:
+          type: integer
+          description: Per-client downstream rate limit in kbps.
+        client_limit_up:
+          type: integer
+          description: Per-client upstream rate limit in kbps.
+    ClientStat:
+      type: object
+      properties:
+        mac:
+          type: string
+          description: Client MAC address.
+        hostname:
+          type: string
+          description: Client hostname.
+        ip:
+          type: string
+          description: Client IP address.
+        ssid:
+          type: string
+          description: Connected SSID.
+        ap_mac:
+          type: string
+          description: MAC address of the connected AP.
+        rssi:
+          type: number
+          description: Received signal strength indicator in dBm.
+        snr:
+          type: number
+          description: Signal-to-noise ratio in dB.
+        band:
+          type: string
+          description: Connected radio band.
+        channel:
+          type: integer
+          description: Connected radio channel.
+        rx_bytes:
+          type: integer
+          description: Total received bytes.
+        tx_bytes:
+          type: integer
+          description: Total transmitted bytes.
+        rx_rate:
+          type: number
+          description: Receive data rate in Mbps.
+        tx_rate:
+          type: number
+          description: Transmit data rate in Mbps.
+    MarvisAction:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Action category (e.g., ap_health, client_connectivity, capacity).
+        details:
+          type: string
+          description: Description of the detected issue and recommended action.
+        site_id:
+          type: string
+          format: uuid
+          description: Affected site ID.
+        device_id:
+          type: string
+          format: uuid
+          description: Affected device ID if applicable.
+        severity:
+          type: string
+          enum:
+            - critical
+            - warning
+            - info
+          description: Severity level of the action.
+        timestamp:
+          type: number
+          description: Detection timestamp in epoch seconds.
+    InventoryItem:
+      type: object
+      properties:
+        mac:
+          type: string
+          description: Device MAC address.
+        serial:
+          type: string
+          description: Device serial number.
+        model:
+          type: string
+          description: Device model.
+        type:
+          type: string
+          enum:
+            - ap
+            - switch
+            - gateway
+          description: Device type.
+        site_id:
+          type: string
+          format: uuid
+          description: Assigned site ID, null if unassigned.
+        org_id:
+          type: string
+          format: uuid
+          description: Organization ID.
+        claimed_time:
+          type: number
+          description: Time the device was claimed in epoch seconds.
+    Map:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Map unique identifier.
+        name:
+          type: string
+          description: Map or floor plan name.
+        type:
+          type: string
+          enum:
+            - image
+            - google
+          description: Map type.
+        width:
+          type: number
+          description: Map width in meters.
+        height:
+          type: number
+          description: Map height in meters.
+        url:
+          type: string
+          description: URL to the uploaded floor plan image.
+        ppm:
+          type: number
+          description: Pixels per meter for the floor plan image.
+    Alarm:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Alarm unique identifier.
+        type:
+          type: string
+          description: Alarm type identifier.
+        severity:
+          type: string
+          enum:
+            - critical
+            - warn
+            - info
+          description: Alarm severity level.
+        group:
+          type: string
+          description: Alarm group category.
+        count:
+          type: integer
+          description: Number of occurrences.
+        last_seen:
+          type: number
+          description: Last occurrence timestamp in epoch seconds.
+        acked:
+          type: boolean
+          description: Whether the alarm has been acknowledged.

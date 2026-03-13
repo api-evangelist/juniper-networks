@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/juniper-networks/refs/heads/main/json-schema/juniper-networks-mist-site-schema.json",
+  "title": "Juniper Mist Site",
+  "description": "Schema for a Juniper Mist site object. Sites are the primary organizational unit in the Mist cloud platform, representing physical locations such as offices, campuses, retail stores, or warehouses. Each site contains devices (access points, switches, gateways), WLAN configurations, network policies, and location maps. Sites inherit configuration from organization-level templates and can be grouped into site groups for bulk management. RF templates and network templates define site-wide radio and network behavior.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Site unique identifier assigned by the Mist cloud. Read-only."
+    },
+    "org_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Parent organization identifier. Read-only."
+    },
+    "name": {
+      "type": "string",
+      "description": "Site display name. Must be unique within the organization. Typically the location name or building identifier.",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Site timezone in IANA Time Zone Database format. Used for scheduling, analytics time windows, and alarm time display. Example: America/Los_Angeles, Europe/London.",
+      "pattern": "^[A-Za-z]+/[A-Za-z_]+(/[A-Za-z_]+)?$"
+    },
+    "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code for the site location. Used to determine regulatory domain for radio channel and power settings.",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "address": {
+      "type": "string",
+      "description": "Physical street address of the site location. Used for geolocation and asset tracking context."
+    },
+    "latlng": {
+      "type": "object",
+      "description": "Geographic coordinates of the site used for map placement and location-aware features.",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Latitude in decimal degrees."
+        },
+        "lng": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180,
+          "description": "Longitude in decimal degrees."
+        }
+      },
+      "required": ["lat", "lng"]
+    },
+    "sitegroup_ids": {
+      "type": "array",
+      "description": "List of site group IDs this site belongs to. Site groups enable bulk configuration and policy assignment across multiple sites.",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "rftemplate_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "RF template ID applied to this site. RF templates define radio settings including channel width, transmit power, band steering, and client-balancing parameters across all APs at the site."
+    },
+    "networktemplate_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Network template ID applied to this site. Network templates define switch port profiles, VLAN configurations, and wired network policies."
+    },
+    "gatewaytemplate_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Gateway template ID applied to this site. Gateway templates define WAN, LAN, and VPN configuration for SRX/SSR gateways."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes for the site. Used for operational documentation and context."
+    },
+    "created_time": {
+      "type": "number",
+      "description": "Site creation timestamp in epoch seconds. Read-only."
+    },
+    "modified_time": {
+      "type": "number",
+      "description": "Last modification timestamp in epoch seconds. Read-only."
+    }
+  }
+}

@@ -1,0 +1,601 @@
+openapi: 3.1.0
+info:
+  title: Junos Space Network Management Platform REST API
+  description: >-
+    RESTful API for Junos Space Network Management Platform. Junos Space
+    provides centralized management for Juniper Networks devices including
+    routers, switches, and security appliances. The REST API enables
+    programmatic access to device management, configuration deployment,
+    script execution, and network monitoring. The API uses HTTP Basic or
+    certificate-based authentication and returns XML or JSON responses
+    based on the Accept header. API resources follow HATEOAS principles
+    with discoverable URIs and link relations.
+  version: '24.1'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/junos-space-network-management-platform/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+  - url: https://{space_server}/api/space
+    description: Junos Space Platform API endpoint.
+    variables:
+      space_server:
+        description: Hostname or IP address of the Junos Space server.
+        default: space.example.com
+security:
+  - basicAuth: []
+tags:
+  - name: Devices
+    description: Device discovery, management, and monitoring operations.
+  - name: Configuration
+    description: Configuration management, templates, and deployment.
+  - name: Scripts
+    description: Script management and execution on managed devices.
+  - name: Users
+    description: User and role-based access control management.
+  - name: Jobs
+    description: Asynchronous job tracking and management.
+paths:
+  /device-management/devices:
+    get:
+      operationId: listDevices
+      summary: List managed devices
+      description: >-
+        Returns all devices managed by Junos Space, including device name,
+        IP address, platform, OS version, and connection status. Supports
+        pagination and filtering by device family and platform.
+      tags:
+        - Devices
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter expression for device attributes. Example:
+            deviceFamily eq 'junos' and platform eq 'SRX'.
+          schema:
+            type: string
+        - name: paging
+          in: query
+          description: Paging parameters in format (start, limit).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Devices returned.
+          content:
+            application/vnd.net.juniper.space.device-management.devices+json;version=2:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: object
+                    properties:
+                      device:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Device'
+                      '@total':
+                        type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: discoverDevice
+      summary: Discover and add device
+      description: >-
+        Initiates discovery of a Junos device by IP address or hostname.
+        The device is added to Junos Space management after successful
+        NETCONF connectivity verification.
+      tags:
+        - Devices
+      requestBody:
+        required: true
+        content:
+          application/vnd.net.juniper.space.device-management.discover-devices+json;version=2:
+            schema:
+              type: object
+              properties:
+                system-discovery-rule:
+                  type: object
+                  properties:
+                    ipAddressDiscoveryTarget:
+                      type: object
+                      properties:
+                        exclude:
+                          type: string
+                        ipAddress:
+                          type: string
+                          description: Target device IP address.
+                    usePing:
+                      type: boolean
+                    manageDiscoveredSystemsFlag:
+                      type: boolean
+                    sshCredential:
+                      type: object
+                      properties:
+                        userName:
+                          type: string
+                        password:
+                          type: string
+      responses:
+        '202':
+          description: Discovery job initiated.
+          content:
+            application/vnd.net.juniper.space.job-management.task+json;version=1:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /device-management/devices/{device_id}:
+    get:
+      operationId: getDevice
+      summary: Get device details
+      description: Returns detailed information for a specific managed device.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device returned.
+          content:
+            application/vnd.net.juniper.space.device-management.device+json;version=2:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDevice
+      summary: Remove device from management
+      description: >-
+        Removes a device from Junos Space management. The device
+        configuration on the device itself is not affected.
+      tags:
+        - Devices
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '204':
+          description: Device removed.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /device-management/devices/{device_id}/configurations/raw:
+    get:
+      operationId: getDeviceConfiguration
+      summary: Get device running configuration
+      description: >-
+        Returns the current running configuration of a managed device
+        in Junos set or XML format.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Configuration returned.
+          content:
+            application/vnd.net.juniper.space.device-management.device-configuration+json;version=1:
+              schema:
+                type: object
+                properties:
+                  configuration:
+                    type: string
+                    description: Device configuration content.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /configuration-management/cli-configlets:
+    get:
+      operationId: listConfiglets
+      summary: List CLI configlets
+      description: >-
+        Returns all CLI configlets (configuration templates) stored in
+        Junos Space. Configlets are reusable configuration snippets with
+        parameterized variables.
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: Configlets returned.
+          content:
+            application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1:
+              schema:
+                type: object
+                properties:
+                  configlets:
+                    type: object
+                    properties:
+                      configlet:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Configlet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /configuration-management/cli-configlets/{configlet_id}/apply-cli-configlet:
+    post:
+      operationId: applyConfiglet
+      summary: Apply configlet to devices
+      description: >-
+        Applies a CLI configlet to one or more managed devices. Variable
+        values are provided in the request body and merged into the
+        configlet template before deployment.
+      tags:
+        - Configuration
+      parameters:
+        - name: configlet_id
+          in: path
+          required: true
+          description: Configlet unique identifier.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/vnd.net.juniper.space.configuration-management.apply-cli-configlet+json;version=1:
+            schema:
+              type: object
+              properties:
+                apply-cli-configlet-request:
+                  type: object
+                  properties:
+                    deviceIds:
+                      type: array
+                      items:
+                        type: integer
+                      description: Target device IDs.
+                    parameters:
+                      type: object
+                      additionalProperties:
+                        type: string
+                      description: Variable name-value pairs.
+      responses:
+        '202':
+          description: Configlet application job initiated.
+          content:
+            application/vnd.net.juniper.space.job-management.task+json;version=1:
+              schema:
+                $ref: '#/components/schemas/Job'
+  /script-management/scripts:
+    get:
+      operationId: listScripts
+      summary: List scripts
+      description: >-
+        Returns all scripts uploaded to Junos Space. Scripts can be
+        SLAX, XSLT, Python, or commit scripts for execution on
+        managed Junos devices.
+      tags:
+        - Scripts
+      responses:
+        '200':
+          description: Scripts returned.
+          content:
+            application/vnd.net.juniper.space.script-management.scripts+json;version=2:
+              schema:
+                type: object
+                properties:
+                  scripts:
+                    type: object
+                    properties:
+                      script:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Script'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /script-management/scripts/{script_id}/exec-scripts:
+    post:
+      operationId: executeScript
+      summary: Execute script on devices
+      description: >-
+        Executes a script on one or more managed devices. Returns a job
+        ID for tracking execution status and retrieving results.
+      tags:
+        - Scripts
+      parameters:
+        - name: script_id
+          in: path
+          required: true
+          description: Script unique identifier.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/vnd.net.juniper.space.script-management.exec-scripts+json;version=2:
+            schema:
+              type: object
+              properties:
+                exec-scripts:
+                  type: object
+                  properties:
+                    deviceIds:
+                      type: array
+                      items:
+                        type: integer
+                      description: Target device IDs.
+                    scriptParams:
+                      type: object
+                      additionalProperties:
+                        type: string
+                      description: Script parameter values.
+      responses:
+        '202':
+          description: Script execution job initiated.
+          content:
+            application/vnd.net.juniper.space.job-management.task+json;version=1:
+              schema:
+                $ref: '#/components/schemas/Job'
+  /user-management/users:
+    get:
+      operationId: listUsers
+      summary: List users
+      description: >-
+        Returns all user accounts configured in Junos Space, including
+        role assignments and domain access.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Users returned.
+          content:
+            application/vnd.net.juniper.space.user-management.users+json;version=1:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: object
+                    properties:
+                      user:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /job-management/jobs:
+    get:
+      operationId: listJobs
+      summary: List jobs
+      description: >-
+        Returns all asynchronous jobs with their status. Jobs are created
+        for device discovery, configuration deployment, script execution,
+        and other long-running operations.
+      tags:
+        - Jobs
+      parameters:
+        - name: filter
+          in: query
+          description: Filter expression for job attributes.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Jobs returned.
+          content:
+            application/vnd.net.juniper.space.job-management.jobs+json;version=3:
+              schema:
+                type: object
+                properties:
+                  jobs:
+                    type: object
+                    properties:
+                      job:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Job'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /job-management/jobs/{job_id}:
+    get:
+      operationId: getJob
+      summary: Get job status
+      description: Returns the status and results of a specific job.
+      tags:
+        - Jobs
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          description: Job unique identifier.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Job returned.
+          content:
+            application/vnd.net.juniper.space.job-management.job+json;version=3:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication with Junos Space username and password.
+        Also supports X.509 certificate-based authentication.
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Device unique identifier.
+      schema:
+        type: integer
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+    Device:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Device internal ID.
+        name:
+          type: string
+          description: Device name.
+        ipAddr:
+          type: string
+          description: Management IP address.
+        platform:
+          type: string
+          description: Device platform (e.g., SRX340, EX4300, MX240).
+        deviceFamily:
+          type: string
+          description: Device family (e.g., junos, junos-es).
+        OSVersion:
+          type: string
+          description: Junos OS version.
+        serialNumber:
+          type: string
+          description: Hardware serial number.
+        connectionStatus:
+          type: string
+          enum:
+            - up
+            - down
+          description: NETCONF connection status.
+        managedStatus:
+          type: string
+          enum:
+            - In Sync
+            - Out Of Sync
+            - Space Changed
+            - Device Changed
+          description: Configuration synchronization status.
+        ManagedDnDomainName:
+          type: string
+          description: Domain name the device belongs to.
+    Configlet:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Configlet internal ID.
+        name:
+          type: string
+          description: Configlet name.
+        description:
+          type: string
+          description: Configlet description.
+        cliConfigletContent:
+          type: string
+          description: CLI configuration template content with variables.
+        executionType:
+          type: string
+          enum:
+            - SingleExecution
+            - GroupExecution
+          description: Execution mode.
+    Script:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Script internal ID.
+        scriptName:
+          type: string
+          description: Script file name.
+        description:
+          type: string
+          description: Script description.
+        scriptType:
+          type: string
+          enum:
+            - op
+            - commit
+            - event
+          description: Script type.
+        scriptLanguage:
+          type: string
+          enum:
+            - slax
+            - xslt
+            - python
+          description: Script language.
+    User:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: User internal ID.
+        name:
+          type: string
+          description: Username.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        status:
+          type: string
+          enum:
+            - Active
+            - Disabled
+        roles:
+          type: array
+          items:
+            type: string
+          description: Assigned role names.
+    Job:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Job internal ID.
+        jobName:
+          type: string
+          description: Job name.
+        jobType:
+          type: string
+          description: Job type identifier.
+        jobState:
+          type: string
+          enum:
+            - ENABLED
+            - INPROGRESS
+            - SUCCESS
+            - FAILURE
+            - CANCELLED
+          description: Current job state.
+        percent:
+          type: number
+          description: Completion percentage.
+        createdByUserName:
+          type: string
+          description: User who created the job.
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          description: Job result summary.

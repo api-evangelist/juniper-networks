@@ -1,0 +1,611 @@
+openapi: 3.1.0
+info:
+  title: Juniper vSRX REST API
+  description: >-
+    RESTful API for managing Juniper vSRX virtual firewall instances. The vSRX
+    provides full next-generation firewall capabilities including stateful
+    inspection, application identification, IPS, content security, and VPN
+    in a virtualized form factor. The REST API runs on the vSRX management
+    plane and provides access to configuration, monitoring, and operational
+    commands. It supports Junos configuration in JSON format and returns
+    structured responses for security policies, zones, NAT rules, and
+    VPN tunnels. Authentication uses HTTP Basic with Junos credentials.
+  version: '23.4'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/vsrx/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+  - url: https://{vsrx_host}/api
+    description: vSRX REST API endpoint.
+    variables:
+      vsrx_host:
+        description: Hostname or IP address of the vSRX instance.
+        default: vsrx.example.com
+security:
+  - basicAuth: []
+tags:
+  - name: Configuration
+    description: Device configuration retrieval and modification.
+  - name: Security Policies
+    description: Security policy and zone management.
+  - name: NAT
+    description: Network address translation rule management.
+  - name: VPN
+    description: IPsec VPN tunnel configuration.
+  - name: Monitoring
+    description: Device and session monitoring operations.
+  - name: System
+    description: System information and operational commands.
+paths:
+  /v1/configuration:
+    get:
+      operationId: getConfiguration
+      summary: Get device configuration
+      description: >-
+        Returns the current candidate or committed Junos configuration in
+        JSON or XML format. Supports filtering by configuration hierarchy
+        path.
+      tags:
+        - Configuration
+      parameters:
+        - name: type
+          in: query
+          description: Configuration database to read.
+          schema:
+            type: string
+            enum:
+              - candidate
+              - committed
+            default: committed
+        - name: path
+          in: query
+          description: >-
+            Configuration hierarchy path to filter. Example:
+            security/policies to return only security policy configuration.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Configuration returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  configuration:
+                    type: object
+                    description: Junos configuration hierarchy in JSON format.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateConfiguration
+      summary: Update configuration
+      description: >-
+        Applies configuration changes to the candidate configuration.
+        Changes must be committed separately to take effect.
+      tags:
+        - Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configuration:
+                  type: object
+                  description: Junos configuration hierarchy to apply.
+      responses:
+        '200':
+          description: Configuration updated in candidate.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/configuration/commit:
+    post:
+      operationId: commitConfiguration
+      summary: Commit configuration
+      description: >-
+        Commits the candidate configuration to the active running
+        configuration. Supports commit check, commit confirm with
+        rollback timer, and commit comments.
+      tags:
+        - Configuration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commit:
+                  type: object
+                  properties:
+                    check:
+                      type: boolean
+                      description: Only validate without committing.
+                    confirm:
+                      type: integer
+                      description: Auto-rollback timeout in minutes if not confirmed.
+                    comment:
+                      type: string
+                      description: Commit log comment.
+      responses:
+        '200':
+          description: Configuration committed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: Commit failed due to configuration errors.
+  /v1/security/policies:
+    get:
+      operationId: listSecurityPolicies
+      summary: List security policies
+      description: >-
+        Returns all security policies configured on the vSRX. Policies
+        are organized by from-zone to-zone pairs and evaluated top-down.
+      tags:
+        - Security Policies
+      responses:
+        '200':
+          description: Security policies returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  security-policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SecurityPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/security/zones:
+    get:
+      operationId: listSecurityZones
+      summary: List security zones
+      description: >-
+        Returns all security zones configured on the vSRX. Zones are
+        logical groupings of interfaces that define trust boundaries
+        for policy enforcement.
+      tags:
+        - Security Policies
+      responses:
+        '200':
+          description: Security zones returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  security-zones:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SecurityZone'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/security/nat/source:
+    get:
+      operationId: listSourceNatRules
+      summary: List source NAT rules
+      description: >-
+        Returns all source NAT rule sets and rules. Source NAT translates
+        the source IP address of outbound traffic for internet access or
+        address hiding.
+      tags:
+        - NAT
+      responses:
+        '200':
+          description: Source NAT rules returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  source-nat-rules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NatRuleSet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/security/nat/destination:
+    get:
+      operationId: listDestinationNatRules
+      summary: List destination NAT rules
+      description: >-
+        Returns all destination NAT rule sets and rules. Destination NAT
+        translates destination addresses for inbound traffic to internal
+        server addresses.
+      tags:
+        - NAT
+      responses:
+        '200':
+          description: Destination NAT rules returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  destination-nat-rules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NatRuleSet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/security/ipsec/vpn:
+    get:
+      operationId: listIpsecVpns
+      summary: List IPsec VPN tunnels
+      description: >-
+        Returns all IPsec VPN tunnel configurations, including IKE gateway
+        associations, encryption settings, and tunnel status.
+      tags:
+        - VPN
+      responses:
+        '200':
+          description: IPsec VPN tunnels returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ipsec-vpns:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IpsecVpn'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/monitoring/security/flow/session:
+    get:
+      operationId: listFlowSessions
+      summary: List active flow sessions
+      description: >-
+        Returns currently active security flow sessions on the vSRX.
+        Equivalent to the show security flow session CLI command.
+      tags:
+        - Monitoring
+      parameters:
+        - name: source_prefix
+          in: query
+          description: Filter by source IP prefix.
+          schema:
+            type: string
+        - name: destination_prefix
+          in: query
+          description: Filter by destination IP prefix.
+          schema:
+            type: string
+        - name: application
+          in: query
+          description: Filter by application name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Flow sessions returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_sessions:
+                    type: integer
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FlowSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/system/information:
+    get:
+      operationId: getSystemInformation
+      summary: Get system information
+      description: >-
+        Returns system information including hostname, model, Junos version,
+        serial number, and uptime.
+      tags:
+        - System
+      responses:
+        '200':
+          description: System information returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/system/alarms:
+    get:
+      operationId: listSystemAlarms
+      summary: List system alarms
+      description: Returns active system alarms on the vSRX.
+      tags:
+        - System
+      responses:
+        '200':
+          description: System alarms returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alarms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SystemAlarm'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication using Junos device credentials. The user
+        must have appropriate class permissions for the requested operations.
+  responses:
+    BadRequest:
+      description: Invalid request or configuration error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+    SecurityPolicy:
+      type: object
+      properties:
+        from_zone:
+          type: string
+          description: Source security zone.
+        to_zone:
+          type: string
+          description: Destination security zone.
+        policies:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Policy name.
+              match:
+                type: object
+                properties:
+                  source_address:
+                    type: array
+                    items:
+                      type: string
+                  destination_address:
+                    type: array
+                    items:
+                      type: string
+                  application:
+                    type: array
+                    items:
+                      type: string
+              then:
+                type: object
+                properties:
+                  action:
+                    type: string
+                    enum:
+                      - permit
+                      - deny
+                      - reject
+                  log:
+                    type: boolean
+                  count:
+                    type: boolean
+    SecurityZone:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Zone name.
+        interfaces:
+          type: array
+          items:
+            type: string
+          description: Interfaces bound to the zone.
+        host_inbound_traffic:
+          type: object
+          properties:
+            system_services:
+              type: array
+              items:
+                type: string
+              description: Allowed host-inbound system services (ssh, https, ping, etc.).
+            protocols:
+              type: array
+              items:
+                type: string
+              description: Allowed host-inbound routing protocols (bgp, ospf, etc.).
+        screen:
+          type: string
+          description: IDS screen profile name applied to the zone.
+    NatRuleSet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: NAT rule set name.
+        from:
+          type: object
+          properties:
+            zone:
+              type: string
+            interface:
+              type: string
+        to:
+          type: object
+          properties:
+            zone:
+              type: string
+            interface:
+              type: string
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              match:
+                type: object
+                properties:
+                  source_address:
+                    type: array
+                    items:
+                      type: string
+                  destination_address:
+                    type: array
+                    items:
+                      type: string
+                  destination_port:
+                    type: integer
+              then:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - pool
+                      - interface
+                      - off
+                  pool_name:
+                    type: string
+    IpsecVpn:
+      type: object
+      properties:
+        name:
+          type: string
+          description: VPN tunnel name.
+        ike_gateway:
+          type: string
+          description: IKE gateway name.
+        ike_policy:
+          type: string
+          description: IKE policy name.
+        ipsec_policy:
+          type: string
+          description: IPsec policy name.
+        bind_interface:
+          type: string
+          description: Tunnel interface (e.g., st0.0).
+        establish_tunnels:
+          type: string
+          enum:
+            - immediately
+            - on-traffic
+          description: Tunnel establishment trigger.
+        status:
+          type: string
+          enum:
+            - up
+            - down
+          description: Current tunnel status.
+    FlowSession:
+      type: object
+      properties:
+        session_id:
+          type: integer
+          description: Session identifier.
+        policy:
+          type: string
+          description: Matching security policy name.
+        source_address:
+          type: string
+          description: Source IP address.
+        source_port:
+          type: integer
+        destination_address:
+          type: string
+          description: Destination IP address.
+        destination_port:
+          type: integer
+        protocol:
+          type: string
+          description: IP protocol name.
+        application:
+          type: string
+          description: Identified application.
+        in_interface:
+          type: string
+          description: Ingress interface.
+        out_interface:
+          type: string
+          description: Egress interface.
+        bytes_in:
+          type: integer
+          description: Bytes received.
+        bytes_out:
+          type: integer
+          description: Bytes transmitted.
+        duration:
+          type: integer
+          description: Session duration in seconds.
+    SystemInfo:
+      type: object
+      properties:
+        hostname:
+          type: string
+          description: Device hostname.
+        model:
+          type: string
+          description: Device model (e.g., vSRX, vSRX3.0).
+        junos_version:
+          type: string
+          description: Junos OS version.
+        serial_number:
+          type: string
+          description: Virtual serial number.
+        uptime:
+          type: string
+          description: System uptime string.
+        last_reboot_reason:
+          type: string
+          description: Reason for the last reboot.
+    SystemAlarm:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Alarm identifier.
+        severity:
+          type: string
+          enum:
+            - major
+            - minor
+          description: Alarm severity.
+        description:
+          type: string
+          description: Alarm description.
+        type:
+          type: string
+          description: Alarm type.
+        timestamp:
+          type: string
+          format: date-time
+          description: Alarm trigger time.

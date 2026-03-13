@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/juniper-networks/refs/heads/main/json-schema/juniper-networks-apstra-blueprint-schema.json",
+  "title": "Juniper Apstra Blueprint",
+  "description": "Schema for a Juniper Apstra blueprint object. Blueprints are the central construct in Apstra intent-based networking. A blueprint represents the complete intended state of a data center network fabric, instantiated from a template that defines the leaf-spine topology. The blueprint contains the network graph with nodes (spines, leaves, servers), links, IP addressing, BGP configuration, security zones (VRFs), virtual networks (VLANs/VXLANs), and connectivity templates. Apstra continuously validates the actual network state against the blueprint intent and raises anomalies when deviations are detected. Changes are staged in the blueprint and deployed to devices through a commit/deploy workflow.",
+  "type": "object",
+  "required": ["label", "design"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Blueprint unique identifier assigned by the Apstra server upon creation."
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable blueprint name. Typically identifies the data center or pod the blueprint represents.",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "design": {
+      "type": "string",
+      "enum": ["two_stage_l3clos"],
+      "description": "Blueprint design type. Currently supports two_stage_l3clos for leaf-spine (2-stage Clos) data center fabric topologies."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["created", "ready", "deploying", "deploy_error"],
+      "description": "Blueprint deployment lifecycle status. 'created' indicates initial creation, 'ready' indicates the blueprint is operational and deployed, 'deploying' indicates active configuration push, 'deploy_error' indicates a failed deployment."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Blueprint version number. Incremented on each successful commit/deploy operation. Used for optimistic concurrency control.",
+      "minimum": 0
+    },
+    "template_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Reference to the template used to instantiate this blueprint. Templates define the topology structure including spine count, rack types, and link speeds."
+    },
+    "build_errors_count": {
+      "type": "integer",
+      "description": "Number of build errors in the current blueprint configuration. Build errors indicate configuration conflicts or missing resources that must be resolved before deployment.",
+      "minimum": 0
+    },
+    "build_warnings_count": {
+      "type": "integer",
+      "description": "Number of build warnings. Warnings indicate non-critical issues that do not prevent deployment but may affect network behavior.",
+      "minimum": 0
+    },
+    "anomaly_counts": {
+      "type": "object",
+      "description": "Summary counts of active anomalies by category. Anomalies represent deviations between blueprint intent and actual network state.",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Total active anomaly count across all categories."
+        },
+        "config": {
+          "type": "integer",
+          "description": "Configuration deviation anomalies."
+        },
+        "cabling": {
+          "type": "integer",
+          "description": "Physical cabling mismatch anomalies."
+        },
+        "bgp": {
+          "type": "integer",
+          "description": "BGP session state anomalies."
+        },
+        "interface": {
+          "type": "integer",
+          "description": "Interface state anomalies."
+        },
+        "route": {
+          "type": "integer",
+          "description": "Routing table anomalies."
+        },
+        "liveness": {
+          "type": "integer",
+          "description": "Device liveness (unreachable) anomalies."
+        }
+      }
+    },
+    "nodes_count": {
+      "type": "object",
+      "description": "Count of nodes in the blueprint graph by role.",
+      "properties": {
+        "spine": {
+          "type": "integer",
+          "description": "Number of spine switches."
+        },
+        "leaf": {
+          "type": "integer",
+          "description": "Number of leaf switches."
+        },
+        "access": {
+          "type": "integer",
+          "description": "Number of access switches."
+        },
+        "generic": {
+          "type": "integer",
+          "description": "Number of generic systems (servers, storage)."
+        },
+        "external_router": {
+          "type": "integer",
+          "description": "Number of external routers connected to the fabric."
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Blueprint creation timestamp."
+    },
+    "last_modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last blueprint modification timestamp."
+    }
+  }
+}

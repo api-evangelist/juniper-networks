@@ -3,7 +3,8 @@ description: APIs and developer resources for Juniper Networks networking produc
 image: https://www.juniper.net/content/dam/juniper/images/logos/juniper-networks-logo.png
 url: https://www.juniper.net
 created: '2024'
-modified: '2024'
+modified: '2026-03-04'
+specificationVersion: '0.18'
 apis:
 - name: Juniper Apstra API
   description: Intent-based networking API for data center automation and orchestration
@@ -19,7 +20,9 @@ apis:
   - type: Documentation
     url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
   - type: OpenAPI
-    url: https://<apstra-server>/api/swagger.json
+    url: openapi/juniper-networks-apstra-openapi.yml
+  - type: JSONSchema
+    url: json-schema/juniper-networks-apstra-blueprint-schema.json
   - type: Authentication
     url: https://www.juniper.net/documentation/us/en/software/apstra4.1/apstra-user-guide/topics/topic-map/api-authentication.html
 - name: Junos PyEZ
@@ -54,6 +57,10 @@ apis:
     url: https://www.juniper.net/documentation/us/en/software/junos/netconf/index.html
   - type: XML API Guide
     url: https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/concept/netconf-xml-api-overview.html
+  - type: JSONSchema
+    url: json-schema/juniper-networks-junos-security-policy-schema.json
+  - type: AsyncAPI
+    url: asyncapi/juniper-networks-junos-telemetry-asyncapi.yml
 - name: Juniper Mist API
   description: Cloud-based AI-driven networking API for wireless, wired, and SD-WAN management
   image: https://www.mist.com/wp-content/uploads/mist-logo.png
@@ -72,6 +79,14 @@ apis:
     url: https://doc.mist-lab.fr/
   - type: Authentication
     url: https://api.mist.com/api/v1/docs/Auth.html
+  - type: OpenAPI
+    url: openapi/juniper-networks-mist-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/juniper-networks-mist-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/juniper-networks-mist-site-schema.json
+  - type: JSONSchema
+    url: json-schema/juniper-networks-mist-device-schema.json
 - name: Juniper Contrail API
   description: SDN controller API for network virtualization and orchestration
   image: https://www.juniper.net/content/dam/juniper/images/products/contrail.png
@@ -87,6 +102,10 @@ apis:
     url: https://www.juniper.net/documentation/product/us/en/contrail-networking/
   - type: API Guide
     url: https://github.com/Juniper/contrail-controller/wiki/Contrail-REST-API
+  - type: OpenAPI
+    url: openapi/juniper-networks-contrail-openapi.yml
+  - type: JSONSchema
+    url: json-schema/juniper-networks-contrail-virtual-network-schema.json
 - name: Junos Space REST API
   description: Network management platform API for Junos devices
   image: https://www.juniper.net/content/dam/juniper/images/products/junos-space.png
@@ -101,6 +120,8 @@ apis:
     url: https://www.juniper.net/documentation/us/en/software/junos-space/
   - type: API Developer Guide
     url: https://www.juniper.net/documentation/us/en/software/junos-space/junos-space-platform/topics/concept/junos-space-rest-api-overview.html
+  - type: OpenAPI
+    url: openapi/juniper-networks-junos-space-openapi.yml
 - name: Juniper JSNAPy
   description: Python-based tool for snapshot and verification of network device configurations
   image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
@@ -129,7 +150,11 @@ apis:
   properties:
   - type: Documentation
     url: https://www.juniper.net/documentation/product/us/en/vsrx/
+  - type: OpenAPI
+    url: openapi/juniper-networks-vsrx-openapi.yml
 common:
+- type: JSON-LD
+  url: json-ld/juniper-networks-context.jsonld
 - type: Developer Portal
   url: https://developer.juniper.net/
 - type: Support
@@ -140,10 +165,26 @@ common:
   url: https://community.juniper.net/
 - type: Training
   url: https://learningportal.juniper.net/
+- type: Website
+  url: https://www.juniper.net/
+- type: Documentation
+  url: https://www.juniper.net/documentation/
+- type: Blog
+  url: https://blogs.juniper.net/
+- type: Status
+  url: https://status.juniper.net/
+- type: Terms of Service
+  url: https://www.juniper.net/us/en/legal-notices.html
+- type: Privacy Policy
+  url: https://www.juniper.net/us/en/privacy-policy.html
+- type: YouTube
+  url: https://www.youtube.com/user/JuniperNetworks
+- type: Stack Overflow
+  url: https://stackoverflow.com/questions/tagged/juniper
 maintainers:
-- name: Juniper Networks
-  email: developer-support@juniper.net
-  url: https://developer.juniper.net/
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
 tags:
 - Networking
 - Enterprise

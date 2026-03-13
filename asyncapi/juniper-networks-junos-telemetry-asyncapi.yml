@@ -1,0 +1,387 @@
+asyncapi: 2.6.0
+info:
+  title: Junos Telemetry Interface (JTI) Streaming
+  version: '1.0'
+  description: >-
+    Junos Telemetry Interface provides real-time streaming telemetry from
+    Juniper Networks devices using gRPC or UDP protocols. JTI pushes
+    operational data from Junos devices at configured intervals, replacing
+    traditional SNMP polling with high-frequency, model-driven telemetry.
+    Supported data includes interface statistics, routing table changes,
+    firewall filter counters, optics diagnostics, system resource utilization,
+    and protocol-specific metrics. Data is encoded in Google Protocol Buffers
+    (GPB) format or OpenConfig-modeled JSON/YANG. JTI supports both dial-out
+    (device-initiated) and dial-in (collector-initiated via gNMI) modes.
+    This specification covers the dial-out streaming model where Junos
+    devices publish telemetry to configured collector endpoints.
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/us/en/software/junos/interfaces-telemetry/index.html
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+  grpcCollector:
+    url: '{collectorHost}:{collectorPort}'
+    protocol: grpc
+    description: >-
+      gRPC telemetry collector endpoint. Junos devices establish a persistent
+      gRPC stream to the collector and push telemetry data at the configured
+      reporting interval. Configure the collector address on Junos devices
+      under services analytics streaming-server.
+    variables:
+      collectorHost:
+        description: Hostname or IP of the telemetry collector.
+      collectorPort:
+        description: gRPC port on the collector.
+        default: '50051'
+  udpCollector:
+    url: '{collectorHost}:{collectorPort}'
+    protocol: udp
+    description: >-
+      UDP telemetry collector for native GPB-encoded sensor data. Junos
+      devices send UDP datagrams containing serialized Protocol Buffer
+      messages to the collector. Configured under services analytics
+      export-profile with transport udp.
+    variables:
+      collectorHost:
+        description: Hostname or IP of the telemetry collector.
+      collectorPort:
+        description: UDP port on the collector.
+        default: '21000'
+channels:
+  /interfaces:
+    description: >-
+      Channel for interface telemetry data. Provides real-time statistics
+      for physical and logical interfaces including packet counts, byte
+      counts, error counters, queue depths, and interface operational status.
+      Sensor path: /junos/system/linecard/interface/
+    subscribe:
+      operationId: onInterfaceStats
+      summary: Interface statistics telemetry stream
+      message:
+        $ref: '#/components/messages/InterfaceStatsMessage'
+  /routing:
+    description: >-
+      Channel for routing telemetry. Provides BGP session state changes,
+      route count updates, and routing table modifications. Sensor paths
+      include /junos/routing/ for Junos-native and OpenConfig BGP paths.
+    subscribe:
+      operationId: onRoutingTelemetry
+      summary: Routing protocol telemetry stream
+      message:
+        $ref: '#/components/messages/RoutingMessage'
+  /system-resources:
+    description: >-
+      Channel for system resource telemetry. Reports CPU utilization,
+      memory usage, storage capacity, and routing engine temperature
+      for capacity planning and health monitoring.
+      Sensor path: /junos/system/
+    subscribe:
+      operationId: onSystemResources
+      summary: System resource utilization telemetry stream
+      message:
+        $ref: '#/components/messages/SystemResourceMessage'
+  /firewall:
+    description: >-
+      Channel for firewall filter counter telemetry. Provides real-time
+      packet and byte counts for configured firewall filter terms.
+      Sensor path: /junos/system/linecard/firewall/
+    subscribe:
+      operationId: onFirewallCounters
+      summary: Firewall filter counter telemetry stream
+      message:
+        $ref: '#/components/messages/FirewallMessage'
+  /optics:
+    description: >-
+      Channel for optical transceiver diagnostics. Reports real-time
+      optical power levels, laser bias current, temperature, and voltage
+      for SFP/QSFP transceivers. Used for proactive link failure detection.
+      Sensor path: /junos/system/linecard/optics/
+    subscribe:
+      operationId: onOpticsDiagnostics
+      summary: Optical diagnostics telemetry stream
+      message:
+        $ref: '#/components/messages/OpticsMessage'
+components:
+  messages:
+    InterfaceStatsMessage:
+      name: InterfaceStatsMessage
+      title: Interface Statistics Telemetry
+      summary: >-
+        Real-time interface counter data including ingress/egress packet
+        and byte counts, error counters, and queue statistics. Published
+        at the configured reporting rate (typically 2-30 seconds).
+      contentType: application/x-protobuf
+      payload:
+        type: object
+        properties:
+          system_id:
+            type: string
+            description: Device hostname or system identifier.
+          component_id:
+            type: integer
+            description: Line card slot number.
+          sensor_name:
+            type: string
+            description: Sensor resource path.
+          sequence_number:
+            type: integer
+            description: Monotonically increasing sequence number.
+          timestamp:
+            type: integer
+            description: Data collection timestamp in milliseconds since epoch.
+          interface_stats:
+            type: array
+            items:
+              type: object
+              properties:
+                if_name:
+                  type: string
+                  description: Interface name (e.g., et-0/0/0).
+                init_time:
+                  type: integer
+                  description: Interface initialization time.
+                snmp_if_index:
+                  type: integer
+                  description: SNMP interface index.
+                ingress_stats:
+                  type: object
+                  properties:
+                    if_pkts:
+                      type: integer
+                      description: Total ingress packets.
+                    if_octets:
+                      type: integer
+                      description: Total ingress bytes.
+                    if_ucast_pkts:
+                      type: integer
+                      description: Unicast packets received.
+                    if_mcast_pkts:
+                      type: integer
+                      description: Multicast packets received.
+                    if_errors:
+                      type: integer
+                      description: Ingress error count.
+                    if_discards:
+                      type: integer
+                      description: Ingress discard count.
+                egress_stats:
+                  type: object
+                  properties:
+                    if_pkts:
+                      type: integer
+                      description: Total egress packets.
+                    if_octets:
+                      type: integer
+                      description: Total egress bytes.
+                    if_ucast_pkts:
+                      type: integer
+                    if_mcast_pkts:
+                      type: integer
+                    if_errors:
+                      type: integer
+                    if_discards:
+                      type: integer
+                egress_queue_info:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      queue_number:
+                        type: integer
+                      packets:
+                        type: integer
+                      bytes:
+                        type: integer
+                      tail_drop_packets:
+                        type: integer
+                      red_drop_packets:
+                        type: integer
+                  description: Per-queue egress statistics.
+                op_state:
+                  type: string
+                  enum:
+                    - up
+                    - down
+                  description: Interface operational state.
+    RoutingMessage:
+      name: RoutingMessage
+      title: Routing Protocol Telemetry
+      summary: >-
+        BGP session state and route count telemetry data. Reports peer
+        session transitions, received/advertised prefix counts, and
+        route table summary statistics.
+      contentType: application/x-protobuf
+      payload:
+        type: object
+        properties:
+          system_id:
+            type: string
+          timestamp:
+            type: integer
+          bgp_peers:
+            type: array
+            items:
+              type: object
+              properties:
+                peer_address:
+                  type: string
+                  description: BGP peer IP address.
+                peer_as:
+                  type: integer
+                  description: BGP peer autonomous system number.
+                local_as:
+                  type: integer
+                  description: Local autonomous system number.
+                peer_state:
+                  type: string
+                  enum:
+                    - established
+                    - active
+                    - idle
+                    - connect
+                    - openconfirm
+                    - opensent
+                  description: BGP session state.
+                received_prefixes:
+                  type: integer
+                  description: Number of prefixes received from peer.
+                accepted_prefixes:
+                  type: integer
+                  description: Number of prefixes accepted from peer.
+                advertised_prefixes:
+                  type: integer
+                  description: Number of prefixes advertised to peer.
+                up_time:
+                  type: integer
+                  description: Session uptime in seconds.
+                last_error:
+                  type: string
+                  description: Last BGP notification error message.
+    SystemResourceMessage:
+      name: SystemResourceMessage
+      title: System Resource Telemetry
+      summary: >-
+        System resource utilization data including CPU, memory, and
+        temperature readings from routing engines and line cards.
+      contentType: application/x-protobuf
+      payload:
+        type: object
+        properties:
+          system_id:
+            type: string
+          timestamp:
+            type: integer
+          routing_engine:
+            type: array
+            items:
+              type: object
+              properties:
+                slot:
+                  type: integer
+                  description: Routing engine slot number.
+                cpu_idle:
+                  type: number
+                  description: CPU idle percentage.
+                cpu_user:
+                  type: number
+                  description: CPU user-space percentage.
+                cpu_system:
+                  type: number
+                  description: CPU system percentage.
+                memory_total:
+                  type: integer
+                  description: Total memory in bytes.
+                memory_used:
+                  type: integer
+                  description: Used memory in bytes.
+                memory_buffer:
+                  type: integer
+                  description: Buffer memory in bytes.
+                temperature:
+                  type: number
+                  description: Routing engine temperature in Celsius.
+                uptime:
+                  type: integer
+                  description: Routing engine uptime in seconds.
+    FirewallMessage:
+      name: FirewallMessage
+      title: Firewall Filter Counter Telemetry
+      summary: >-
+        Real-time firewall filter counter data for configured filter terms.
+        Reports packet and byte match counts per filter term.
+      contentType: application/x-protobuf
+      payload:
+        type: object
+        properties:
+          system_id:
+            type: string
+          timestamp:
+            type: integer
+          firewall_stats:
+            type: array
+            items:
+              type: object
+              properties:
+                filter_name:
+                  type: string
+                  description: Firewall filter name.
+                counter_name:
+                  type: string
+                  description: Counter term name.
+                packets:
+                  type: integer
+                  description: Matched packet count.
+                bytes:
+                  type: integer
+                  description: Matched byte count.
+    OpticsMessage:
+      name: OpticsMessage
+      title: Optical Transceiver Diagnostics Telemetry
+      summary: >-
+        Optical transceiver diagnostic readings including power levels,
+        bias current, temperature, and voltage for SFP/QSFP modules.
+      contentType: application/x-protobuf
+      payload:
+        type: object
+        properties:
+          system_id:
+            type: string
+          timestamp:
+            type: integer
+          optics_diag:
+            type: array
+            items:
+              type: object
+              properties:
+                if_name:
+                  type: string
+                  description: Interface name.
+                module_temperature:
+                  type: number
+                  description: Module temperature in Celsius.
+                module_voltage:
+                  type: number
+                  description: Module supply voltage in volts.
+                lanes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      lane_number:
+                        type: integer
+                      laser_output_power_dbm:
+                        type: number
+                        description: Laser output power in dBm.
+                      laser_rx_power_dbm:
+                        type: number
+                        description: Receiver input power in dBm.
+                      laser_bias_current_ma:
+                        type: number
+                        description: Laser bias current in milliamps.
+                      laser_output_power_high_alarm:
+                        type: boolean
+                      laser_rx_power_low_alarm:
+                        type: boolean
+                  description: Per-lane optical diagnostics.

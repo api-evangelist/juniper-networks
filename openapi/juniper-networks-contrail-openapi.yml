@@ -1,0 +1,657 @@
+openapi: 3.1.0
+info:
+  title: Juniper Contrail Networking REST API
+  description: >-
+    RESTful API for Juniper Contrail Networking (now Tungsten Fabric), a
+    cloud-native SDN controller that provides virtual network orchestration
+    for OpenStack, Kubernetes, and VMware environments. The API manages
+    virtual networks, network policies, security groups, service chains,
+    and BGP routing. Contrail uses a configuration API server that exposes
+    a RESTful interface for all network objects. Objects follow a hierarchical
+    model with domains, projects, and network resources. Authentication
+    integrates with Keystone (OpenStack) or local authentication.
+  version: '5.1'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/contrail-networking/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{contrail_controller}:8082
+    description: Contrail Configuration API Server.
+    variables:
+      contrail_controller:
+        description: Hostname or IP of the Contrail controller node.
+        default: contrail.example.com
+security:
+  - keystoneToken: []
+tags:
+  - name: Virtual Networks
+    description: Virtual network creation and management.
+  - name: Network Policies
+    description: Network policy rules for traffic control between virtual networks.
+  - name: Security Groups
+    description: Security group rules for workload micro-segmentation.
+  - name: Floating IPs
+    description: Floating IP pool and association management.
+  - name: Service Instances
+    description: Network function service instance management.
+  - name: BGP Routers
+    description: BGP router and peering configuration.
+  - name: Projects
+    description: Tenant project management.
+paths:
+  /virtual-networks:
+    get:
+      operationId: listVirtualNetworks
+      summary: List virtual networks
+      description: >-
+        Returns all virtual networks accessible to the authenticated user.
+        Virtual networks are the core abstraction in Contrail, representing
+        isolated Layer 2/3 network segments with VXLAN/MPLS encapsulation.
+      tags:
+        - Virtual Networks
+      parameters:
+        - name: parent_id
+          in: query
+          description: Filter by parent project UUID.
+          schema:
+            type: string
+            format: uuid
+        - name: detail
+          in: query
+          description: When true, returns full object details instead of references.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Virtual networks returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-networks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VirtualNetworkRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createVirtualNetwork
+      summary: Create virtual network
+      description: >-
+        Creates a new virtual network. The network is automatically assigned
+        a VXLAN VNI and route targets for BGP EVPN control plane operation.
+      tags:
+        - Virtual Networks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtual-network:
+                  $ref: '#/components/schemas/VirtualNetwork'
+      responses:
+        '200':
+          description: Virtual network created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-network:
+                    $ref: '#/components/schemas/VirtualNetwork'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /virtual-network/{vn_id}:
+    get:
+      operationId: getVirtualNetwork
+      summary: Get virtual network
+      description: Returns details for a specific virtual network.
+      tags:
+        - Virtual Networks
+      parameters:
+        - $ref: '#/components/parameters/VnId'
+      responses:
+        '200':
+          description: Virtual network returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-network:
+                    $ref: '#/components/schemas/VirtualNetwork'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateVirtualNetwork
+      summary: Update virtual network
+      description: Updates properties of a virtual network.
+      tags:
+        - Virtual Networks
+      parameters:
+        - $ref: '#/components/parameters/VnId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtual-network:
+                  $ref: '#/components/schemas/VirtualNetwork'
+      responses:
+        '200':
+          description: Virtual network updated.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: deleteVirtualNetwork
+      summary: Delete virtual network
+      description: Deletes a virtual network and releases associated resources.
+      tags:
+        - Virtual Networks
+      parameters:
+        - $ref: '#/components/parameters/VnId'
+      responses:
+        '200':
+          description: Virtual network deleted.
+        '409':
+          description: Virtual network has active references and cannot be deleted.
+  /network-policys:
+    get:
+      operationId: listNetworkPolicies
+      summary: List network policies
+      description: >-
+        Returns all network policies. Network policies define rules that
+        control traffic flow between virtual networks, including allow,
+        deny, and service chain actions.
+      tags:
+        - Network Policies
+      responses:
+        '200':
+          description: Network policies returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  network-policys:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNetworkPolicy
+      summary: Create network policy
+      description: Creates a new network policy with traffic control rules.
+      tags:
+        - Network Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network-policy:
+                  $ref: '#/components/schemas/NetworkPolicy'
+      responses:
+        '200':
+          description: Network policy created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  network-policy:
+                    $ref: '#/components/schemas/NetworkPolicy'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /security-groups:
+    get:
+      operationId: listSecurityGroups
+      summary: List security groups
+      description: >-
+        Returns all security groups. Security groups provide stateful
+        packet filtering at the virtual machine interface level, similar
+        to OpenStack security groups.
+      tags:
+        - Security Groups
+      responses:
+        '200':
+          description: Security groups returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  security-groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSecurityGroup
+      summary: Create security group
+      description: Creates a new security group with ingress/egress rules.
+      tags:
+        - Security Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                security-group:
+                  $ref: '#/components/schemas/SecurityGroup'
+      responses:
+        '200':
+          description: Security group created.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /floating-ip-pools:
+    get:
+      operationId: listFloatingIpPools
+      summary: List floating IP pools
+      description: >-
+        Returns all floating IP pools. Floating IP pools provide publicly
+        routable IP addresses that can be associated with virtual machine
+        interfaces for external access.
+      tags:
+        - Floating IPs
+      responses:
+        '200':
+          description: Floating IP pools returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  floating-ip-pools:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /service-instances:
+    get:
+      operationId: listServiceInstances
+      summary: List service instances
+      description: >-
+        Returns all service instances. Service instances represent deployed
+        network functions (firewall, load balancer, etc.) inserted into
+        a service chain between virtual networks.
+      tags:
+        - Service Instances
+      responses:
+        '200':
+          description: Service instances returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service-instances:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /bgp-routers:
+    get:
+      operationId: listBgpRouters
+      summary: List BGP routers
+      description: >-
+        Returns all BGP router objects. BGP routers represent control
+        plane nodes in the Contrail cluster including control nodes,
+        compute nodes, and external MX/physical routers.
+      tags:
+        - BGP Routers
+      responses:
+        '200':
+          description: BGP routers returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bgp-routers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List projects
+      description: >-
+        Returns all projects (tenants). Projects provide multi-tenancy
+        isolation and serve as containers for virtual networks, policies,
+        and other network resources.
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: Projects returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    keystoneToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: >-
+        Keystone authentication token obtained from the OpenStack Identity
+        service. For standalone Contrail, local authentication returns a
+        token via the auth/keystone/v3/auth/tokens endpoint.
+  parameters:
+    VnId:
+      name: vn_id
+      in: path
+      required: true
+      description: Virtual network UUID.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    ObjectRef:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+          description: Resource URL.
+        fq_name:
+          type: array
+          items:
+            type: string
+          description: Fully qualified name path (domain, project, name).
+        uuid:
+          type: string
+          format: uuid
+          description: Object UUID.
+    VirtualNetworkRef:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        fq_name:
+          type: array
+          items:
+            type: string
+        uuid:
+          type: string
+          format: uuid
+    VirtualNetwork:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: Virtual network UUID.
+        fq_name:
+          type: array
+          items:
+            type: string
+          description: Fully qualified name.
+        display_name:
+          type: string
+          description: Display name.
+        parent_type:
+          type: string
+          description: Parent object type (project).
+        virtual_network_properties:
+          type: object
+          properties:
+            vxlan_network_identifier:
+              type: integer
+              description: VXLAN VNI.
+            forwarding_mode:
+              type: string
+              enum:
+                - l2_l3
+                - l2
+                - l3
+              description: Forwarding mode.
+            rpf:
+              type: string
+              enum:
+                - enable
+                - disable
+              description: Reverse path forwarding setting.
+        network_ipam_refs:
+          type: array
+          description: IP address management references with subnet configuration.
+          items:
+            type: object
+            properties:
+              to:
+                type: array
+                items:
+                  type: string
+              attr:
+                type: object
+                properties:
+                  ipam_subnets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        subnet:
+                          type: object
+                          properties:
+                            ip_prefix:
+                              type: string
+                            ip_prefix_len:
+                              type: integer
+                        default_gateway:
+                          type: string
+                        dns_server_address:
+                          type: string
+        route_target_list:
+          type: object
+          properties:
+            route_target:
+              type: array
+              items:
+                type: string
+              description: BGP route targets for import/export.
+        is_shared:
+          type: boolean
+          description: Whether the network is shared across projects.
+        router_external:
+          type: boolean
+          description: Whether the network provides external connectivity.
+    NetworkPolicy:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        fq_name:
+          type: array
+          items:
+            type: string
+        network_policy_entries:
+          type: object
+          properties:
+            policy_rule:
+              type: array
+              items:
+                type: object
+                properties:
+                  direction:
+                    type: string
+                    enum:
+                      - '>'
+                      - '<>'
+                    description: Traffic direction (unidirectional or bidirectional).
+                  protocol:
+                    type: string
+                    description: IP protocol (tcp, udp, icmp, any).
+                  action_list:
+                    type: object
+                    properties:
+                      simple_action:
+                        type: string
+                        enum:
+                          - pass
+                          - deny
+                      apply_service:
+                        type: array
+                        items:
+                          type: string
+                        description: Service chain instance FQN list.
+                  src_addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        virtual_network:
+                          type: string
+                        security_group:
+                          type: string
+                        subnet:
+                          type: object
+                          properties:
+                            ip_prefix:
+                              type: string
+                            ip_prefix_len:
+                              type: integer
+                  dst_addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        virtual_network:
+                          type: string
+                        security_group:
+                          type: string
+                  src_ports:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        start_port:
+                          type: integer
+                        end_port:
+                          type: integer
+                  dst_ports:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        start_port:
+                          type: integer
+                        end_port:
+                          type: integer
+    SecurityGroup:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        fq_name:
+          type: array
+          items:
+            type: string
+        security_group_entries:
+          type: object
+          properties:
+            policy_rule:
+              type: array
+              items:
+                type: object
+                properties:
+                  direction:
+                    type: string
+                    enum:
+                      - '>'
+                      - '<>'
+                  protocol:
+                    type: string
+                  ethertype:
+                    type: string
+                    enum:
+                      - IPv4
+                      - IPv6
+                  src_addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        subnet:
+                          type: object
+                          properties:
+                            ip_prefix:
+                              type: string
+                            ip_prefix_len:
+                              type: integer
+                        security_group:
+                          type: string
+                  dst_addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        subnet:
+                          type: object
+                          properties:
+                            ip_prefix:
+                              type: string
+                            ip_prefix_len:
+                              type: integer
+                  dst_ports:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        start_port:
+                          type: integer
+                        end_port:
+                          type: integer
