@@ -27,20 +27,20 @@ servers:
 security:
   - keystoneToken: []
 tags:
-  - name: Virtual Networks
-    description: Virtual network creation and management.
-  - name: Network Policies
-    description: Network policy rules for traffic control between virtual networks.
-  - name: Security Groups
-    description: Security group rules for workload micro-segmentation.
-  - name: Floating IPs
-    description: Floating IP pool and association management.
-  - name: Service Instances
-    description: Network function service instance management.
   - name: BGP Routers
     description: BGP router and peering configuration.
+  - name: Floating IPs
+    description: Floating IP pool and association management.
+  - name: Network Policies
+    description: Network policy rules for traffic control between virtual networks.
   - name: Projects
     description: Tenant project management.
+  - name: Security Groups
+    description: Security group rules for workload micro-segmentation.
+  - name: Service Instances
+    description: Network function service instance management.
+  - name: Virtual Networks
+    description: Virtual network creation and management.
 paths:
   /virtual-networks:
     get:

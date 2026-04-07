@@ -27,16 +27,16 @@ servers:
 security:
   - basicAuth: []
 tags:
-  - name: Devices
-    description: Device discovery, management, and monitoring operations.
   - name: Configuration
     description: Configuration management, templates, and deployment.
+  - name: Devices
+    description: Device discovery, management, and monitoring operations.
+  - name: Jobs
+    description: Asynchronous job tracking and management.
   - name: Scripts
     description: Script management and execution on managed devices.
   - name: Users
     description: User and role-based access control management.
-  - name: Jobs
-    description: Asynchronous job tracking and management.
 paths:
   /device-management/devices:
     get:

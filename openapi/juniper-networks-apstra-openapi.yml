@@ -28,25 +28,25 @@ servers:
 security:
   - authToken: []
 tags:
+  - name: Anomalies
+    description: Network state anomaly detection and reporting.
   - name: Authentication
     description: User login, logout, and token management.
-  - name: Design
-    description: >-
-      Design resources including logical devices, interface maps, rack types,
-      templates, and config templates.
   - name: Blueprints
     description: >-
       Blueprint lifecycle management for data center network intent, including
       staging, commit, and deployment.
+  - name: Design
+    description: >-
+      Design resources including logical devices, interface maps, rack types,
+      templates, and config templates.
+  - name: IBA
+    description: Intent-Based Analytics probes and dashboards.
   - name: Resources
     description: >-
       Resource pool management for ASN, IP, and VNI allocation.
   - name: Systems
     description: Managed system (device) agent lifecycle and telemetry.
-  - name: IBA
-    description: Intent-Based Analytics probes and dashboards.
-  - name: Anomalies
-    description: Network state anomaly detection and reporting.
 paths:
   /aaa/login:
     post:

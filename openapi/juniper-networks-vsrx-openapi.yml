@@ -29,16 +29,16 @@ security:
 tags:
   - name: Configuration
     description: Device configuration retrieval and modification.
-  - name: Security Policies
-    description: Security policy and zone management.
-  - name: NAT
-    description: Network address translation rule management.
-  - name: VPN
-    description: IPsec VPN tunnel configuration.
   - name: Monitoring
     description: Device and session monitoring operations.
+  - name: NAT
+    description: Network address translation rule management.
+  - name: Security Policies
+    description: Security policy and zone management.
   - name: System
     description: System information and operational commands.
+  - name: VPN
+    description: IPsec VPN tunnel configuration.
 paths:
   /v1/configuration:
     get:

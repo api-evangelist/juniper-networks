@@ -29,26 +29,26 @@ security:
   - apiToken: []
   - csrfToken: []
 tags:
+  - name: Alarms
+    description: Alarm monitoring, acknowledgment, and notification configuration.
   - name: Authentication
     description: Login, logout, two-factor authentication, and API token management.
-  - name: Organizations
-    description: Organization-level settings, licenses, and inventory management.
-  - name: Sites
-    description: Site creation, configuration, and management within organizations.
-  - name: Devices
-    description: Access points, switches, and gateway device management.
-  - name: WLANs
-    description: Wireless LAN configuration including SSIDs, security, and VLAN assignment.
   - name: Clients
     description: Wireless and wired client session monitoring and statistics.
+  - name: Devices
+    description: Access points, switches, and gateway device management.
   - name: Insights
     description: AI-driven network insights, anomaly detection, and Marvis recommendations.
   - name: Inventory
     description: Device claiming, unclaiming, and inventory management.
   - name: Maps
     description: Floor plan and map management for site RF planning.
-  - name: Alarms
-    description: Alarm monitoring, acknowledgment, and notification configuration.
+  - name: Organizations
+    description: Organization-level settings, licenses, and inventory management.
+  - name: Sites
+    description: Site creation, configuration, and management within organizations.
+  - name: WLANs
+    description: Wireless LAN configuration including SSIDs, security, and VLAN assignment.
 paths:
   /self:
     get:
