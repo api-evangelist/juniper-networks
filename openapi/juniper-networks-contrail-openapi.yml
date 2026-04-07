@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Juniper Contrail Networking REST API
+  title: Juniper Networks Juniper Contrail Networking REST API
   description: >-
     RESTful API for Juniper Contrail Networking (now Tungsten Fabric), a
     cloud-native SDN controller that provides virtual network orchestration
@@ -45,7 +45,7 @@ paths:
   /virtual-networks:
     get:
       operationId: listVirtualNetworks
-      summary: List virtual networks
+      summary: Juniper Networks List virtual networks
       description: >-
         Returns all virtual networks accessible to the authenticated user.
         Virtual networks are the core abstraction in Contrail, representing
@@ -80,7 +80,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createVirtualNetwork
-      summary: Create virtual network
+      summary: Juniper Networks Create virtual network
       description: >-
         Creates a new virtual network. The network is automatically assigned
         a VXLAN VNI and route targets for BGP EVPN control plane operation.
@@ -110,7 +110,7 @@ paths:
   /virtual-network/{vn_id}:
     get:
       operationId: getVirtualNetwork
-      summary: Get virtual network
+      summary: Juniper Networks Get virtual network
       description: Returns details for a specific virtual network.
       tags:
         - Virtual Networks
@@ -130,7 +130,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateVirtualNetwork
-      summary: Update virtual network
+      summary: Juniper Networks Update virtual network
       description: Updates properties of a virtual network.
       tags:
         - Virtual Networks
@@ -152,7 +152,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
     delete:
       operationId: deleteVirtualNetwork
-      summary: Delete virtual network
+      summary: Juniper Networks Delete virtual network
       description: Deletes a virtual network and releases associated resources.
       tags:
         - Virtual Networks
@@ -166,7 +166,7 @@ paths:
   /network-policys:
     get:
       operationId: listNetworkPolicies
-      summary: List network policies
+      summary: Juniper Networks List network policies
       description: >-
         Returns all network policies. Network policies define rules that
         control traffic flow between virtual networks, including allow,
@@ -189,7 +189,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createNetworkPolicy
-      summary: Create network policy
+      summary: Juniper Networks Create network policy
       description: Creates a new network policy with traffic control rules.
       tags:
         - Network Policies
@@ -217,7 +217,7 @@ paths:
   /security-groups:
     get:
       operationId: listSecurityGroups
-      summary: List security groups
+      summary: Juniper Networks List security groups
       description: >-
         Returns all security groups. Security groups provide stateful
         packet filtering at the virtual machine interface level, similar
@@ -240,7 +240,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createSecurityGroup
-      summary: Create security group
+      summary: Juniper Networks Create security group
       description: Creates a new security group with ingress/egress rules.
       tags:
         - Security Groups
@@ -261,7 +261,7 @@ paths:
   /floating-ip-pools:
     get:
       operationId: listFloatingIpPools
-      summary: List floating IP pools
+      summary: Juniper Networks List floating IP pools
       description: >-
         Returns all floating IP pools. Floating IP pools provide publicly
         routable IP addresses that can be associated with virtual machine
@@ -285,7 +285,7 @@ paths:
   /service-instances:
     get:
       operationId: listServiceInstances
-      summary: List service instances
+      summary: Juniper Networks List service instances
       description: >-
         Returns all service instances. Service instances represent deployed
         network functions (firewall, load balancer, etc.) inserted into
@@ -309,7 +309,7 @@ paths:
   /bgp-routers:
     get:
       operationId: listBgpRouters
-      summary: List BGP routers
+      summary: Juniper Networks List BGP routers
       description: >-
         Returns all BGP router objects. BGP routers represent control
         plane nodes in the Contrail cluster including control nodes,
@@ -333,7 +333,7 @@ paths:
   /projects:
     get:
       operationId: listProjects
-      summary: List projects
+      summary: Juniper Networks List projects
       description: >-
         Returns all projects (tenants). Projects provide multi-tenancy
         isolation and serve as containers for virtual networks, policies,

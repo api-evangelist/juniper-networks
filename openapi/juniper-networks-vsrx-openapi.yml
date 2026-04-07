@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Juniper vSRX REST API
+  title: Juniper Networks Juniper vSRX REST API
   description: >-
     RESTful API for managing Juniper vSRX virtual firewall instances. The vSRX
     provides full next-generation firewall capabilities including stateful
@@ -43,7 +43,7 @@ paths:
   /v1/configuration:
     get:
       operationId: getConfiguration
-      summary: Get device configuration
+      summary: Juniper Networks Get device configuration
       description: >-
         Returns the current candidate or committed Junos configuration in
         JSON or XML format. Supports filtering by configuration hierarchy
@@ -82,7 +82,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     put:
       operationId: updateConfiguration
-      summary: Update configuration
+      summary: Juniper Networks Update configuration
       description: >-
         Applies configuration changes to the candidate configuration.
         Changes must be committed separately to take effect.
@@ -108,7 +108,7 @@ paths:
   /v1/configuration/commit:
     post:
       operationId: commitConfiguration
-      summary: Commit configuration
+      summary: Juniper Networks Commit configuration
       description: >-
         Commits the candidate configuration to the active running
         configuration. Supports commit check, commit confirm with
@@ -150,7 +150,7 @@ paths:
   /v1/security/policies:
     get:
       operationId: listSecurityPolicies
-      summary: List security policies
+      summary: Juniper Networks List security policies
       description: >-
         Returns all security policies configured on the vSRX. Policies
         are organized by from-zone to-zone pairs and evaluated top-down.
@@ -173,7 +173,7 @@ paths:
   /v1/security/zones:
     get:
       operationId: listSecurityZones
-      summary: List security zones
+      summary: Juniper Networks List security zones
       description: >-
         Returns all security zones configured on the vSRX. Zones are
         logical groupings of interfaces that define trust boundaries
@@ -197,7 +197,7 @@ paths:
   /v1/security/nat/source:
     get:
       operationId: listSourceNatRules
-      summary: List source NAT rules
+      summary: Juniper Networks List source NAT rules
       description: >-
         Returns all source NAT rule sets and rules. Source NAT translates
         the source IP address of outbound traffic for internet access or
@@ -221,7 +221,7 @@ paths:
   /v1/security/nat/destination:
     get:
       operationId: listDestinationNatRules
-      summary: List destination NAT rules
+      summary: Juniper Networks List destination NAT rules
       description: >-
         Returns all destination NAT rule sets and rules. Destination NAT
         translates destination addresses for inbound traffic to internal
@@ -245,7 +245,7 @@ paths:
   /v1/security/ipsec/vpn:
     get:
       operationId: listIpsecVpns
-      summary: List IPsec VPN tunnels
+      summary: Juniper Networks List IPsec VPN tunnels
       description: >-
         Returns all IPsec VPN tunnel configurations, including IKE gateway
         associations, encryption settings, and tunnel status.
@@ -268,7 +268,7 @@ paths:
   /v1/monitoring/security/flow/session:
     get:
       operationId: listFlowSessions
-      summary: List active flow sessions
+      summary: Juniper Networks List active flow sessions
       description: >-
         Returns currently active security flow sessions on the vSRX.
         Equivalent to the show security flow session CLI command.
@@ -309,7 +309,7 @@ paths:
   /v1/system/information:
     get:
       operationId: getSystemInformation
-      summary: Get system information
+      summary: Juniper Networks Get system information
       description: >-
         Returns system information including hostname, model, Junos version,
         serial number, and uptime.
@@ -327,7 +327,7 @@ paths:
   /v1/system/alarms:
     get:
       operationId: listSystemAlarms
-      summary: List system alarms
+      summary: Juniper Networks List system alarms
       description: Returns active system alarms on the vSRX.
       tags:
         - System

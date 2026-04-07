@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Juniper Apstra Intent-Based Networking API
+  title: Juniper Networks Juniper Apstra Intent-Based Networking API
   description: >-
     RESTful API for Juniper Apstra, an intent-based networking platform for
     automating data center network design, deployment, and operations. Apstra
@@ -51,7 +51,7 @@ paths:
   /aaa/login:
     post:
       operationId: login
-      summary: Authenticate and obtain token
+      summary: Juniper Networks Authenticate and obtain token
       description: >-
         Authenticates with username and password, returns an authentication
         token for subsequent API calls. The token must be passed in the
@@ -95,7 +95,7 @@ paths:
   /aaa/logout:
     post:
       operationId: logout
-      summary: Logout and invalidate token
+      summary: Juniper Networks Logout and invalidate token
       description: Invalidates the current authentication token.
       tags:
         - Authentication
@@ -105,7 +105,7 @@ paths:
   /design/logical-devices:
     get:
       operationId: listLogicalDevices
-      summary: List logical devices
+      summary: Juniper Networks List logical devices
       description: >-
         Returns all logical device definitions. Logical devices represent
         abstract switch models with port groups and capabilities, independent
@@ -129,7 +129,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createLogicalDevice
-      summary: Create logical device
+      summary: Juniper Networks Create logical device
       description: Creates a new logical device definition.
       tags:
         - Design
@@ -153,7 +153,7 @@ paths:
   /design/interface-maps:
     get:
       operationId: listInterfaceMaps
-      summary: List interface maps
+      summary: Juniper Networks List interface maps
       description: >-
         Returns all interface maps. Interface maps bind logical device port
         groups to physical device interfaces, connecting the abstract design
@@ -177,7 +177,7 @@ paths:
   /design/rack-types:
     get:
       operationId: listRackTypes
-      summary: List rack types
+      summary: Juniper Networks List rack types
       description: >-
         Returns all rack type definitions. Rack types define the physical
         layout of a data center rack including leaf switches, access switches,
@@ -200,7 +200,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRackType
-      summary: Create rack type
+      summary: Juniper Networks Create rack type
       description: Creates a new rack type definition.
       tags:
         - Design
@@ -224,7 +224,7 @@ paths:
   /design/templates:
     get:
       operationId: listTemplates
-      summary: List templates
+      summary: Juniper Networks List templates
       description: >-
         Returns all data center templates. Templates combine rack types with
         spine layer definitions to create complete data center fabric designs
@@ -248,7 +248,7 @@ paths:
   /blueprints:
     get:
       operationId: listBlueprints
-      summary: List blueprints
+      summary: Juniper Networks List blueprints
       description: >-
         Returns all blueprints. Blueprints are instantiations of templates
         representing a specific data center network. They contain the full
@@ -271,7 +271,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createBlueprint
-      summary: Create blueprint
+      summary: Juniper Networks Create blueprint
       description: >-
         Creates a new blueprint from a template. The blueprint will contain
         the initial network graph based on the template design.
@@ -316,7 +316,7 @@ paths:
   /blueprints/{blueprint_id}:
     get:
       operationId: getBlueprint
-      summary: Get blueprint
+      summary: Juniper Networks Get blueprint
       description: Returns details for a specific blueprint.
       tags:
         - Blueprints
@@ -335,7 +335,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteBlueprint
-      summary: Delete blueprint
+      summary: Juniper Networks Delete blueprint
       description: Deletes a blueprint and its associated network graph.
       tags:
         - Blueprints
@@ -349,7 +349,7 @@ paths:
   /blueprints/{blueprint_id}/deploy:
     put:
       operationId: deployBlueprint
-      summary: Deploy blueprint
+      summary: Juniper Networks Deploy blueprint
       description: >-
         Commits and deploys staged changes in the blueprint to the physical
         network devices. Generates device-specific configurations from the
@@ -381,7 +381,7 @@ paths:
   /blueprints/{blueprint_id}/anomalies:
     get:
       operationId: listBlueprintAnomalies
-      summary: List blueprint anomalies
+      summary: Juniper Networks List blueprint anomalies
       description: >-
         Returns anomalies detected in a blueprint. Anomalies represent
         deviations between the intended state defined in the blueprint
@@ -408,7 +408,7 @@ paths:
   /blueprints/{blueprint_id}/security-zones:
     get:
       operationId: listSecurityZones
-      summary: List security zones (VRFs)
+      summary: Juniper Networks List security zones (VRFs)
       description: >-
         Returns all security zones (routing zones / VRFs) configured in
         the blueprint. Security zones provide network segmentation through
@@ -434,7 +434,7 @@ paths:
   /blueprints/{blueprint_id}/virtual-networks:
     get:
       operationId: listVirtualNetworks
-      summary: List virtual networks
+      summary: Juniper Networks List virtual networks
       description: >-
         Returns all virtual networks in the blueprint. Virtual networks
         represent VLANs/VXLANs provisioned across the fabric for
@@ -460,7 +460,7 @@ paths:
   /resources/asn-pools:
     get:
       operationId: listAsnPools
-      summary: List ASN pools
+      summary: Juniper Networks List ASN pools
       description: >-
         Returns all ASN (Autonomous System Number) pools. ASN pools are
         allocated to spine and leaf switches for BGP peering in the
@@ -483,7 +483,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAsnPool
-      summary: Create ASN pool
+      summary: Juniper Networks Create ASN pool
       description: Creates a new ASN pool with defined ranges.
       tags:
         - Resources
@@ -505,7 +505,7 @@ paths:
   /resources/ip-pools:
     get:
       operationId: listIpPools
-      summary: List IP pools
+      summary: Juniper Networks List IP pools
       description: >-
         Returns all IP address pools. IP pools are used to allocate
         loopback addresses, fabric link subnets, and virtual network
@@ -529,7 +529,7 @@ paths:
   /resources/vni-pools:
     get:
       operationId: listVniPools
-      summary: List VNI pools
+      summary: Juniper Networks List VNI pools
       description: >-
         Returns all VNI (VXLAN Network Identifier) pools. VNI pools
         provide unique identifiers for VXLAN tunnels used in the
@@ -553,7 +553,7 @@ paths:
   /systems:
     get:
       operationId: listSystems
-      summary: List managed systems
+      summary: Juniper Networks List managed systems
       description: >-
         Returns all systems (network devices) known to Apstra, including
         their agent status, management IP, and hardware information.
@@ -576,7 +576,7 @@ paths:
   /systems/{system_id}:
     get:
       operationId: getSystem
-      summary: Get system details
+      summary: Juniper Networks Get system details
       description: Returns detailed information for a specific managed system.
       tags:
         - Systems
@@ -594,7 +594,7 @@ paths:
   /blueprints/{blueprint_id}/iba/probes:
     get:
       operationId: listIbaProbes
-      summary: List IBA probes
+      summary: Juniper Networks List IBA probes
       description: >-
         Returns all Intent-Based Analytics probes in a blueprint. IBA probes
         continuously collect and analyze telemetry data from network devices

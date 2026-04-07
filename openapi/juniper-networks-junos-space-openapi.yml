@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Junos Space Network Management Platform REST API
+  title: Juniper Networks Junos Space Network Management Platform REST API
   description: >-
     RESTful API for Junos Space Network Management Platform. Junos Space
     provides centralized management for Juniper Networks devices including
@@ -41,7 +41,7 @@ paths:
   /device-management/devices:
     get:
       operationId: listDevices
-      summary: List managed devices
+      summary: Juniper Networks List managed devices
       description: >-
         Returns all devices managed by Junos Space, including device name,
         IP address, platform, OS version, and connection status. Supports
@@ -82,7 +82,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: discoverDevice
-      summary: Discover and add device
+      summary: Juniper Networks Discover and add device
       description: >-
         Initiates discovery of a Junos device by IP address or hostname.
         The device is added to Junos Space management after successful
@@ -130,7 +130,7 @@ paths:
   /device-management/devices/{device_id}:
     get:
       operationId: getDevice
-      summary: Get device details
+      summary: Juniper Networks Get device details
       description: Returns detailed information for a specific managed device.
       tags:
         - Devices
@@ -147,7 +147,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDevice
-      summary: Remove device from management
+      summary: Juniper Networks Remove device from management
       description: >-
         Removes a device from Junos Space management. The device
         configuration on the device itself is not affected.
@@ -163,7 +163,7 @@ paths:
   /device-management/devices/{device_id}/configurations/raw:
     get:
       operationId: getDeviceConfiguration
-      summary: Get device running configuration
+      summary: Juniper Networks Get device running configuration
       description: >-
         Returns the current running configuration of a managed device
         in Junos set or XML format.
@@ -187,7 +187,7 @@ paths:
   /configuration-management/cli-configlets:
     get:
       operationId: listConfiglets
-      summary: List CLI configlets
+      summary: Juniper Networks List CLI configlets
       description: >-
         Returns all CLI configlets (configuration templates) stored in
         Junos Space. Configlets are reusable configuration snippets with
@@ -214,7 +214,7 @@ paths:
   /configuration-management/cli-configlets/{configlet_id}/apply-cli-configlet:
     post:
       operationId: applyConfiglet
-      summary: Apply configlet to devices
+      summary: Juniper Networks Apply configlet to devices
       description: >-
         Applies a CLI configlet to one or more managed devices. Variable
         values are provided in the request body and merged into the
@@ -258,7 +258,7 @@ paths:
   /script-management/scripts:
     get:
       operationId: listScripts
-      summary: List scripts
+      summary: Juniper Networks List scripts
       description: >-
         Returns all scripts uploaded to Junos Space. Scripts can be
         SLAX, XSLT, Python, or commit scripts for execution on
@@ -285,7 +285,7 @@ paths:
   /script-management/scripts/{script_id}/exec-scripts:
     post:
       operationId: executeScript
-      summary: Execute script on devices
+      summary: Juniper Networks Execute script on devices
       description: >-
         Executes a script on one or more managed devices. Returns a job
         ID for tracking execution status and retrieving results.
@@ -328,7 +328,7 @@ paths:
   /user-management/users:
     get:
       operationId: listUsers
-      summary: List users
+      summary: Juniper Networks List users
       description: >-
         Returns all user accounts configured in Junos Space, including
         role assignments and domain access.
@@ -354,7 +354,7 @@ paths:
   /job-management/jobs:
     get:
       operationId: listJobs
-      summary: List jobs
+      summary: Juniper Networks List jobs
       description: >-
         Returns all asynchronous jobs with their status. Jobs are created
         for device discovery, configuration deployment, script execution,
@@ -387,7 +387,7 @@ paths:
   /job-management/jobs/{job_id}:
     get:
       operationId: getJob
-      summary: Get job status
+      summary: Juniper Networks Get job status
       description: Returns the status and results of a specific job.
       tags:
         - Jobs

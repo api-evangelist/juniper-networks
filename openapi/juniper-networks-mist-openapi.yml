@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Juniper Mist Cloud API
+  title: Juniper Networks Juniper Mist Cloud API
   description: >-
     RESTful API for the Juniper Mist AI-driven cloud platform. Mist provides
     centralized management of wireless access points, wired switches, and
@@ -53,7 +53,7 @@ paths:
   /self:
     get:
       operationId: getSelf
-      summary: Get current user information
+      summary: Juniper Networks Get current user information
       description: >-
         Returns the profile of the currently authenticated user, including
         organization and site-level privileges, email, and name.
@@ -71,7 +71,7 @@ paths:
   /self/apitokens:
     get:
       operationId: listApiTokens
-      summary: List API tokens
+      summary: Juniper Networks List API tokens
       description: >-
         Returns all API tokens created by the authenticated user. API tokens
         provide bearer token authentication as an alternative to session-based
@@ -91,7 +91,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createApiToken
-      summary: Create API token
+      summary: Juniper Networks Create API token
       description: >-
         Creates a new API token for the authenticated user. The token inherits
         the user's organization and site privileges.
@@ -109,7 +109,7 @@ paths:
   /orgs:
     get:
       operationId: listOrgs
-      summary: List organizations
+      summary: Juniper Networks List organizations
       description: >-
         Returns all organizations the authenticated user has access to.
         Organizations are the top-level container for sites, devices, and
@@ -130,7 +130,7 @@ paths:
   /orgs/{org_id}:
     get:
       operationId: getOrg
-      summary: Get organization
+      summary: Juniper Networks Get organization
       description: Returns the details of a specific organization.
       tags:
         - Organizations
@@ -151,7 +151,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateOrg
-      summary: Update organization
+      summary: Juniper Networks Update organization
       description: Updates the settings of an organization.
       tags:
         - Organizations
@@ -179,7 +179,7 @@ paths:
   /orgs/{org_id}/sites:
     get:
       operationId: listOrgSites
-      summary: List organization sites
+      summary: Juniper Networks List organization sites
       description: >-
         Returns all sites belonging to an organization. Sites represent physical
         locations such as offices, campuses, or retail stores.
@@ -202,7 +202,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createSite
-      summary: Create site
+      summary: Juniper Networks Create site
       description: >-
         Creates a new site within an organization. Sites are the primary
         grouping for devices and network configuration.
@@ -232,7 +232,7 @@ paths:
   /sites/{site_id}:
     get:
       operationId: getSite
-      summary: Get site
+      summary: Juniper Networks Get site
       description: Returns the details of a specific site.
       tags:
         - Sites
@@ -251,7 +251,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateSite
-      summary: Update site
+      summary: Juniper Networks Update site
       description: Updates the configuration of a site.
       tags:
         - Sites
@@ -276,7 +276,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteSite
-      summary: Delete site
+      summary: Juniper Networks Delete site
       description: Deletes a site and all associated configuration.
       tags:
         - Sites
@@ -292,7 +292,7 @@ paths:
   /sites/{site_id}/devices:
     get:
       operationId: listSiteDevices
-      summary: List site devices
+      summary: Juniper Networks List site devices
       description: >-
         Returns all devices assigned to a site, including access points,
         switches, and gateways.
@@ -323,7 +323,7 @@ paths:
   /sites/{site_id}/devices/{device_id}:
     get:
       operationId: getSiteDevice
-      summary: Get device
+      summary: Juniper Networks Get device
       description: Returns details for a specific device at a site.
       tags:
         - Devices
@@ -343,7 +343,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateSiteDevice
-      summary: Update device
+      summary: Juniper Networks Update device
       description: Updates the configuration of a specific device.
       tags:
         - Devices
@@ -370,7 +370,7 @@ paths:
   /sites/{site_id}/wlans:
     get:
       operationId: listSiteWlans
-      summary: List site WLANs
+      summary: Juniper Networks List site WLANs
       description: >-
         Returns all WLAN configurations for a site. Each WLAN defines an SSID
         with associated security, VLAN, and radio settings.
@@ -391,7 +391,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createSiteWlan
-      summary: Create WLAN
+      summary: Juniper Networks Create WLAN
       description: >-
         Creates a new WLAN (SSID) at a site with specified security, VLAN,
         and radio configuration.
@@ -419,7 +419,7 @@ paths:
   /sites/{site_id}/stats/clients:
     get:
       operationId: listSiteClientStats
-      summary: List client statistics
+      summary: Juniper Networks List client statistics
       description: >-
         Returns statistics for wireless clients connected at a site, including
         signal strength, data usage, and connection quality metrics.
@@ -457,7 +457,7 @@ paths:
   /sites/{site_id}/insights/marvis:
     get:
       operationId: listMarvisActions
-      summary: List Marvis actions
+      summary: Juniper Networks List Marvis actions
       description: >-
         Returns AI-driven Marvis actions for a site. Marvis uses machine
         learning to identify network issues, anomalies, and optimization
@@ -491,7 +491,7 @@ paths:
   /orgs/{org_id}/inventory:
     get:
       operationId: listOrgInventory
-      summary: List organization inventory
+      summary: Juniper Networks List organization inventory
       description: >-
         Returns all devices in the organization inventory, including claimed
         devices that may or may not be assigned to sites.
@@ -531,7 +531,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     put:
       operationId: updateOrgInventory
-      summary: Update inventory assignment
+      summary: Juniper Networks Update inventory assignment
       description: >-
         Assigns or unassigns devices from sites within the organization
         inventory. Used to move devices between sites or release them
@@ -590,7 +590,7 @@ paths:
   /sites/{site_id}/maps:
     get:
       operationId: listSiteMaps
-      summary: List site maps
+      summary: Juniper Networks List site maps
       description: >-
         Returns all floor plan maps for a site. Maps are used for indoor
         location, RF planning, and device placement visualization.
@@ -612,7 +612,7 @@ paths:
   /sites/{site_id}/alarms:
     get:
       operationId: listSiteAlarms
-      summary: List site alarms
+      summary: Juniper Networks List site alarms
       description: >-
         Returns active and recent alarms for a site. Alarms indicate
         device health issues, connectivity problems, and configuration
