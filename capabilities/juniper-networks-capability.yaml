@@ -1,0 +1,740 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper Apstra Intent-Based Networking API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design,
+    deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types,
+    templates, and connectivity. The platform continuously validates that the network state matches the intended configuration
+    and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management,
+    telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login e
+  tags:
+  - Juniper
+  - Networks
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: juniper-networks
+    baseUri: https://apstra.example.com/api
+    description: Juniper Networks Juniper Apstra Intent-Based Networking API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: AuthToken
+      value: '{{JUNIPER_NETWORKS_TOKEN}}'
+    resources:
+    - name: aaa-login
+      path: /aaa/login
+      operations:
+      - name: login
+        method: POST
+        description: Juniper Networks Authenticate and obtain token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: aaa-logout
+      path: /aaa/logout
+      operations:
+      - name: logout
+        method: POST
+        description: Juniper Networks Logout and invalidate token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: design-logical-devices
+      path: /design/logical-devices
+      operations:
+      - name: listlogicaldevices
+        method: GET
+        description: Juniper Networks List logical devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlogicaldevice
+        method: POST
+        description: Juniper Networks Create logical device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: design-interface-maps
+      path: /design/interface-maps
+      operations:
+      - name: listinterfacemaps
+        method: GET
+        description: Juniper Networks List interface maps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: design-rack-types
+      path: /design/rack-types
+      operations:
+      - name: listracktypes
+        method: GET
+        description: Juniper Networks List rack types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createracktype
+        method: POST
+        description: Juniper Networks Create rack type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: design-templates
+      path: /design/templates
+      operations:
+      - name: listtemplates
+        method: GET
+        description: Juniper Networks List templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints
+      path: /blueprints
+      operations:
+      - name: listblueprints
+        method: GET
+        description: Juniper Networks List blueprints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createblueprint
+        method: POST
+        description: Juniper Networks Create blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint-id
+      path: /blueprints/{blueprint_id}
+      operations:
+      - name: getblueprint
+        method: GET
+        description: Juniper Networks Get blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteblueprint
+        method: DELETE
+        description: Juniper Networks Delete blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint-id-deploy
+      path: /blueprints/{blueprint_id}/deploy
+      operations:
+      - name: deployblueprint
+        method: PUT
+        description: Juniper Networks Deploy blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint-id-anomalies
+      path: /blueprints/{blueprint_id}/anomalies
+      operations:
+      - name: listblueprintanomalies
+        method: GET
+        description: Juniper Networks List blueprint anomalies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint-id-security-zones
+      path: /blueprints/{blueprint_id}/security-zones
+      operations:
+      - name: listsecurityzones
+        method: GET
+        description: Juniper Networks List security zones (VRFs)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint-id-virtual-networks
+      path: /blueprints/{blueprint_id}/virtual-networks
+      operations:
+      - name: listvirtualnetworks
+        method: GET
+        description: Juniper Networks List virtual networks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: resources-asn-pools
+      path: /resources/asn-pools
+      operations:
+      - name: listasnpools
+        method: GET
+        description: Juniper Networks List ASN pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createasnpool
+        method: POST
+        description: Juniper Networks Create ASN pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: resources-ip-pools
+      path: /resources/ip-pools
+      operations:
+      - name: listippools
+        method: GET
+        description: Juniper Networks List IP pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: resources-vni-pools
+      path: /resources/vni-pools
+      operations:
+      - name: listvnipools
+        method: GET
+        description: Juniper Networks List VNI pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: systems
+      path: /systems
+      operations:
+      - name: listsystems
+        method: GET
+        description: Juniper Networks List managed systems
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: systems-system-id
+      path: /systems/{system_id}
+      operations:
+      - name: getsystem
+        method: GET
+        description: Juniper Networks Get system details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint-id-iba-probes
+      path: /blueprints/{blueprint_id}/iba/probes
+      operations:
+      - name: listibaprobes
+        method: GET
+        description: Juniper Networks List IBA probes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: juniper-networks-rest
+    description: REST adapter for Juniper Networks Juniper Apstra Intent-Based Networking API.
+    resources:
+    - path: /aaa/login
+      name: login
+      operations:
+      - method: POST
+        name: login
+        description: Juniper Networks Authenticate and obtain token
+        call: juniper-networks.login
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /aaa/logout
+      name: logout
+      operations:
+      - method: POST
+        name: logout
+        description: Juniper Networks Logout and invalidate token
+        call: juniper-networks.logout
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /design/logical-devices
+      name: listlogicaldevices
+      operations:
+      - method: GET
+        name: listlogicaldevices
+        description: Juniper Networks List logical devices
+        call: juniper-networks.listlogicaldevices
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /design/logical-devices
+      name: createlogicaldevice
+      operations:
+      - method: POST
+        name: createlogicaldevice
+        description: Juniper Networks Create logical device
+        call: juniper-networks.createlogicaldevice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /design/interface-maps
+      name: listinterfacemaps
+      operations:
+      - method: GET
+        name: listinterfacemaps
+        description: Juniper Networks List interface maps
+        call: juniper-networks.listinterfacemaps
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /design/rack-types
+      name: listracktypes
+      operations:
+      - method: GET
+        name: listracktypes
+        description: Juniper Networks List rack types
+        call: juniper-networks.listracktypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /design/rack-types
+      name: createracktype
+      operations:
+      - method: POST
+        name: createracktype
+        description: Juniper Networks Create rack type
+        call: juniper-networks.createracktype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /design/templates
+      name: listtemplates
+      operations:
+      - method: GET
+        name: listtemplates
+        description: Juniper Networks List templates
+        call: juniper-networks.listtemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints
+      name: listblueprints
+      operations:
+      - method: GET
+        name: listblueprints
+        description: Juniper Networks List blueprints
+        call: juniper-networks.listblueprints
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints
+      name: createblueprint
+      operations:
+      - method: POST
+        name: createblueprint
+        description: Juniper Networks Create blueprint
+        call: juniper-networks.createblueprint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}
+      name: getblueprint
+      operations:
+      - method: GET
+        name: getblueprint
+        description: Juniper Networks Get blueprint
+        call: juniper-networks.getblueprint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}
+      name: deleteblueprint
+      operations:
+      - method: DELETE
+        name: deleteblueprint
+        description: Juniper Networks Delete blueprint
+        call: juniper-networks.deleteblueprint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}/deploy
+      name: deployblueprint
+      operations:
+      - method: PUT
+        name: deployblueprint
+        description: Juniper Networks Deploy blueprint
+        call: juniper-networks.deployblueprint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}/anomalies
+      name: listblueprintanomalies
+      operations:
+      - method: GET
+        name: listblueprintanomalies
+        description: Juniper Networks List blueprint anomalies
+        call: juniper-networks.listblueprintanomalies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}/security-zones
+      name: listsecurityzones
+      operations:
+      - method: GET
+        name: listsecurityzones
+        description: Juniper Networks List security zones (VRFs)
+        call: juniper-networks.listsecurityzones
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}/virtual-networks
+      name: listvirtualnetworks
+      operations:
+      - method: GET
+        name: listvirtualnetworks
+        description: Juniper Networks List virtual networks
+        call: juniper-networks.listvirtualnetworks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /resources/asn-pools
+      name: listasnpools
+      operations:
+      - method: GET
+        name: listasnpools
+        description: Juniper Networks List ASN pools
+        call: juniper-networks.listasnpools
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /resources/asn-pools
+      name: createasnpool
+      operations:
+      - method: POST
+        name: createasnpool
+        description: Juniper Networks Create ASN pool
+        call: juniper-networks.createasnpool
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /resources/ip-pools
+      name: listippools
+      operations:
+      - method: GET
+        name: listippools
+        description: Juniper Networks List IP pools
+        call: juniper-networks.listippools
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /resources/vni-pools
+      name: listvnipools
+      operations:
+      - method: GET
+        name: listvnipools
+        description: Juniper Networks List VNI pools
+        call: juniper-networks.listvnipools
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /systems
+      name: listsystems
+      operations:
+      - method: GET
+        name: listsystems
+        description: Juniper Networks List managed systems
+        call: juniper-networks.listsystems
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /systems/{system_id}
+      name: getsystem
+      operations:
+      - method: GET
+        name: getsystem
+        description: Juniper Networks Get system details
+        call: juniper-networks.getsystem
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blueprints/{blueprint_id}/iba/probes
+      name: listibaprobes
+      operations:
+      - method: GET
+        name: listibaprobes
+        description: Juniper Networks List IBA probes
+        call: juniper-networks.listibaprobes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: juniper-networks-mcp
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper Apstra Intent-Based Networking API for AI agent use.
+    tools:
+    - name: login
+      description: Juniper Networks Authenticate and obtain token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: juniper-networks.login
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: logout
+      description: Juniper Networks Logout and invalidate token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: juniper-networks.logout
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listlogicaldevices
+      description: Juniper Networks List logical devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listlogicaldevices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createlogicaldevice
+      description: Juniper Networks Create logical device
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: juniper-networks.createlogicaldevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listinterfacemaps
+      description: Juniper Networks List interface maps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listinterfacemaps
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listracktypes
+      description: Juniper Networks List rack types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listracktypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createracktype
+      description: Juniper Networks Create rack type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: juniper-networks.createracktype
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtemplates
+      description: Juniper Networks List templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listtemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listblueprints
+      description: Juniper Networks List blueprints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listblueprints
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createblueprint
+      description: Juniper Networks Create blueprint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: juniper-networks.createblueprint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getblueprint
+      description: Juniper Networks Get blueprint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.getblueprint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteblueprint
+      description: Juniper Networks Delete blueprint
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: juniper-networks.deleteblueprint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deployblueprint
+      description: Juniper Networks Deploy blueprint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: juniper-networks.deployblueprint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listblueprintanomalies
+      description: Juniper Networks List blueprint anomalies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listblueprintanomalies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsecurityzones
+      description: Juniper Networks List security zones (VRFs)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listsecurityzones
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listvirtualnetworks
+      description: Juniper Networks List virtual networks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listvirtualnetworks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listasnpools
+      description: Juniper Networks List ASN pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listasnpools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createasnpool
+      description: Juniper Networks Create ASN pool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: juniper-networks.createasnpool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listippools
+      description: Juniper Networks List IP pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listippools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listvnipools
+      description: Juniper Networks List VNI pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listvnipools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsystems
+      description: Juniper Networks List managed systems
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listsystems
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsystem
+      description: Juniper Networks Get system details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.getsystem
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listibaprobes
+      description: Juniper Networks List IBA probes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: juniper-networks.listibaprobes
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_TOKEN: JUNIPER_NETWORKS_TOKEN
