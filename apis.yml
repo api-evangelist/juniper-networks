@@ -43,7 +43,7 @@ apis:
         url: https://www.juniper.net/documentation/product/us/en/junos-pyez/
       - type: GitHub
         url: https://github.com/Juniper/py-junos-eznc
-      - type: Getting Started
+      - type: GettingStarted
         url: https://www.juniper.net/documentation/us/en/software/junos-pyez/junos-pyez-developer/topics/concept/junos-pyez-overview.html
   - name: Junos XML API
     description: >-
@@ -80,7 +80,7 @@ apis:
     properties:
       - type: Documentation
         url: https://api.mist.com/api/v1/docs/
-      - type: API Reference
+      - type: APIReference
         url: https://doc.mist-lab.fr/
       - type: Authentication
         url: https://api.mist.com/api/v1/docs/Auth.html
@@ -162,7 +162,7 @@ apis:
       - type: OpenAPI
         url: openapi/juniper-networks-vsrx-openapi.yml
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/juniper-networks-context.jsonld
   - type: Developer Portal
     url: https://developer.juniper.net/
@@ -180,15 +180,15 @@ common:
     url: https://www.juniper.net/documentation/
   - type: Blog
     url: https://blogs.juniper.net/
-  - type: Status
+  - type: StatusPage
     url: https://status.juniper.net/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.juniper.net/us/en/legal-notices.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.juniper.net/us/en/privacy-policy.html
   - type: YouTube
     url: https://www.youtube.com/user/JuniperNetworks
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/juniper
 maintainers:
   - FN: Kin Lane
