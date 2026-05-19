@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper Apstra Intent-Based Networking API — IBA
+  description: 'Juniper Networks Juniper Apstra Intent-Based Networking API — IBA. 1 operations. Lead operation: Juniper Networks
+    List IBA probes. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - IBA
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: apstra-iba
+    baseUri: https://{apstra_server}/api
+    description: Juniper Networks Juniper Apstra Intent-Based Networking API — IBA business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: blueprints-blueprint_id-iba-probes
+      path: /blueprints/{blueprint_id}/iba/probes
+      operations:
+      - name: listibaprobes
+        method: GET
+        description: Juniper Networks List IBA probes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: AuthToken
+      value: '{{env.JUNIPER_NETWORKS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: apstra-iba-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Juniper Apstra Intent-Based Networking API — IBA. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/blueprints/{blueprint-id}/iba/probes
+      name: blueprints-blueprint-id-iba-probes
+      description: REST surface for blueprints-blueprint_id-iba-probes.
+      operations:
+      - method: GET
+        name: listibaprobes
+        description: Juniper Networks List IBA probes
+        call: apstra-iba.listibaprobes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: apstra-iba-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper Apstra Intent-Based Networking API — IBA. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-iba-probes
+      description: Juniper Networks List IBA probes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apstra-iba.listibaprobes
+      outputParameters:
+      - type: object
+        mapping: $.

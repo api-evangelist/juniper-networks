@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper Contrail Networking REST API — Projects
+  description: 'Juniper Networks Juniper Contrail Networking REST API — Projects. 1 operations. Lead operation: Juniper Networks
+    List projects. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: contrail-projects
+    baseUri: https://{contrail_controller}:8082
+    description: Juniper Networks Juniper Contrail Networking REST API — Projects business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: Juniper Networks List projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.JUNIPER_NETWORKS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: contrail-projects-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Juniper Contrail Networking REST API — Projects. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/projects
+      name: projects
+      description: REST surface for projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: Juniper Networks List projects
+        call: contrail-projects.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: contrail-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper Contrail Networking REST API — Projects. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-projects
+      description: Juniper Networks List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: contrail-projects.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.

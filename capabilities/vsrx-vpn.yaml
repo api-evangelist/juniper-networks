@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper vSRX REST API — VPN
+  description: 'Juniper Networks Juniper vSRX REST API — VPN. 1 operations. Lead operation: Juniper Networks List IPsec VPN
+    tunnels. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - VPN
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vsrx-vpn
+    baseUri: https://{vsrx_host}/api
+    description: Juniper Networks Juniper vSRX REST API — VPN business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-security-ipsec-vpn
+      path: /v1/security/ipsec/vpn
+      operations:
+      - name: listipsecvpns
+        method: GET
+        description: Juniper Networks List IPsec VPN tunnels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.JUNIPER_NETWORKS_USER}}'
+      password: '{{env.JUNIPER_NETWORKS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: vsrx-vpn-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Juniper vSRX REST API — VPN. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/security/ipsec/vpn
+      name: v1-security-ipsec-vpn
+      description: REST surface for v1-security-ipsec-vpn.
+      operations:
+      - method: GET
+        name: listipsecvpns
+        description: Juniper Networks List IPsec VPN tunnels
+        call: vsrx-vpn.listipsecvpns
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vsrx-vpn-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper vSRX REST API — VPN. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-ipsec-vpn
+      description: Juniper Networks List IPsec VPN tunnels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vsrx-vpn.listipsecvpns
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,271 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper Apstra Intent-Based Networking API — Blueprints
+  description: 'Juniper Networks Juniper Apstra Intent-Based Networking API — Blueprints. 7 operations. Lead operation: Juniper
+    Networks List blueprints. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - Blueprints
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: apstra-blueprints
+    baseUri: https://{apstra_server}/api
+    description: Juniper Networks Juniper Apstra Intent-Based Networking API — Blueprints business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: blueprints
+      path: /blueprints
+      operations:
+      - name: listblueprints
+        method: GET
+        description: Juniper Networks List blueprints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createblueprint
+        method: POST
+        description: Juniper Networks Create blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: blueprints-blueprint_id
+      path: /blueprints/{blueprint_id}
+      operations:
+      - name: getblueprint
+        method: GET
+        description: Juniper Networks Get blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteblueprint
+        method: DELETE
+        description: Juniper Networks Delete blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint_id-deploy
+      path: /blueprints/{blueprint_id}/deploy
+      operations:
+      - name: deployblueprint
+        method: PUT
+        description: Juniper Networks Deploy blueprint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: blueprints-blueprint_id-security-zones
+      path: /blueprints/{blueprint_id}/security-zones
+      operations:
+      - name: listsecurityzones
+        method: GET
+        description: Juniper Networks List security zones (VRFs)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blueprints-blueprint_id-virtual-networks
+      path: /blueprints/{blueprint_id}/virtual-networks
+      operations:
+      - name: listvirtualnetworks
+        method: GET
+        description: Juniper Networks List virtual networks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: AuthToken
+      value: '{{env.JUNIPER_NETWORKS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: apstra-blueprints-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Juniper Apstra Intent-Based Networking API — Blueprints. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/blueprints
+      name: blueprints
+      description: REST surface for blueprints.
+      operations:
+      - method: GET
+        name: listblueprints
+        description: Juniper Networks List blueprints
+        call: apstra-blueprints.listblueprints
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createblueprint
+        description: Juniper Networks Create blueprint
+        call: apstra-blueprints.createblueprint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/blueprints/{blueprint-id}
+      name: blueprints-blueprint-id
+      description: REST surface for blueprints-blueprint_id.
+      operations:
+      - method: GET
+        name: getblueprint
+        description: Juniper Networks Get blueprint
+        call: apstra-blueprints.getblueprint
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteblueprint
+        description: Juniper Networks Delete blueprint
+        call: apstra-blueprints.deleteblueprint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/blueprints/{blueprint-id}/deploy
+      name: blueprints-blueprint-id-deploy
+      description: REST surface for blueprints-blueprint_id-deploy.
+      operations:
+      - method: PUT
+        name: deployblueprint
+        description: Juniper Networks Deploy blueprint
+        call: apstra-blueprints.deployblueprint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/blueprints/{blueprint-id}/security-zones
+      name: blueprints-blueprint-id-security-zones
+      description: REST surface for blueprints-blueprint_id-security-zones.
+      operations:
+      - method: GET
+        name: listsecurityzones
+        description: Juniper Networks List security zones (VRFs)
+        call: apstra-blueprints.listsecurityzones
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/blueprints/{blueprint-id}/virtual-networks
+      name: blueprints-blueprint-id-virtual-networks
+      description: REST surface for blueprints-blueprint_id-virtual-networks.
+      operations:
+      - method: GET
+        name: listvirtualnetworks
+        description: Juniper Networks List virtual networks
+        call: apstra-blueprints.listvirtualnetworks
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: apstra-blueprints-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper Apstra Intent-Based Networking API — Blueprints. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-blueprints
+      description: Juniper Networks List blueprints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apstra-blueprints.listblueprints
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-create-blueprint
+      description: Juniper Networks Create blueprint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apstra-blueprints.createblueprint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-get-blueprint
+      description: Juniper Networks Get blueprint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apstra-blueprints.getblueprint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-delete-blueprint
+      description: Juniper Networks Delete blueprint
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apstra-blueprints.deleteblueprint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-deploy-blueprint
+      description: Juniper Networks Deploy blueprint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: apstra-blueprints.deployblueprint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-list-security-zones
+      description: Juniper Networks List security zones (VRFs)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apstra-blueprints.listsecurityzones
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-list-virtual-networks
+      description: Juniper Networks List virtual networks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apstra-blueprints.listvirtualnetworks
+      outputParameters:
+      - type: object
+        mapping: $.

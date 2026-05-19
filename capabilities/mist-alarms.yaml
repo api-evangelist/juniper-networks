@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper Mist Cloud API — Alarms
+  description: 'Juniper Networks Juniper Mist Cloud API — Alarms. 1 operations. Lead operation: Juniper Networks List site
+    alarms. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - Alarms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mist-alarms
+    baseUri: https://api.mist.com/api/v1
+    description: Juniper Networks Juniper Mist Cloud API — Alarms business capability. Self-contained, no shared references.
+    resources:
+    - name: sites-site_id-alarms
+      path: /sites/{site_id}/alarms
+      operations:
+      - name: listsitealarms
+        method: GET
+        description: Juniper Networks List site alarms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start
+          in: query
+          type: integer
+          description: Start time epoch in seconds.
+        - name: end
+          in: query
+          type: integer
+          description: End time epoch in seconds.
+        - name: type
+          in: query
+          type: string
+          description: Filter by alarm type.
+    authentication:
+      type: bearer
+      token: '{{env.JUNIPER_NETWORKS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mist-alarms-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Juniper Mist Cloud API — Alarms. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/sites/{site-id}/alarms
+      name: sites-site-id-alarms
+      description: REST surface for sites-site_id-alarms.
+      operations:
+      - method: GET
+        name: listsitealarms
+        description: Juniper Networks List site alarms
+        call: mist-alarms.listsitealarms
+        with:
+          start: rest.start
+          end: rest.end
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mist-alarms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper Mist Cloud API — Alarms. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-site-alarms
+      description: Juniper Networks List site alarms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mist-alarms.listsitealarms
+      with:
+        start: tools.start
+        end: tools.end
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,153 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Junos Space Network Management Platform REST API — Configuration
+  description: 'Juniper Networks Junos Space Network Management Platform REST API — Configuration. 3 operations. Lead operation:
+    Juniper Networks List CLI configlets. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - Configuration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: junos-space-configuration
+    baseUri: https://{space_server}/api/space
+    description: Juniper Networks Junos Space Network Management Platform REST API — Configuration business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: configuration-management-cli-configlets
+      path: /configuration-management/cli-configlets
+      operations:
+      - name: listconfiglets
+        method: GET
+        description: Juniper Networks List CLI configlets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: configuration-management-cli-configlets-configlet_id-apply-cli-configlet
+      path: /configuration-management/cli-configlets/{configlet_id}/apply-cli-configlet
+      operations:
+      - name: applyconfiglet
+        method: POST
+        description: Juniper Networks Apply configlet to devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: configlet_id
+          in: path
+          type: integer
+          description: Configlet unique identifier.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: device-management-devices-device_id-configurations-raw
+      path: /device-management/devices/{device_id}/configurations/raw
+      operations:
+      - name: getdeviceconfiguration
+        method: GET
+        description: Juniper Networks Get device running configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.JUNIPER_NETWORKS_USER}}'
+      password: '{{env.JUNIPER_NETWORKS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: junos-space-configuration-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Junos Space Network Management Platform REST API — Configuration. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/configuration-management/cli-configlets
+      name: configuration-management-cli-configlets
+      description: REST surface for configuration-management-cli-configlets.
+      operations:
+      - method: GET
+        name: listconfiglets
+        description: Juniper Networks List CLI configlets
+        call: junos-space-configuration.listconfiglets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/configuration-management/cli-configlets/{configlet-id}/apply-cli-configlet
+      name: configuration-management-cli-configlets-configlet-id-apply-cli-configlet
+      description: REST surface for configuration-management-cli-configlets-configlet_id-apply-cli-configlet.
+      operations:
+      - method: POST
+        name: applyconfiglet
+        description: Juniper Networks Apply configlet to devices
+        call: junos-space-configuration.applyconfiglet
+        with:
+          configlet_id: rest.configlet_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/device-management/devices/{device-id}/configurations/raw
+      name: device-management-devices-device-id-configurations-raw
+      description: REST surface for device-management-devices-device_id-configurations-raw.
+      operations:
+      - method: GET
+        name: getdeviceconfiguration
+        description: Juniper Networks Get device running configuration
+        call: junos-space-configuration.getdeviceconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: junos-space-configuration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Junos Space Network Management Platform REST API — Configuration. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-cli-configlets
+      description: Juniper Networks List CLI configlets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: junos-space-configuration.listconfiglets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-apply-configlet-devices
+      description: Juniper Networks Apply configlet to devices
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: junos-space-configuration.applyconfiglet
+      with:
+        configlet_id: tools.configlet_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: juniper-networks-get-device-running
+      description: Juniper Networks Get device running configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: junos-space-configuration.getdeviceconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.

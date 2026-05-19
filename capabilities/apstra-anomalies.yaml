@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Juniper Networks Juniper Apstra Intent-Based Networking API — Anomalies
+  description: 'Juniper Networks Juniper Apstra Intent-Based Networking API — Anomalies. 1 operations. Lead operation: Juniper
+    Networks List blueprint anomalies. Self-contained Naftiko capability covering one Juniper Networks business surface.'
+  tags:
+  - Juniper Networks
+  - Anomalies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JUNIPER_NETWORKS_API_KEY: JUNIPER_NETWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: apstra-anomalies
+    baseUri: https://{apstra_server}/api
+    description: Juniper Networks Juniper Apstra Intent-Based Networking API — Anomalies business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: blueprints-blueprint_id-anomalies
+      path: /blueprints/{blueprint_id}/anomalies
+      operations:
+      - name: listblueprintanomalies
+        method: GET
+        description: Juniper Networks List blueprint anomalies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: AuthToken
+      value: '{{env.JUNIPER_NETWORKS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: apstra-anomalies-rest
+    port: 8080
+    description: REST adapter for Juniper Networks Juniper Apstra Intent-Based Networking API — Anomalies. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/blueprints/{blueprint-id}/anomalies
+      name: blueprints-blueprint-id-anomalies
+      description: REST surface for blueprints-blueprint_id-anomalies.
+      operations:
+      - method: GET
+        name: listblueprintanomalies
+        description: Juniper Networks List blueprint anomalies
+        call: apstra-anomalies.listblueprintanomalies
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: apstra-anomalies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Juniper Networks Juniper Apstra Intent-Based Networking API — Anomalies. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: juniper-networks-list-blueprint-anomalies
+      description: Juniper Networks List blueprint anomalies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apstra-anomalies.listblueprintanomalies
+      outputParameters:
+      - type: object
+        mapping: $.
