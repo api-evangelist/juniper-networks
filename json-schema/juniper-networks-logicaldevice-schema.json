@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LogicalDevice",
+  "title": "LogicalDevice",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Logical device unique identifier."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display name for the logical device."
+    },
+    "panels": {
+      "type": "array",
+      "description": "Port panel definitions.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "panel_layout": {
+            "type": "object",
+            "properties": {
+              "row_count": {
+                "type": "integer"
+              },
+              "column_count": {
+                "type": "integer"
+              }
+            }
+          },
+          "port_indexing": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "type": "string",
+                "enum": [
+                  "T-B, L-R",
+                  "L-R, T-B"
+                ]
+              },
+              "start_index": {
+                "type": "integer"
+              },
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "absolute"
+                ]
+              }
+            }
+          },
+          "port_groups": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "description": "Number of ports in the group."
+                },
+                "speed": {
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "enum": [
+                        "G"
+                      ]
+                    },
+                    "value": {
+                      "type": "integer"
+                    }
+                  },
+                  "description": "Port speed."
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "spine",
+                      "leaf",
+                      "peer",
+                      "access",
+                      "generic",
+                      "superspine",
+                      "unused"
+                    ]
+                  },
+                  "description": "Roles the port group can fulfill."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

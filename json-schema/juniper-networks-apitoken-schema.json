@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiToken",
+  "title": "ApiToken",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Token identifier."
+    },
+    "key": {
+      "type": "string",
+      "description": "API token value. Only returned on creation."
+    },
+    "created_time": {
+      "type": "number",
+      "description": "Creation timestamp in epoch seconds."
+    },
+    "last_used": {
+      "type": "number",
+      "description": "Last usage timestamp in epoch seconds."
+    }
+  }
+}

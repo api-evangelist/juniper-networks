@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NatRuleSet",
+  "title": "NatRuleSet",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "NAT rule set name."
+    },
+    "from": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "type": "string"
+        },
+        "interface": {
+          "type": "string"
+        }
+      }
+    },
+    "to": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "type": "string"
+        },
+        "interface": {
+          "type": "string"
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "match": {
+            "type": "object",
+            "properties": {
+              "source_address": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "destination_address": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "destination_port": {
+                "type": "integer"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "pool",
+                  "interface",
+                  false
+                ]
+              },
+              "pool_name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

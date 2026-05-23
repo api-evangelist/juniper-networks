@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RackType",
+  "title": "RackType",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Rack type unique identifier."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the rack type."
+    },
+    "fabric_connectivity_design": {
+      "type": "string",
+      "enum": [
+        "l3clos",
+        "l3collapsed"
+      ],
+      "description": "Fabric connectivity design pattern."
+    },
+    "leaf_switches": {
+      "type": "array",
+      "description": "Leaf switch definitions in the rack.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "logical_device_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "link_per_spine_count": {
+            "type": "integer"
+          },
+          "link_per_spine_speed": {
+            "type": "object",
+            "properties": {
+              "unit": {
+                "type": "string"
+              },
+              "value": {
+                "type": "integer"
+              }
+            }
+          },
+          "redundancy_protocol": {
+            "type": "string",
+            "enum": [
+              "esi",
+              "mlag"
+            ]
+          }
+        }
+      }
+    },
+    "generic_systems": {
+      "type": "array",
+      "description": "Generic system (server, storage) definitions in the rack.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "logical_device_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "target_switch_label": {
+                  "type": "string"
+                },
+                "link_per_switch_count": {
+                  "type": "integer"
+                },
+                "link_speed": {
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "lag_mode": {
+                  "type": "string",
+                  "enum": [
+                    "lacp_active",
+                    "lacp_passive",
+                    "static_lag"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

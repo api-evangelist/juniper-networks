@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Blueprint",
+  "title": "Blueprint",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "label": {
+      "type": "string"
+    },
+    "design": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "Blueprint graph nodes keyed by ID."
+    },
+    "relationships": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "Blueprint graph relationships keyed by ID."
+    }
+  }
+}

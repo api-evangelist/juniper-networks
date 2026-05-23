@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClientStat",
+  "title": "ClientStat",
+  "type": "object",
+  "properties": {
+    "mac": {
+      "type": "string",
+      "description": "Client MAC address."
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Client hostname."
+    },
+    "ip": {
+      "type": "string",
+      "description": "Client IP address."
+    },
+    "ssid": {
+      "type": "string",
+      "description": "Connected SSID."
+    },
+    "ap_mac": {
+      "type": "string",
+      "description": "MAC address of the connected AP."
+    },
+    "rssi": {
+      "type": "number",
+      "description": "Received signal strength indicator in dBm."
+    },
+    "snr": {
+      "type": "number",
+      "description": "Signal-to-noise ratio in dB."
+    },
+    "band": {
+      "type": "string",
+      "description": "Connected radio band."
+    },
+    "channel": {
+      "type": "integer",
+      "description": "Connected radio channel."
+    },
+    "rx_bytes": {
+      "type": "integer",
+      "description": "Total received bytes."
+    },
+    "tx_bytes": {
+      "type": "integer",
+      "description": "Total transmitted bytes."
+    },
+    "rx_rate": {
+      "type": "number",
+      "description": "Receive data rate in Mbps."
+    },
+    "tx_rate": {
+      "type": "number",
+      "description": "Transmit data rate in Mbps."
+    }
+  }
+}

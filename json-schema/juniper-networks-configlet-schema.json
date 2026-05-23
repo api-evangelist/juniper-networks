@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Configlet",
+  "title": "Configlet",
+  "type": "object",
+  "properties": {
+    "@key": {
+      "type": "integer",
+      "description": "Configlet internal ID."
+    },
+    "name": {
+      "type": "string",
+      "description": "Configlet name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Configlet description."
+    },
+    "cliConfigletContent": {
+      "type": "string",
+      "description": "CLI configuration template content with variables."
+    },
+    "executionType": {
+      "type": "string",
+      "enum": [
+        "SingleExecution",
+        "GroupExecution"
+      ],
+      "description": "Execution mode."
+    }
+  }
+}

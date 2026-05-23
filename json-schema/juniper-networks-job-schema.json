@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Job",
+  "title": "Job",
+  "type": "object",
+  "properties": {
+    "@key": {
+      "type": "integer",
+      "description": "Job internal ID."
+    },
+    "jobName": {
+      "type": "string",
+      "description": "Job name."
+    },
+    "jobType": {
+      "type": "string",
+      "description": "Job type identifier."
+    },
+    "jobState": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "INPROGRESS",
+        "SUCCESS",
+        "FAILURE",
+        "CANCELLED"
+      ],
+      "description": "Current job state."
+    },
+    "percent": {
+      "type": "number",
+      "description": "Completion percentage."
+    },
+    "createdByUserName": {
+      "type": "string",
+      "description": "User who created the job."
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Job result summary."
+    }
+  }
+}

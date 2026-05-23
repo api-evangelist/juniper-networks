@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityPolicy",
+  "title": "SecurityPolicy",
+  "type": "object",
+  "properties": {
+    "from_zone": {
+      "type": "string",
+      "description": "Source security zone."
+    },
+    "to_zone": {
+      "type": "string",
+      "description": "Destination security zone."
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Policy name."
+          },
+          "match": {
+            "type": "object",
+            "properties": {
+              "source_address": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "destination_address": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "application": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "permit",
+                  "deny",
+                  "reject"
+                ]
+              },
+              "log": {
+                "type": "boolean"
+              },
+              "count": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

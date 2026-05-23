@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Alarm",
+  "title": "Alarm",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Alarm unique identifier."
+    },
+    "type": {
+      "type": "string",
+      "description": "Alarm type identifier."
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "warn",
+        "info"
+      ],
+      "description": "Alarm severity level."
+    },
+    "group": {
+      "type": "string",
+      "description": "Alarm group category."
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of occurrences."
+    },
+    "last_seen": {
+      "type": "number",
+      "description": "Last occurrence timestamp in epoch seconds."
+    },
+    "acked": {
+      "type": "boolean",
+      "description": "Whether the alarm has been acknowledged."
+    }
+  }
+}

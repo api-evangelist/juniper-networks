@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Template",
+  "title": "Template",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Template unique identifier."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Template display name."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "rack_based"
+      ],
+      "description": "Template type."
+    },
+    "spine": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Number of spine switches."
+        },
+        "logical_device_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Logical device for spine switches."
+        }
+      }
+    },
+    "rack_types": {
+      "type": "array",
+      "description": "Rack types included in the template.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rack_type_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

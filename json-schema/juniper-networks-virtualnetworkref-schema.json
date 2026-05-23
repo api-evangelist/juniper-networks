@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VirtualNetworkRef",
+  "title": "VirtualNetworkRef",
+  "type": "object",
+  "properties": {
+    "href": {
+      "type": "string",
+      "format": "uri"
+    },
+    "fq_name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

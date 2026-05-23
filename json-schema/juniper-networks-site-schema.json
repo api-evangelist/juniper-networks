@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Site",
+  "title": "Site",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Site unique identifier."
+    },
+    "org_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Parent organization ID."
+    },
+    "name": {
+      "type": "string",
+      "description": "Site name."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Site timezone in IANA format (e.g., America/Los_Angeles)."
+    },
+    "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "address": {
+      "type": "string",
+      "description": "Physical address of the site."
+    },
+    "latlng": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "description": "Latitude."
+        },
+        "lng": {
+          "type": "number",
+          "description": "Longitude."
+        }
+      }
+    },
+    "sitegroup_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Site group membership IDs."
+    },
+    "rftemplate_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "RF template applied to the site."
+    },
+    "networktemplate_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Network template applied to the site."
+    },
+    "created_time": {
+      "type": "number",
+      "description": "Creation timestamp in epoch seconds."
+    },
+    "modified_time": {
+      "type": "number",
+      "description": "Last modification timestamp in epoch seconds."
+    }
+  }
+}

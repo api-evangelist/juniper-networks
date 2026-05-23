@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Wlan",
+  "title": "Wlan",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "WLAN unique identifier."
+    },
+    "ssid": {
+      "type": "string",
+      "description": "SSID name broadcast by access points."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the WLAN is enabled."
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "open",
+            "psk",
+            "eap",
+            "wep"
+          ],
+          "description": "Authentication type."
+        },
+        "psk": {
+          "type": "string",
+          "description": "Pre-shared key for PSK authentication."
+        }
+      },
+      "description": "Authentication configuration."
+    },
+    "band": {
+      "type": "string",
+      "enum": [
+        "2.4",
+        "5",
+        "6",
+        "both"
+      ],
+      "description": "Radio band for the WLAN."
+    },
+    "vlan_enabled": {
+      "type": "boolean",
+      "description": "Whether VLAN tagging is enabled."
+    },
+    "vlan_id": {
+      "type": "integer",
+      "description": "VLAN ID for client traffic."
+    },
+    "hide_ssid": {
+      "type": "boolean",
+      "description": "Whether to hide the SSID from broadcast."
+    },
+    "band_steer": {
+      "type": "boolean",
+      "description": "Whether band steering is enabled."
+    },
+    "client_limit_down": {
+      "type": "integer",
+      "description": "Per-client downstream rate limit in kbps."
+    },
+    "client_limit_up": {
+      "type": "integer",
+      "description": "Per-client upstream rate limit in kbps."
+    }
+  }
+}

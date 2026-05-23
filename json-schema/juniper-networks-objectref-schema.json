@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ObjectRef",
+  "title": "ObjectRef",
+  "type": "object",
+  "properties": {
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "Resource URL."
+    },
+    "fq_name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Fully qualified name path (domain, project, name)."
+    },
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Object UUID."
+    }
+  }
+}

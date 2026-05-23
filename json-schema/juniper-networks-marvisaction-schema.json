@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarvisAction",
+  "title": "MarvisAction",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Action category (e.g., ap_health, client_connectivity, capacity)."
+    },
+    "details": {
+      "type": "string",
+      "description": "Description of the detected issue and recommended action."
+    },
+    "site_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Affected site ID."
+    },
+    "device_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Affected device ID if applicable."
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "warning",
+        "info"
+      ],
+      "description": "Severity level of the action."
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Detection timestamp in epoch seconds."
+    }
+  }
+}

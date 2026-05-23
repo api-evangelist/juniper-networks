@@ -1,0 +1,19 @@
+name: Juniper Networks Domain Vocabulary
+provider: Juniper Networks
+providerId: juniper-networks
+description: Tag-derived vocabulary for the Juniper Networks API surface; sourced from openapi/ tags.
+terms:
+- term: Anomalies
+  description: Network state anomaly detection and reporting.
+- term: Authentication
+  description: User login, logout, and token management.
+- term: Blueprints
+  description: Blueprint lifecycle management for data center network intent, including staging, commit, and deployment.
+- term: Design
+  description: Design resources including logical devices, interface maps, rack types, templates, and config templates.
+- term: IBA
+  description: Intent-Based Analytics probes and dashboards.
+- term: Resources
+  description: Resource pool management for ASN, IP, and VNI allocation.
+- term: Systems
+  description: Managed system (device) agent lifecycle and telemetry.

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IbaProbe",
+  "title": "IbaProbe",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "label": {
+      "type": "string",
+      "description": "Probe display name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Probe description."
+    },
+    "predefined_probe": {
+      "type": "string",
+      "description": "Predefined probe type name if applicable."
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "Stage processor type."
+          }
+        }
+      },
+      "description": "Probe processing pipeline stages."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "operational",
+        "error"
+      ],
+      "description": "Current probe state."
+    }
+  }
+}

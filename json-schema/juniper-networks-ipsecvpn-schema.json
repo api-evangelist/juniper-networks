@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IpsecVpn",
+  "title": "IpsecVpn",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "VPN tunnel name."
+    },
+    "ike_gateway": {
+      "type": "string",
+      "description": "IKE gateway name."
+    },
+    "ike_policy": {
+      "type": "string",
+      "description": "IKE policy name."
+    },
+    "ipsec_policy": {
+      "type": "string",
+      "description": "IPsec policy name."
+    },
+    "bind_interface": {
+      "type": "string",
+      "description": "Tunnel interface (e.g., st0.0)."
+    },
+    "establish_tunnels": {
+      "type": "string",
+      "enum": [
+        "immediately",
+        "on-traffic"
+      ],
+      "description": "Tunnel establishment trigger."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "up",
+        "down"
+      ],
+      "description": "Current tunnel status."
+    }
+  }
+}

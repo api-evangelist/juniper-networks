@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Anomaly",
+  "title": "Anomaly",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Anomaly unique identifier."
+    },
+    "type": {
+      "type": "string",
+      "description": "Anomaly type (e.g., config, cabling, bgp, route, liveness)."
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "warning",
+        "info"
+      ],
+      "description": "Anomaly severity."
+    },
+    "role": {
+      "type": "string",
+      "description": "Node role where the anomaly was detected."
+    },
+    "expected": {
+      "type": "string",
+      "description": "Expected state value."
+    },
+    "actual": {
+      "type": "string",
+      "description": "Actual observed state value."
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Identifying attributes of the anomalous element."
+    }
+  }
+}

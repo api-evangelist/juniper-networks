@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IpPool",
+  "title": "IpPool",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "subnets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "network": {
+            "type": "string",
+            "description": "Subnet in CIDR notation."
+          },
+          "status": {
+            "type": "string",
+            "description": "Subnet usage status."
+          }
+        }
+      }
+    }
+  }
+}

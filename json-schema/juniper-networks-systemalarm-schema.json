@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SystemAlarm",
+  "title": "SystemAlarm",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Alarm identifier."
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "major",
+        "minor"
+      ],
+      "description": "Alarm severity."
+    },
+    "description": {
+      "type": "string",
+      "description": "Alarm description."
+    },
+    "type": {
+      "type": "string",
+      "description": "Alarm type."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Alarm trigger time."
+    }
+  }
+}

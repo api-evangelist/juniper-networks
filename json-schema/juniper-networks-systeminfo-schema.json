@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SystemInfo",
+  "title": "SystemInfo",
+  "type": "object",
+  "properties": {
+    "hostname": {
+      "type": "string",
+      "description": "Device hostname."
+    },
+    "model": {
+      "type": "string",
+      "description": "Device model (e.g., vSRX, vSRX3.0)."
+    },
+    "junos_version": {
+      "type": "string",
+      "description": "Junos OS version."
+    },
+    "serial_number": {
+      "type": "string",
+      "description": "Virtual serial number."
+    },
+    "uptime": {
+      "type": "string",
+      "description": "System uptime string."
+    },
+    "last_reboot_reason": {
+      "type": "string",
+      "description": "Reason for the last reboot."
+    }
+  }
+}

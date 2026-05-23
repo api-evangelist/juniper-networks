@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Script",
+  "title": "Script",
+  "type": "object",
+  "properties": {
+    "@key": {
+      "type": "integer",
+      "description": "Script internal ID."
+    },
+    "scriptName": {
+      "type": "string",
+      "description": "Script file name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Script description."
+    },
+    "scriptType": {
+      "type": "string",
+      "enum": [
+        "op",
+        "commit",
+        "event"
+      ],
+      "description": "Script type."
+    },
+    "scriptLanguage": {
+      "type": "string",
+      "enum": [
+        "slax",
+        "xslt",
+        "python"
+      ],
+      "description": "Script language."
+    }
+  }
+}

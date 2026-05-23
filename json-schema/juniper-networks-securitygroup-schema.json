@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityGroup",
+  "title": "SecurityGroup",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "fq_name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "security_group_entries": {
+      "type": "object",
+      "properties": {
+        "policy_rule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "direction": {
+                "type": "string",
+                "enum": [
+                  ">",
+                  "<>"
+                ]
+              },
+              "protocol": {
+                "type": "string"
+              },
+              "ethertype": {
+                "type": "string",
+                "enum": [
+                  "IPv4",
+                  "IPv6"
+                ]
+              },
+              "src_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "subnet": {
+                      "type": "object",
+                      "properties": {
+                        "ip_prefix": {
+                          "type": "string"
+                        },
+                        "ip_prefix_len": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "security_group": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "dst_addresses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "subnet": {
+                      "type": "object",
+                      "properties": {
+                        "ip_prefix": {
+                          "type": "string"
+                        },
+                        "ip_prefix_len": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "dst_ports": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "start_port": {
+                      "type": "integer"
+                    },
+                    "end_port": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

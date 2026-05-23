@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/System",
+  "title": "System",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "System unique identifier."
+    },
+    "label": {
+      "type": "string",
+      "description": "System label."
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Device hostname."
+    },
+    "management_ip": {
+      "type": "string",
+      "description": "Management IP address."
+    },
+    "serial_number": {
+      "type": "string",
+      "description": "Hardware serial number."
+    },
+    "device_key": {
+      "type": "string",
+      "description": "Device key for agent authentication."
+    },
+    "facts": {
+      "type": "object",
+      "properties": {
+        "os_family": {
+          "type": "string",
+          "description": "Operating system family (e.g., junos, eos, nxos)."
+        },
+        "os_version": {
+          "type": "string",
+          "description": "Operating system version."
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Hardware vendor."
+        },
+        "hw_model": {
+          "type": "string",
+          "description": "Hardware model."
+        }
+      },
+      "description": "Device hardware and software facts."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "OOS-READY",
+        "IS-ACTIVE",
+        "MAINT",
+        "DECOMM"
+      ],
+      "description": "System operational status."
+    }
+  }
+}

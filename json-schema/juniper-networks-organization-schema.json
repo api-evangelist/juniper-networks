@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Organization",
+  "title": "Organization",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Organization unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Organization name."
+    },
+    "orggroup_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Organization group membership IDs."
+    },
+    "session_expiry": {
+      "type": "integer",
+      "description": "Session timeout in minutes."
+    },
+    "msp_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Managed service provider ID if applicable."
+    },
+    "created_time": {
+      "type": "number",
+      "description": "Creation timestamp in epoch seconds."
+    },
+    "modified_time": {
+      "type": "number",
+      "description": "Last modification timestamp in epoch seconds."
+    }
+  }
+}

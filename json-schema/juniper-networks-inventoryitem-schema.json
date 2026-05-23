@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InventoryItem",
+  "title": "InventoryItem",
+  "type": "object",
+  "properties": {
+    "mac": {
+      "type": "string",
+      "description": "Device MAC address."
+    },
+    "serial": {
+      "type": "string",
+      "description": "Device serial number."
+    },
+    "model": {
+      "type": "string",
+      "description": "Device model."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ap",
+        "switch",
+        "gateway"
+      ],
+      "description": "Device type."
+    },
+    "site_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Assigned site ID, null if unassigned."
+    },
+    "org_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Organization ID."
+    },
+    "claimed_time": {
+      "type": "number",
+      "description": "Time the device was claimed in epoch seconds."
+    }
+  }
+}

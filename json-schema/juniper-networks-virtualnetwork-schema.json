@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VirtualNetwork",
+  "title": "VirtualNetwork",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "label": {
+      "type": "string",
+      "description": "Virtual network name."
+    },
+    "vn_type": {
+      "type": "string",
+      "enum": [
+        "vxlan"
+      ],
+      "description": "Virtual network type."
+    },
+    "vn_id": {
+      "type": "string",
+      "description": "VXLAN VNI."
+    },
+    "security_zone_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Parent security zone."
+    },
+    "bound_to": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vlan_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "description": "Systems and VLAN IDs where the VN is bound."
+    },
+    "ipv4_subnet": {
+      "type": "string",
+      "description": "IPv4 gateway subnet in CIDR notation."
+    },
+    "virtual_gateway_ipv4": {
+      "type": "string",
+      "description": "Virtual gateway IPv4 address."
+    }
+  }
+}

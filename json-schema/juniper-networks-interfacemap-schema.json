@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InterfaceMap",
+  "title": "InterfaceMap",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Interface map unique identifier."
+    },
+    "label": {
+      "type": "string",
+      "description": "Display label."
+    },
+    "logical_device_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated logical device."
+    },
+    "device_profile_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated hardware device profile."
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Physical interface name."
+          },
+          "mapping": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Logical port indices mapped to this interface."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Admin",
+  "title": "Admin",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Admin user unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Admin display name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Admin email address."
+    },
+    "privileges": {
+      "type": "array",
+      "description": "List of organization and site-level privileges.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "enum": [
+              "org",
+              "site"
+            ]
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "site_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "write",
+              "read",
+              "helpdesk"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowSession",
+  "title": "FlowSession",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "integer",
+      "description": "Session identifier."
+    },
+    "policy": {
+      "type": "string",
+      "description": "Matching security policy name."
+    },
+    "source_address": {
+      "type": "string",
+      "description": "Source IP address."
+    },
+    "source_port": {
+      "type": "integer"
+    },
+    "destination_address": {
+      "type": "string",
+      "description": "Destination IP address."
+    },
+    "destination_port": {
+      "type": "integer"
+    },
+    "protocol": {
+      "type": "string",
+      "description": "IP protocol name."
+    },
+    "application": {
+      "type": "string",
+      "description": "Identified application."
+    },
+    "in_interface": {
+      "type": "string",
+      "description": "Ingress interface."
+    },
+    "out_interface": {
+      "type": "string",
+      "description": "Egress interface."
+    },
+    "bytes_in": {
+      "type": "integer",
+      "description": "Bytes received."
+    },
+    "bytes_out": {
+      "type": "integer",
+      "description": "Bytes transmitted."
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Session duration in seconds."
+    }
+  }
+}

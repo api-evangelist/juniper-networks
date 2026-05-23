@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Map",
+  "title": "Map",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Map unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Map or floor plan name."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "image",
+        "google"
+      ],
+      "description": "Map type."
+    },
+    "width": {
+      "type": "number",
+      "description": "Map width in meters."
+    },
+    "height": {
+      "type": "number",
+      "description": "Map height in meters."
+    },
+    "url": {
+      "type": "string",
+      "description": "URL to the uploaded floor plan image."
+    },
+    "ppm": {
+      "type": "number",
+      "description": "Pixels per meter for the floor plan image."
+    }
+  }
+}

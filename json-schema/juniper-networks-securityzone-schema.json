@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityZone",
+  "title": "SecurityZone",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "label": {
+      "type": "string",
+      "description": "Security zone name."
+    },
+    "vrf_name": {
+      "type": "string",
+      "description": "VRF name on devices."
+    },
+    "routing_policy_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated routing policy."
+    },
+    "vni_id": {
+      "type": "integer",
+      "description": "L3 VNI for the security zone."
+    }
+  }
+}

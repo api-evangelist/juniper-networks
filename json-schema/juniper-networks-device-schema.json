@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Device",
+  "title": "Device",
+  "type": "object",
+  "properties": {
+    "@key": {
+      "type": "integer",
+      "description": "Device internal ID."
+    },
+    "name": {
+      "type": "string",
+      "description": "Device name."
+    },
+    "ipAddr": {
+      "type": "string",
+      "description": "Management IP address."
+    },
+    "platform": {
+      "type": "string",
+      "description": "Device platform (e.g., SRX340, EX4300, MX240)."
+    },
+    "deviceFamily": {
+      "type": "string",
+      "description": "Device family (e.g., junos, junos-es)."
+    },
+    "OSVersion": {
+      "type": "string",
+      "description": "Junos OS version."
+    },
+    "serialNumber": {
+      "type": "string",
+      "description": "Hardware serial number."
+    },
+    "connectionStatus": {
+      "type": "string",
+      "enum": [
+        "up",
+        "down"
+      ],
+      "description": "NETCONF connection status."
+    },
+    "managedStatus": {
+      "type": "string",
+      "enum": [
+        "In Sync",
+        "Out Of Sync",
+        "Space Changed",
+        "Device Changed"
+      ],
+      "description": "Configuration synchronization status."
+    },
+    "ManagedDnDomainName": {
+      "type": "string",
+      "description": "Domain name the device belongs to."
+    }
+  }
+}

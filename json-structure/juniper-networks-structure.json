@@ -1,0 +1,309 @@
+{
+  "provider": "Juniper Networks",
+  "providerId": "juniper-networks",
+  "kind": "json-structure",
+  "description": "Structural overview of the Juniper Networks API surface; extracted from openapi/.",
+  "schemaCount": 15,
+  "operationCount": 23,
+  "schemas": [
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LogicalDevice",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "InterfaceMap",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RackType",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Template",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BlueprintSummary",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Blueprint",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Anomaly",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "SecurityZone",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "VirtualNetwork",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "AsnPool",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "IpPool",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "VniPool",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "System",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "IbaProbe",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/aaa/login",
+      "operationId": "login",
+      "summary": "Juniper Networks Authenticate and obtain token",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/aaa/logout",
+      "operationId": "logout",
+      "summary": "Juniper Networks Logout and invalidate token",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/design/logical-devices",
+      "operationId": "listLogicalDevices",
+      "summary": "Juniper Networks List logical devices",
+      "tags": [
+        "Design"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/design/logical-devices",
+      "operationId": "createLogicalDevice",
+      "summary": "Juniper Networks Create logical device",
+      "tags": [
+        "Design"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/design/interface-maps",
+      "operationId": "listInterfaceMaps",
+      "summary": "Juniper Networks List interface maps",
+      "tags": [
+        "Design"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/design/rack-types",
+      "operationId": "listRackTypes",
+      "summary": "Juniper Networks List rack types",
+      "tags": [
+        "Design"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/design/rack-types",
+      "operationId": "createRackType",
+      "summary": "Juniper Networks Create rack type",
+      "tags": [
+        "Design"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/design/templates",
+      "operationId": "listTemplates",
+      "summary": "Juniper Networks List templates",
+      "tags": [
+        "Design"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/blueprints",
+      "operationId": "listBlueprints",
+      "summary": "Juniper Networks List blueprints",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/blueprints",
+      "operationId": "createBlueprint",
+      "summary": "Juniper Networks Create blueprint",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/blueprints/{blueprint_id}",
+      "operationId": "getBlueprint",
+      "summary": "Juniper Networks Get blueprint",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/blueprints/{blueprint_id}",
+      "operationId": "deleteBlueprint",
+      "summary": "Juniper Networks Delete blueprint",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/blueprints/{blueprint_id}/deploy",
+      "operationId": "deployBlueprint",
+      "summary": "Juniper Networks Deploy blueprint",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/blueprints/{blueprint_id}/anomalies",
+      "operationId": "listBlueprintAnomalies",
+      "summary": "Juniper Networks List blueprint anomalies",
+      "tags": [
+        "Anomalies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/blueprints/{blueprint_id}/security-zones",
+      "operationId": "listSecurityZones",
+      "summary": "Juniper Networks List security zones (VRFs)",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/blueprints/{blueprint_id}/virtual-networks",
+      "operationId": "listVirtualNetworks",
+      "summary": "Juniper Networks List virtual networks",
+      "tags": [
+        "Blueprints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/resources/asn-pools",
+      "operationId": "listAsnPools",
+      "summary": "Juniper Networks List ASN pools",
+      "tags": [
+        "Resources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/resources/asn-pools",
+      "operationId": "createAsnPool",
+      "summary": "Juniper Networks Create ASN pool",
+      "tags": [
+        "Resources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/resources/ip-pools",
+      "operationId": "listIpPools",
+      "summary": "Juniper Networks List IP pools",
+      "tags": [
+        "Resources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/resources/vni-pools",
+      "operationId": "listVniPools",
+      "summary": "Juniper Networks List VNI pools",
+      "tags": [
+        "Resources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/systems",
+      "operationId": "listSystems",
+      "summary": "Juniper Networks List managed systems",
+      "tags": [
+        "Systems"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/systems/{system_id}",
+      "operationId": "getSystem",
+      "summary": "Juniper Networks Get system details",
+      "tags": [
+        "Systems"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/blueprints/{blueprint_id}/iba/probes",
+      "operationId": "listIbaProbes",
+      "summary": "Juniper Networks List IBA probes",
+      "tags": [
+        "IBA"
+      ]
+    }
+  ]
+}
