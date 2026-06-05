@@ -6,262 +6,197 @@ created: '2024'
 modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
-- name: Juniper Apstra API
-  description: Intent-based networking API for data center automation and orchestration.
-  image: https://www.juniper.net/content/dam/juniper/images/products/apstra.png
-  humanURL: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
-  baseURL: https://<apstra-server>/api
-  tags:
-  - Automation
-  - Data Center
-  - Intent-Based Networking
-  - Networking
-  properties:
-  - type: Documentation
-    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
-  - type: OpenAPI
-    url: openapi/juniper-networks-apstra-openapi.yml
-  - type: JSONSchema
-    url: json-schema/juniper-networks-apstra-blueprint-schema.json
-  - type: Authentication
-    url: https://www.juniper.net/documentation/us/en/software/apstra4.1/apstra-user-guide/topics/topic-map/api-authentication.html
-  - type: NaftikoCapability
-    url: capabilities/apstra-anomalies.yaml
-  - type: NaftikoCapability
-    url: capabilities/apstra-authentication.yaml
-  - type: NaftikoCapability
-    url: capabilities/apstra-blueprints.yaml
-  - type: NaftikoCapability
-    url: capabilities/apstra-design.yaml
-  - type: NaftikoCapability
-    url: capabilities/apstra-iba.yaml
-  - type: NaftikoCapability
-    url: capabilities/apstra-resources.yaml
-  - type: NaftikoCapability
-    url: capabilities/apstra-systems.yaml
-- name: Junos PyEZ
-  description: Python library for automating Junos devices using NETCONF.
-  image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
-  humanURL: https://www.juniper.net/documentation/product/us/en/junos-pyez/
-  baseURL: netconf://device:830
-  tags:
-  - Automation
-  - Junos
-  - NETCONF
-  - Python
-  properties:
-  - type: Documentation
-    url: https://www.juniper.net/documentation/product/us/en/junos-pyez/
-  - type: GitHub
-    url: https://github.com/Juniper/py-junos-eznc
-  - type: GettingStarted
-    url: https://www.juniper.net/documentation/us/en/software/junos-pyez/junos-pyez-developer/topics/concept/junos-pyez-overview.html
-- name: Junos XML API
-  description: NETCONF-based XML API for programmatic access to Junos devices.
-  image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
-  humanURL: https://www.juniper.net/documentation/us/en/software/junos/netconf/index.html
-  baseURL: netconf://device:830
-  tags:
-  - Automation
-  - Junos
-  - NETCONF
-  - XML
-  properties:
-  - type: Documentation
-    url: https://www.juniper.net/documentation/us/en/software/junos/netconf/index.html
-  - type: XML API Guide
-    url: https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/concept/netconf-xml-api-overview.html
-  - type: JSONSchema
-    url: json-schema/juniper-networks-junos-security-policy-schema.json
-  - type: AsyncAPI
-    url: asyncapi/juniper-networks-junos-telemetry-asyncapi.yml
-- name: Juniper Mist API
-  description: Cloud-based AI-driven networking API for wireless, wired, and SD-WAN management.
-  image: https://www.mist.com/wp-content/uploads/mist-logo.png
-  humanURL: https://api.mist.com/api/v1/docs/
-  baseURL: https://api.mist.com/api/v1
-  tags:
-  - AI
-  - Cloud
-  - Network Management
-  - SD-WAN
-  - Wireless
-  properties:
-  - type: Documentation
-    url: https://api.mist.com/api/v1/docs/
-  - type: APIReference
-    url: https://doc.mist-lab.fr/
-  - type: Authentication
-    url: https://api.mist.com/api/v1/docs/Auth.html
-  - type: OpenAPI
-    url: openapi/juniper-networks-mist-openapi.yml
-  - type: AsyncAPI
-    url: asyncapi/juniper-networks-mist-webhooks-asyncapi.yml
-  - type: JSONSchema
-    url: json-schema/juniper-networks-mist-site-schema.json
-  - type: JSONSchema
-    url: json-schema/juniper-networks-mist-device-schema.json
-  - type: NaftikoCapability
-    url: capabilities/mist-alarms.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-authentication.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-clients.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-devices.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-insights.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-inventory.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-maps.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-organizations.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-sites.yaml
-  - type: NaftikoCapability
-    url: capabilities/mist-wlans.yaml
-- name: Juniper Contrail API
-  description: SDN controller API for network virtualization and orchestration.
-  image: https://www.juniper.net/content/dam/juniper/images/products/contrail.png
-  humanURL: https://www.juniper.net/documentation/product/us/en/contrail-networking/
-  baseURL: https://<contrail-controller>:8082
-  tags:
-  - NFV
-  - Orchestration
-  - SDN
-  - Virtual Networks
-  properties:
-  - type: Documentation
-    url: https://www.juniper.net/documentation/product/us/en/contrail-networking/
-  - type: API Guide
-    url: https://github.com/Juniper/contrail-controller/wiki/Contrail-REST-API
-  - type: OpenAPI
-    url: openapi/juniper-networks-contrail-openapi.yml
-  - type: JSONSchema
-    url: json-schema/juniper-networks-contrail-virtual-network-schema.json
-  - type: NaftikoCapability
-    url: capabilities/contrail-bgp-routers.yaml
-  - type: NaftikoCapability
-    url: capabilities/contrail-floating-ips.yaml
-  - type: NaftikoCapability
-    url: capabilities/contrail-network-policies.yaml
-  - type: NaftikoCapability
-    url: capabilities/contrail-projects.yaml
-  - type: NaftikoCapability
-    url: capabilities/contrail-security-groups.yaml
-  - type: NaftikoCapability
-    url: capabilities/contrail-service-instances.yaml
-  - type: NaftikoCapability
-    url: capabilities/contrail-virtual-networks.yaml
-- name: Junos Space REST API
-  description: Network management platform API for Junos devices.
-  image: https://www.juniper.net/content/dam/juniper/images/products/junos-space.png
-  humanURL: https://www.juniper.net/documentation/product/us/en/junos-space-network-management-platform/
-  baseURL: https://<space-server>/api/space
-  tags:
-  - Network Management
-  - Orchestration
-  - REST
-  properties:
-  - type: Documentation
-    url: https://www.juniper.net/documentation/us/en/software/junos-space/
-  - type: API Developer Guide
-    url: https://www.juniper.net/documentation/us/en/software/junos-space/junos-space-platform/topics/concept/junos-space-rest-api-overview.html
-  - type: OpenAPI
-    url: openapi/juniper-networks-junos-space-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/junos-space-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/junos-space-devices.yaml
-  - type: NaftikoCapability
-    url: capabilities/junos-space-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/junos-space-scripts.yaml
-  - type: NaftikoCapability
-    url: capabilities/junos-space-users.yaml
-- name: Juniper JSNAPy
-  description: Python-based tool for snapshot and verification of network device configurations.
-  image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
-  humanURL: https://github.com/Juniper/jsnapy
-  baseURL: https://github.com/Juniper/jsnapy
-  tags:
-  - Automation
-  - Configuration Management
-  - Python
-  - Testing
-  properties:
-  - type: GitHub
-    url: https://github.com/Juniper/jsnapy
-  - type: Documentation
-    url: https://www.juniper.net/documentation/us/en/software/jsnapy/index.html
-- name: Juniper vSRX REST API
-  description: RESTful API for managing virtual firewall instances.
-  image: https://www.juniper.net/content/dam/juniper/images/products/vsrx.png
-  humanURL: https://www.juniper.net/documentation/product/us/en/vsrx/
-  baseURL: https://<vsrx-device>/api
-  tags:
-  - Firewall
-  - REST
-  - Security
-  - Virtual
-  properties:
-  - type: Documentation
-    url: https://www.juniper.net/documentation/product/us/en/vsrx/
-  - type: OpenAPI
-    url: openapi/juniper-networks-vsrx-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/vsrx-configuration.yaml
-  - type: NaftikoCapability
-    url: capabilities/vsrx-monitoring.yaml
-  - type: NaftikoCapability
-    url: capabilities/vsrx-nat.yaml
-  - type: NaftikoCapability
-    url: capabilities/vsrx-security-policies.yaml
-  - type: NaftikoCapability
-    url: capabilities/vsrx-system.yaml
-  - type: NaftikoCapability
-    url: capabilities/vsrx-vpn.yaml
+  - name: Juniper Apstra API
+    description: Intent-based networking API for data center automation and orchestration.
+    image: https://www.juniper.net/content/dam/juniper/images/products/apstra.png
+    humanURL: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+    baseURL: https://<apstra-server>/api
+    tags:
+      - Automation
+      - Data Center
+      - Intent-Based Networking
+      - Networking
+    properties:
+      - type: Documentation
+        url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+      - type: OpenAPI
+        url: openapi/juniper-networks-apstra-openapi.yml
+      - type: JSONSchema
+        url: json-schema/juniper-networks-apstra-blueprint-schema.json
+      - type: Authentication
+        url: >-
+          https://www.juniper.net/documentation/us/en/software/apstra4.1/apstra-user-guide/topics/topic-map/api-authentication.html
+  - name: Junos PyEZ
+    description: Python library for automating Junos devices using NETCONF.
+    image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
+    humanURL: https://www.juniper.net/documentation/product/us/en/junos-pyez/
+    baseURL: netconf://device:830
+    tags:
+      - Automation
+      - Junos
+      - NETCONF
+      - Python
+    properties:
+      - type: Documentation
+        url: https://www.juniper.net/documentation/product/us/en/junos-pyez/
+      - type: GitHub
+        url: https://github.com/Juniper/py-junos-eznc
+      - type: GettingStarted
+        url: >-
+          https://www.juniper.net/documentation/us/en/software/junos-pyez/junos-pyez-developer/topics/concept/junos-pyez-overview.html
+  - name: Junos XML API
+    description: NETCONF-based XML API for programmatic access to Junos devices.
+    image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
+    humanURL: https://www.juniper.net/documentation/us/en/software/junos/netconf/index.html
+    baseURL: netconf://device:830
+    tags:
+      - Automation
+      - Junos
+      - NETCONF
+      - XML
+    properties:
+      - type: Documentation
+        url: https://www.juniper.net/documentation/us/en/software/junos/netconf/index.html
+      - type: XML API Guide
+        url: >-
+          https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/concept/netconf-xml-api-overview.html
+      - type: JSONSchema
+        url: json-schema/juniper-networks-junos-security-policy-schema.json
+      - type: AsyncAPI
+        url: asyncapi/juniper-networks-junos-telemetry-asyncapi.yml
+  - name: Juniper Mist API
+    description: Cloud-based AI-driven networking API for wireless, wired, and SD-WAN management.
+    image: https://www.mist.com/wp-content/uploads/mist-logo.png
+    humanURL: https://api.mist.com/api/v1/docs/
+    baseURL: https://api.mist.com/api/v1
+    tags:
+      - AI
+      - Cloud
+      - Network Management
+      - SD-WAN
+      - Wireless
+    properties:
+      - type: Documentation
+        url: https://api.mist.com/api/v1/docs/
+      - type: APIReference
+        url: https://doc.mist-lab.fr/
+      - type: Authentication
+        url: https://api.mist.com/api/v1/docs/Auth.html
+      - type: OpenAPI
+        url: openapi/juniper-networks-mist-openapi.yml
+      - type: AsyncAPI
+        url: asyncapi/juniper-networks-mist-webhooks-asyncapi.yml
+      - type: JSONSchema
+        url: json-schema/juniper-networks-mist-site-schema.json
+      - type: JSONSchema
+        url: json-schema/juniper-networks-mist-device-schema.json
+  - name: Juniper Contrail API
+    description: SDN controller API for network virtualization and orchestration.
+    image: https://www.juniper.net/content/dam/juniper/images/products/contrail.png
+    humanURL: https://www.juniper.net/documentation/product/us/en/contrail-networking/
+    baseURL: https://<contrail-controller>:8082
+    tags:
+      - NFV
+      - Orchestration
+      - SDN
+      - Virtual Networks
+    properties:
+      - type: Documentation
+        url: https://www.juniper.net/documentation/product/us/en/contrail-networking/
+      - type: API Guide
+        url: https://github.com/Juniper/contrail-controller/wiki/Contrail-REST-API
+      - type: OpenAPI
+        url: openapi/juniper-networks-contrail-openapi.yml
+      - type: JSONSchema
+        url: json-schema/juniper-networks-contrail-virtual-network-schema.json
+  - name: Junos Space REST API
+    description: Network management platform API for Junos devices.
+    image: https://www.juniper.net/content/dam/juniper/images/products/junos-space.png
+    humanURL: https://www.juniper.net/documentation/product/us/en/junos-space-network-management-platform/
+    baseURL: https://<space-server>/api/space
+    tags:
+      - Network Management
+      - Orchestration
+      - REST
+    properties:
+      - type: Documentation
+        url: https://www.juniper.net/documentation/us/en/software/junos-space/
+      - type: API Developer Guide
+        url: >-
+          https://www.juniper.net/documentation/us/en/software/junos-space/junos-space-platform/topics/concept/junos-space-rest-api-overview.html
+      - type: OpenAPI
+        url: openapi/juniper-networks-junos-space-openapi.yml
+  - name: Juniper JSNAPy
+    description: Python-based tool for snapshot and verification of network device configurations.
+    image: https://www.juniper.net/content/dam/juniper/images/logos/junos-logo.png
+    humanURL: https://github.com/Juniper/jsnapy
+    baseURL: https://github.com/Juniper/jsnapy
+    tags:
+      - Automation
+      - Configuration Management
+      - Python
+      - Testing
+    properties:
+      - type: GitHub
+        url: https://github.com/Juniper/jsnapy
+      - type: Documentation
+        url: https://www.juniper.net/documentation/us/en/software/jsnapy/index.html
+  - name: Juniper vSRX REST API
+    description: RESTful API for managing virtual firewall instances.
+    image: https://www.juniper.net/content/dam/juniper/images/products/vsrx.png
+    humanURL: https://www.juniper.net/documentation/product/us/en/vsrx/
+    baseURL: https://<vsrx-device>/api
+    tags:
+      - Firewall
+      - REST
+      - Security
+      - Virtual
+    properties:
+      - type: Documentation
+        url: https://www.juniper.net/documentation/product/us/en/vsrx/
+      - type: OpenAPI
+        url: openapi/juniper-networks-vsrx-openapi.yml
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/juniper-networks
-- type: JSONLD
-  url: json-ld/juniper-networks-context.jsonld
-- type: Developer Portal
-  url: https://developer.juniper.net/
-- type: Support
-  url: https://support.juniper.net/
-- type: GitHub
-  url: https://github.com/Juniper
-- type: Community
-  url: https://community.juniper.net/
-- type: Training
-  url: https://learningportal.juniper.net/
-- type: Website
-  url: https://www.juniper.net/
-- type: Documentation
-  url: https://www.juniper.net/documentation/
-- type: Blog
-  url: https://blogs.juniper.net/
-- type: StatusPage
-  url: https://status.juniper.net/
-- type: TermsOfService
-  url: https://www.juniper.net/us/en/legal-notices.html
-- type: PrivacyPolicy
-  url: https://www.juniper.net/us/en/privacy-policy.html
-- type: YouTube
-  url: https://www.youtube.com/user/JuniperNetworks
-- type: StackOverflow
-  url: https://stackoverflow.com/questions/tagged/juniper
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/juniper-networks
+  - type: JSONLD
+    url: json-ld/juniper-networks-context.jsonld
+  - type: Developer Portal
+    url: https://developer.juniper.net/
+  - type: Support
+    url: https://support.juniper.net/
+  - type: GitHub
+    url: https://github.com/Juniper
+  - type: Community
+    url: https://community.juniper.net/
+  - type: Training
+    url: https://learningportal.juniper.net/
+  - type: Website
+    url: https://www.juniper.net/
+  - type: Documentation
+    url: https://www.juniper.net/documentation/
+  - type: Blog
+    url: https://blogs.juniper.net/
+  - type: StatusPage
+    url: https://status.juniper.net/
+  - type: TermsOfService
+    url: https://www.juniper.net/us/en/legal-notices.html
+  - type: PrivacyPolicy
+    url: https://www.juniper.net/us/en/privacy-policy.html
+  - type: YouTube
+    url: https://www.youtube.com/user/JuniperNetworks
+  - type: StackOverflow
+    url: https://stackoverflow.com/questions/tagged/juniper
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
 tags:
-- Automation
-- Cloud
-- Data Center
-- Enterprise
-- Networking
-- SDN
-- Security
+  - Automation
+  - Cloud
+  - Data Center
+  - Enterprise
+  - Networking
+  - SDN
+  - Security
+  - Fortune 1000
