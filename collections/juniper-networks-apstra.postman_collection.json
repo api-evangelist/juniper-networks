@@ -1,0 +1,3976 @@
+{
+  "item": [
+    {
+      "id": "fa7cd536-3e40-4eb2-bb78-bc68360b4423",
+      "name": "Anomalies",
+      "description": {
+        "content": "Network state anomaly detection and reporting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b23b0d8a-7c22-4aff-8270-45bdf6f35234",
+          "name": "Juniper Networks List blueprint anomalies",
+          "request": {
+            "name": "Juniper Networks List blueprint anomalies",
+            "description": {
+              "content": "Returns anomalies detected in a blueprint. Anomalies represent deviations between the intended state defined in the blueprint and the actual state observed on network devices. Includes configuration drift, cabling issues, and BGP session problems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id",
+                "anomalies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ddeb208-3868-4929-9222-5062a87b3e8b",
+              "name": "Anomalies returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "anomalies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"85097731-75f5-89db-4c92-51a8187b5556\",\n      \"type\": \"string\",\n      \"severity\": \"critical\",\n      \"role\": \"string\",\n      \"expected\": \"string\",\n      \"actual\": \"string\",\n      \"identity\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"b1fb4770-0ce0-7554-30d6-48ee0ca5ba54\",\n      \"type\": \"string\",\n      \"severity\": \"warning\",\n      \"role\": \"string\",\n      \"expected\": \"string\",\n      \"actual\": \"string\",\n      \"identity\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6a96780-c648-4d36-a552-6cccd374cfb5",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "anomalies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ac91e1c0-4102-4bf4-b2f0-b39e878bc149",
+      "name": "Authentication",
+      "description": {
+        "content": "User login, logout, and token management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01150b37-26fe-41d7-901d-a4a4059736ed",
+          "name": "Juniper Networks Authenticate and obtain token",
+          "request": {
+            "name": "Juniper Networks Authenticate and obtain token",
+            "description": {
+              "content": "Authenticates with username and password, returns an authentication token for subsequent API calls. The token must be passed in the AuthToken header for all authenticated endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aaa",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d951259-833d-4d57-9d27-3aaa9e116d27",
+              "name": "Authentication successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aaa",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"id\": \"01de9d26-9cdc-0057-7460-da5c20c8a14e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfce9566-ce40-4d8c-be9e-1fd0b78f918c",
+              "name": "Invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aaa",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d5c682b-6bd7-4101-9cb4-b369776df3d5",
+          "name": "Juniper Networks Logout and invalidate token",
+          "request": {
+            "name": "Juniper Networks Logout and invalidate token",
+            "description": {
+              "content": "Invalidates the current authentication token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aaa",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c33a8ea-ba33-4225-961d-efaa83825d21",
+              "name": "Logout successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aaa",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f4d11165-272e-45e1-a047-24fd5c291dfb",
+      "name": "Blueprints",
+      "description": {
+        "content": "Blueprint lifecycle management for data center network intent, including staging, commit, and deployment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11645cb0-1e48-4fd7-9dd5-cc31ee9a9ad3",
+          "name": "Juniper Networks List blueprints",
+          "request": {
+            "name": "Juniper Networks List blueprints",
+            "description": {
+              "content": "Returns all blueprints. Blueprints are instantiations of templates representing a specific data center network. They contain the full network graph including nodes, links, and configuration state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5221f4eb-f91d-4558-976a-ae834bc4b8a5",
+              "name": "Blueprints returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"0d28d874-c24e-35b2-a4ca-336296df9a72\",\n      \"label\": \"string\",\n      \"design\": \"string\",\n      \"status\": \"string\",\n      \"build_errors_count\": 3270,\n      \"build_warnings_count\": 1428,\n      \"version\": 6046\n    },\n    {\n      \"id\": \"d674bfbf-08f3-b328-1c65-910e68a3b13f\",\n      \"label\": \"string\",\n      \"design\": \"string\",\n      \"status\": \"string\",\n      \"build_errors_count\": 3391,\n      \"build_warnings_count\": 301,\n      \"version\": 158\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e12b491e-6a65-467d-8d21-a00464718c97",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b007971-4b78-4e15-894a-aee424896133",
+          "name": "Juniper Networks Create blueprint",
+          "request": {
+            "name": "Juniper Networks Create blueprint",
+            "description": {
+              "content": "Creates a new blueprint from a template. The blueprint will contain the initial network graph based on the template design.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"design\": \"<string>\",\n  \"init_type\": \"<string>\",\n  \"template_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9973a75-2ae4-4111-9a9f-0edf32bf2130",
+              "name": "Blueprint created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"design\": \"<string>\",\n  \"init_type\": \"<string>\",\n  \"template_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"34618066-78e7-e8ad-ddc1-2b124122583b\",\n  \"label\": \"string\",\n  \"design\": \"string\",\n  \"status\": \"string\",\n  \"build_errors_count\": 9694,\n  \"build_warnings_count\": 4395,\n  \"version\": 3496\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d40cfeb-ad7c-47c4-b692-509df0d69be3",
+              "name": "Invalid request parameters or malformed payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"design\": \"<string>\",\n  \"init_type\": \"<string>\",\n  \"template_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2e6176d-9971-4e04-94a1-39b0712b383b",
+          "name": "Juniper Networks Get blueprint",
+          "request": {
+            "name": "Juniper Networks Get blueprint",
+            "description": {
+              "content": "Returns details for a specific blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a88230a-7d46-44ac-b70e-9b0f43091da8",
+              "name": "Blueprint returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"dce2a9f3-9a9d-16b5-58bf-1b6556c77946\",\n  \"label\": \"string\",\n  \"design\": \"string\",\n  \"version\": 788,\n  \"nodes\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"relationships\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efdbaa09-55bf-4c60-9c65-4729578a61d9",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "062213ef-5712-454c-b73e-e21379cc8a2a",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b8a7a30-4572-406d-9fe1-1a9472402544",
+          "name": "Juniper Networks Delete blueprint",
+          "request": {
+            "name": "Juniper Networks Delete blueprint",
+            "description": {
+              "content": "Deletes a blueprint and its associated network graph.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e9c6749-8c81-4e01-b7b9-f367a4d5f667",
+              "name": "Blueprint deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce4abab2-df55-4884-ae48-5a2d403d3052",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03638644-a736-4433-9df4-a57321dd04d6",
+          "name": "Juniper Networks Deploy blueprint",
+          "request": {
+            "name": "Juniper Networks Deploy blueprint",
+            "description": {
+              "content": "Commits and deploys staged changes in the blueprint to the physical network devices. Generates device-specific configurations from the intent model and pushes them to managed switches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id",
+                "deploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32d5e3ad-4cb3-478d-98ca-7415a38dad77",
+              "name": "Deployment initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab2d6f41-d8cd-47d8-9070-54ddacca490f",
+              "name": "Invalid request parameters or malformed payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c85a43f-d4af-485f-8062-d7592fba8695",
+              "name": "Blueprint has no staged changes or version conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8692f4c5-c920-4800-939e-b81d28badf28",
+          "name": "Juniper Networks List security zones (VRFs)",
+          "request": {
+            "name": "Juniper Networks List security zones (VRFs)",
+            "description": {
+              "content": "Returns all security zones (routing zones / VRFs) configured in the blueprint. Security zones provide network segmentation through VRF instances on leaf switches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id",
+                "security-zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fca883ca-6531-4736-8f73-4c684c90bcd5",
+              "name": "Security zones returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "security-zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": {\n    \"key_0\": {\n      \"id\": \"a3dac59c-4555-96bb-8d13-cfd602972d26\",\n      \"label\": \"string\",\n      \"vrf_name\": \"string\",\n      \"routing_policy_id\": \"23d0f9a5-5576-c481-3f7f-07ad4e148476\",\n      \"vni_id\": 1020\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcfe5bab-ef4e-412c-8e24-e905325e3072",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "security-zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07b58f40-8db8-4d8f-8035-383255e6fe77",
+          "name": "Juniper Networks List virtual networks",
+          "request": {
+            "name": "Juniper Networks List virtual networks",
+            "description": {
+              "content": "Returns all virtual networks in the blueprint. Virtual networks represent VLANs/VXLANs provisioned across the fabric for workload connectivity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id",
+                "virtual-networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c4f6b53-9027-4224-88f7-39553eee8123",
+              "name": "Virtual networks returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": {\n    \"key_0\": {\n      \"id\": \"cf2dc6e6-dffd-9dd3-0023-d0229b0cbf32\",\n      \"label\": \"string\",\n      \"vn_type\": \"vxlan\",\n      \"vn_id\": \"string\",\n      \"security_zone_id\": \"9ff543a8-9d42-f50b-cfb4-46e258d5be8c\",\n      \"bound_to\": [\n        {\n          \"system_id\": \"5d4a8fdd-eee7-6af7-f199-7f9d2b502e69\",\n          \"vlan_id\": 4214\n        },\n        {\n          \"system_id\": \"8a9d6737-b95f-2ec1-0366-90cd3f4756c3\",\n          \"vlan_id\": 1894\n        }\n      ],\n      \"ipv4_subnet\": \"string\",\n      \"virtual_gateway_ipv4\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5729f85e-cd16-4bb6-a31f-4336e275cfbe",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "658daf03-e193-437c-93df-fddcdd2213f6",
+      "name": "Design",
+      "description": {
+        "content": "Design resources including logical devices, interface maps, rack types, templates, and config templates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aed06588-6018-4ced-a078-d47bc20af0fa",
+          "name": "Juniper Networks List logical devices",
+          "request": {
+            "name": "Juniper Networks List logical devices",
+            "description": {
+              "content": "Returns all logical device definitions. Logical devices represent abstract switch models with port groups and capabilities, independent of specific hardware vendors. They define the port layout and capabilities used in rack type definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "design",
+                "logical-devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f61bcfb-0401-4c49-a061-f80e13b1d512",
+              "name": "Logical devices returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "logical-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"0b224d1b-c4d5-8058-2400-7a91c38281a4\",\n      \"display_name\": \"string\",\n      \"panels\": [\n        {\n          \"panel_layout\": {\n            \"row_count\": 4600,\n            \"column_count\": 468\n          },\n          \"port_indexing\": {\n            \"order\": \"T-B, L-R\",\n            \"start_index\": 5270,\n            \"schema\": \"absolute\"\n          },\n          \"port_groups\": [\n            {\n              \"count\": 6204,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 7023\n              },\n              \"roles\": [\n                \"spine\",\n                \"generic\"\n              ]\n            },\n            {\n              \"count\": 2957,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 3175\n              },\n              \"roles\": [\n                \"peer\",\n                \"access\"\n              ]\n            }\n          ]\n        },\n        {\n          \"panel_layout\": {\n            \"row_count\": 3439,\n            \"column_count\": 1661\n          },\n          \"port_indexing\": {\n            \"order\": \"L-R, T-B\",\n            \"start_index\": 9367,\n            \"schema\": \"absolute\"\n          },\n          \"port_groups\": [\n            {\n              \"count\": 6345,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 5478\n              },\n              \"roles\": [\n                \"spine\",\n                \"spine\"\n              ]\n            },\n            {\n              \"count\": 1335,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 6841\n              },\n              \"roles\": [\n                \"access\",\n                \"superspine\"\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"720d1e6e-90f6-0825-f3bd-22fb1e2a064d\",\n      \"display_name\": \"string\",\n      \"panels\": [\n        {\n          \"panel_layout\": {\n            \"row_count\": 2243,\n            \"column_count\": 5234\n          },\n          \"port_indexing\": {\n            \"order\": \"T-B, L-R\",\n            \"start_index\": 2578,\n            \"schema\": \"absolute\"\n          },\n          \"port_groups\": [\n            {\n              \"count\": 9116,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 6894\n              },\n              \"roles\": [\n                \"peer\",\n                \"leaf\"\n              ]\n            },\n            {\n              \"count\": 1606,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 863\n              },\n              \"roles\": [\n                \"unused\",\n                \"peer\"\n              ]\n            }\n          ]\n        },\n        {\n          \"panel_layout\": {\n            \"row_count\": 2573,\n            \"column_count\": 1466\n          },\n          \"port_indexing\": {\n            \"order\": \"T-B, L-R\",\n            \"start_index\": 8346,\n            \"schema\": \"absolute\"\n          },\n          \"port_groups\": [\n            {\n              \"count\": 8525,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 9514\n              },\n              \"roles\": [\n                \"superspine\",\n                \"generic\"\n              ]\n            },\n            {\n              \"count\": 3981,\n              \"speed\": {\n                \"unit\": \"G\",\n                \"value\": 6066\n              },\n              \"roles\": [\n                \"generic\",\n                \"generic\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb316c00-7431-4172-a3b7-87887235e570",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "logical-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4257a3b4-b17d-45d5-83e7-283b22a2cfb1",
+          "name": "Juniper Networks Create logical device",
+          "request": {
+            "name": "Juniper Networks Create logical device",
+            "description": {
+              "content": "Creates a new logical device definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "design",
+                "logical-devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"panels\": [\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15ee8f4b-d373-4cde-9ee5-d3c446bb21a4",
+              "name": "Logical device created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "logical-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"panels\": [\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"67f63c94-acf1-b16c-195d-05214c3418bf\",\n  \"display_name\": \"string\",\n  \"panels\": [\n    {\n      \"panel_layout\": {\n        \"row_count\": 6057,\n        \"column_count\": 9264\n      },\n      \"port_indexing\": {\n        \"order\": \"T-B, L-R\",\n        \"start_index\": 9360,\n        \"schema\": \"absolute\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": 1998,\n          \"speed\": {\n            \"unit\": \"G\",\n            \"value\": 9957\n          },\n          \"roles\": [\n            \"superspine\",\n            \"spine\"\n          ]\n        },\n        {\n          \"count\": 7510,\n          \"speed\": {\n            \"unit\": \"G\",\n            \"value\": 6438\n          },\n          \"roles\": [\n            \"spine\",\n            \"peer\"\n          ]\n        }\n      ]\n    },\n    {\n      \"panel_layout\": {\n        \"row_count\": 1760,\n        \"column_count\": 6722\n      },\n      \"port_indexing\": {\n        \"order\": \"L-R, T-B\",\n        \"start_index\": 1710,\n        \"schema\": \"absolute\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": 4621,\n          \"speed\": {\n            \"unit\": \"G\",\n            \"value\": 231\n          },\n          \"roles\": [\n            \"peer\",\n            \"peer\"\n          ]\n        },\n        {\n          \"count\": 5532,\n          \"speed\": {\n            \"unit\": \"G\",\n            \"value\": 538\n          },\n          \"roles\": [\n            \"access\",\n            \"leaf\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7296fb9e-4937-4982-8345-ff95a53609ee",
+              "name": "Invalid request parameters or malformed payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "logical-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"panels\": [\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "219dd97d-2531-4abf-a1c3-fc3a5ee77220",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "logical-devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"panels\": [\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"panel_layout\": {\n        \"row_count\": \"<integer>\",\n        \"column_count\": \"<integer>\"\n      },\n      \"port_indexing\": {\n        \"order\": \"<string>\",\n        \"start_index\": \"<integer>\",\n        \"schema\": \"<string>\"\n      },\n      \"port_groups\": [\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"count\": \"<integer>\",\n          \"speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91b3c57c-f69f-481e-a7a6-967178e8fdf2",
+          "name": "Juniper Networks List interface maps",
+          "request": {
+            "name": "Juniper Networks List interface maps",
+            "description": {
+              "content": "Returns all interface maps. Interface maps bind logical device port groups to physical device interfaces, connecting the abstract design to specific hardware models.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "design",
+                "interface-maps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4981c13-394e-476d-9651-8566531cb4f8",
+              "name": "Interface maps returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "interface-maps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"5f6b93bc-717f-df4f-8cf0-28e3836774fc\",\n      \"label\": \"string\",\n      \"logical_device_id\": \"f8eb41b1-be30-6ac9-3d44-9e2b18b1c1dc\",\n      \"device_profile_id\": \"f611ff6c-2892-b48a-ed65-c6a3d689b45e\",\n      \"interfaces\": [\n        {\n          \"name\": \"string\",\n          \"mapping\": [\n            1414,\n            3959\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"mapping\": [\n            8902,\n            6337\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"394f025b-3377-c83c-ba14-b8a2195089cb\",\n      \"label\": \"string\",\n      \"logical_device_id\": \"6fa13d5a-1e03-3965-4cc5-e7d733628ce1\",\n      \"device_profile_id\": \"72e47b52-e87f-993c-0f17-e8575e94ba19\",\n      \"interfaces\": [\n        {\n          \"name\": \"string\",\n          \"mapping\": [\n            1689,\n            1973\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"mapping\": [\n            7793,\n            9712\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a20a171-4d03-417d-bb36-d52d3b91e80d",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "interface-maps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "276b9511-8d19-4c27-80ec-133d7d7e15a7",
+          "name": "Juniper Networks List rack types",
+          "request": {
+            "name": "Juniper Networks List rack types",
+            "description": {
+              "content": "Returns all rack type definitions. Rack types define the physical layout of a data center rack including leaf switches, access switches, generic systems, and their interconnections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "design",
+                "rack-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0afe976a-c293-4ba1-be5f-4159b962e826",
+              "name": "Rack types returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "rack-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"dcc03af4-f50d-5891-e9cf-5d6364e80138\",\n      \"display_name\": \"string\",\n      \"description\": \"string\",\n      \"fabric_connectivity_design\": \"l3clos\",\n      \"leaf_switches\": [\n        {\n          \"label\": \"string\",\n          \"logical_device_id\": \"1421d992-3cbb-d242-6c21-689d2cd5a737\",\n          \"link_per_spine_count\": 2877,\n          \"link_per_spine_speed\": {\n            \"unit\": \"string\",\n            \"value\": 1655\n          },\n          \"redundancy_protocol\": \"esi\"\n        },\n        {\n          \"label\": \"string\",\n          \"logical_device_id\": \"fc945af8-baab-37a8-1abd-b674320e5001\",\n          \"link_per_spine_count\": 6549,\n          \"link_per_spine_speed\": {\n            \"unit\": \"string\",\n            \"value\": 1344\n          },\n          \"redundancy_protocol\": \"mlag\"\n        }\n      ],\n      \"generic_systems\": [\n        {\n          \"label\": \"string\",\n          \"count\": 1813,\n          \"logical_device_id\": \"31c806de-1285-4d8b-d074-d020f822c820\",\n          \"links\": [\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 531,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 3435\n              },\n              \"lag_mode\": \"lacp_passive\"\n            },\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 7850,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 9331\n              },\n              \"lag_mode\": \"static_lag\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"count\": 9725,\n          \"logical_device_id\": \"67573416-cbc3-62ff-7c53-ed4c744b263d\",\n          \"links\": [\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 1778,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 4369\n              },\n              \"lag_mode\": \"lacp_active\"\n            },\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 2927,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 915\n              },\n              \"lag_mode\": \"lacp_active\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"2089c8f3-8bad-b830-0fac-564fa00a14b4\",\n      \"display_name\": \"string\",\n      \"description\": \"string\",\n      \"fabric_connectivity_design\": \"l3collapsed\",\n      \"leaf_switches\": [\n        {\n          \"label\": \"string\",\n          \"logical_device_id\": \"f186f18d-3227-d73c-49f7-e20f283f02ec\",\n          \"link_per_spine_count\": 1635,\n          \"link_per_spine_speed\": {\n            \"unit\": \"string\",\n            \"value\": 2407\n          },\n          \"redundancy_protocol\": \"mlag\"\n        },\n        {\n          \"label\": \"string\",\n          \"logical_device_id\": \"a82c5f58-3ce4-8e88-2136-10ea4c3b8543\",\n          \"link_per_spine_count\": 7454,\n          \"link_per_spine_speed\": {\n            \"unit\": \"string\",\n            \"value\": 4806\n          },\n          \"redundancy_protocol\": \"mlag\"\n        }\n      ],\n      \"generic_systems\": [\n        {\n          \"label\": \"string\",\n          \"count\": 9535,\n          \"logical_device_id\": \"efeec42a-7f16-a481-b78d-5e25fb810a55\",\n          \"links\": [\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 7868,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 2107\n              },\n              \"lag_mode\": \"static_lag\"\n            },\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 2008,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 3631\n              },\n              \"lag_mode\": \"static_lag\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"count\": 5259,\n          \"logical_device_id\": \"9e6a8957-592f-345d-799d-aeedbc343c70\",\n          \"links\": [\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 8026,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 256\n              },\n              \"lag_mode\": \"lacp_passive\"\n            },\n            {\n              \"label\": \"string\",\n              \"target_switch_label\": \"string\",\n              \"link_per_switch_count\": 2467,\n              \"link_speed\": {\n                \"unit\": \"string\",\n                \"value\": 4145\n              },\n              \"lag_mode\": \"lacp_passive\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d22965ed-7d3a-4bb6-8445-9557683e68d6",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "rack-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4602bacf-8772-43e4-a297-27900d4f0599",
+          "name": "Juniper Networks Create rack type",
+          "request": {
+            "name": "Juniper Networks Create rack type",
+            "description": {
+              "content": "Creates a new rack type definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "design",
+                "rack-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fabric_connectivity_design\": \"<string>\",\n  \"leaf_switches\": [\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    }\n  ],\n  \"generic_systems\": [\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "13e09fe2-1a86-42c5-b334-dbaff025f170",
+              "name": "Rack type created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "rack-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fabric_connectivity_design\": \"<string>\",\n  \"leaf_switches\": [\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    }\n  ],\n  \"generic_systems\": [\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"10a7da35-8415-0a9b-5c87-33593f7bca1e\",\n  \"display_name\": \"string\",\n  \"description\": \"string\",\n  \"fabric_connectivity_design\": \"l3collapsed\",\n  \"leaf_switches\": [\n    {\n      \"label\": \"string\",\n      \"logical_device_id\": \"df6109fb-5da2-e674-1cce-bca2dcd804ab\",\n      \"link_per_spine_count\": 1690,\n      \"link_per_spine_speed\": {\n        \"unit\": \"string\",\n        \"value\": 3847\n      },\n      \"redundancy_protocol\": \"mlag\"\n    },\n    {\n      \"label\": \"string\",\n      \"logical_device_id\": \"97d70d3a-8d91-2d73-c767-a16857d548e7\",\n      \"link_per_spine_count\": 1672,\n      \"link_per_spine_speed\": {\n        \"unit\": \"string\",\n        \"value\": 8175\n      },\n      \"redundancy_protocol\": \"mlag\"\n    }\n  ],\n  \"generic_systems\": [\n    {\n      \"label\": \"string\",\n      \"count\": 5218,\n      \"logical_device_id\": \"f4495d2e-3b8a-06e3-f2f9-bd4db34390c7\",\n      \"links\": [\n        {\n          \"label\": \"string\",\n          \"target_switch_label\": \"string\",\n          \"link_per_switch_count\": 2857,\n          \"link_speed\": {\n            \"unit\": \"string\",\n            \"value\": 5922\n          },\n          \"lag_mode\": \"lacp_active\"\n        },\n        {\n          \"label\": \"string\",\n          \"target_switch_label\": \"string\",\n          \"link_per_switch_count\": 7867,\n          \"link_speed\": {\n            \"unit\": \"string\",\n            \"value\": 2125\n          },\n          \"lag_mode\": \"lacp_active\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"count\": 3018,\n      \"logical_device_id\": \"acbb5f2a-1f22-db97-d6a3-bdd3fdcfddbd\",\n      \"links\": [\n        {\n          \"label\": \"string\",\n          \"target_switch_label\": \"string\",\n          \"link_per_switch_count\": 6002,\n          \"link_speed\": {\n            \"unit\": \"string\",\n            \"value\": 1240\n          },\n          \"lag_mode\": \"static_lag\"\n        },\n        {\n          \"label\": \"string\",\n          \"target_switch_label\": \"string\",\n          \"link_per_switch_count\": 265,\n          \"link_speed\": {\n            \"unit\": \"string\",\n            \"value\": 4242\n          },\n          \"lag_mode\": \"lacp_passive\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3411584-0ec9-4a47-bb57-6cb606a7f124",
+              "name": "Invalid request parameters or malformed payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "rack-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fabric_connectivity_design\": \"<string>\",\n  \"leaf_switches\": [\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    }\n  ],\n  \"generic_systems\": [\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f1a1a21-01fd-483b-8170-346cc079c0a3",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "rack-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fabric_connectivity_design\": \"<string>\",\n  \"leaf_switches\": [\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"link_per_spine_count\": \"<integer>\",\n      \"link_per_spine_speed\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"redundancy_protocol\": \"<string>\"\n    }\n  ],\n  \"generic_systems\": [\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"logical_device_id\": \"<uuid>\",\n      \"links\": [\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"target_switch_label\": \"<string>\",\n          \"link_per_switch_count\": \"<integer>\",\n          \"link_speed\": {\n            \"unit\": \"<string>\",\n            \"value\": \"<integer>\"\n          },\n          \"lag_mode\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6973083-9af8-4c59-83e5-f90589f226d7",
+          "name": "Juniper Networks List templates",
+          "request": {
+            "name": "Juniper Networks List templates",
+            "description": {
+              "content": "Returns all data center templates. Templates combine rack types with spine layer definitions to create complete data center fabric designs using leaf-spine or 3-stage Clos topologies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "design",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01e3654e-394b-42a4-b751-aaf2f77660b2",
+              "name": "Templates returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"316c537f-9ef5-0371-7571-6486d948e39e\",\n      \"display_name\": \"string\",\n      \"type\": \"rack_based\",\n      \"spine\": {\n        \"count\": 6041,\n        \"logical_device_id\": \"f1b65987-ffa3-a839-b33f-8552b9739f92\"\n      },\n      \"rack_types\": [\n        {\n          \"rack_type_id\": \"941351f7-0874-7d9a-68f2-778fe2cccaa8\",\n          \"count\": 1974\n        },\n        {\n          \"rack_type_id\": \"73225f93-eb8e-f1c1-04c5-e7661ca3b4fb\",\n          \"count\": 7288\n        }\n      ]\n    },\n    {\n      \"id\": \"519f60b8-baa3-e5ff-a6ed-ed5e2af9980e\",\n      \"display_name\": \"string\",\n      \"type\": \"rack_based\",\n      \"spine\": {\n        \"count\": 6260,\n        \"logical_device_id\": \"89410363-b160-ba06-1458-f25ae0f3d5c0\"\n      },\n      \"rack_types\": [\n        {\n          \"rack_type_id\": \"261b6973-e68b-b947-d1ff-e7818f06447c\",\n          \"count\": 9785\n        },\n        {\n          \"rack_type_id\": \"78626c02-0c05-49c3-2ee6-fcd5324f020c\",\n          \"count\": 7824\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d44f86a-b96d-460d-93e0-0e01205919dc",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "design",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d15d9274-0122-4927-b0c5-26befc822952",
+      "name": "IBA",
+      "description": {
+        "content": "Intent-Based Analytics probes and dashboards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b0c86f7-d0c0-4563-af8f-6dada56aa92c",
+          "name": "Juniper Networks List IBA probes",
+          "request": {
+            "name": "Juniper Networks List IBA probes",
+            "description": {
+              "content": "Returns all Intent-Based Analytics probes in a blueprint. IBA probes continuously collect and analyze telemetry data from network devices to detect anomalies and verify intent compliance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprint_id",
+                "iba",
+                "probes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "blueprint_id",
+                  "description": "(Required) Blueprint unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6224100-8d7a-4393-bcba-49f2f659e51f",
+              "name": "IBA probes returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "iba",
+                    "probes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"ad02fe73-8806-8032-c8d4-ffb038caceee\",\n      \"label\": \"string\",\n      \"description\": \"string\",\n      \"predefined_probe\": \"string\",\n      \"stages\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"state\": \"error\"\n    },\n    {\n      \"id\": \"e35264b0-05ba-3f89-0ab0-983499044efa\",\n      \"label\": \"string\",\n      \"description\": \"string\",\n      \"predefined_probe\": \"string\",\n      \"stages\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"state\": \"error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d484d39-5883-4428-99a4-dd73444061c3",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprint_id",
+                    "iba",
+                    "probes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "blueprint_id",
+                      "description": "(Required) Blueprint unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aad928e7-6e05-45a5-93bb-4f9ab042c808",
+      "name": "Resources",
+      "description": {
+        "content": "Resource pool management for ASN, IP, and VNI allocation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6075b7f-7ef4-44bc-baa0-6419eeb8f09e",
+          "name": "Juniper Networks List ASN pools",
+          "request": {
+            "name": "Juniper Networks List ASN pools",
+            "description": {
+              "content": "Returns all ASN (Autonomous System Number) pools. ASN pools are allocated to spine and leaf switches for BGP peering in the data center fabric.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "asn-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1188dfd9-bc55-4396-b62b-0e2578c61cd5",
+              "name": "ASN pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"4c6e640a-39f7-a387-c08d-9176230198a6\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 4292,\n          \"last\": 5588\n        },\n        {\n          \"first\": 9074,\n          \"last\": 2620\n        }\n      ],\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"3384c723-76d2-5b59-318f-4f9e74c57dfc\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 6682,\n          \"last\": 5315\n        },\n        {\n          \"first\": 7874,\n          \"last\": 9294\n        }\n      ],\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5113cf5f-f2c5-48fa-90dd-24ed091d0653",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6f43700-3095-475d-aa0e-131816baca63",
+          "name": "Juniper Networks Create ASN pool",
+          "request": {
+            "name": "Juniper Networks Create ASN pool",
+            "description": {
+              "content": "Creates a new ASN pool with defined ranges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "asn-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"ranges\": [\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    },\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f282156-d16d-4225-ac14-9ac550a948ba",
+              "name": "ASN pool created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"ranges\": [\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    },\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"fa0c6fad-4462-e1b7-cbb2-1c5ba94fae00\",\n  \"display_name\": \"string\",\n  \"ranges\": [\n    {\n      \"first\": 155,\n      \"last\": 6537\n    },\n    {\n      \"first\": 4104,\n      \"last\": 3110\n    }\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc4f5419-1b77-4e83-9c99-2537036e4940",
+              "name": "Invalid request parameters or malformed payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"ranges\": [\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    },\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e91502d7-33b9-45f4-a572-448f785d8618",
+          "name": "Juniper Networks List IP pools",
+          "request": {
+            "name": "Juniper Networks List IP pools",
+            "description": {
+              "content": "Returns all IP address pools. IP pools are used to allocate loopback addresses, fabric link subnets, and virtual network gateways across the data center fabric.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "ip-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f154f976-c5c2-46ad-b238-a6312ced1e4b",
+              "name": "IP pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "ip-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"dae205d2-d9c9-3534-fbd6-b05a9636a27a\",\n      \"display_name\": \"string\",\n      \"subnets\": [\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        },\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"0274a3a2-7ed9-1671-28f1-5c6f93feef89\",\n      \"display_name\": \"string\",\n      \"subnets\": [\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        },\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c635fa91-8cd8-473e-aec7-7c53365a709b",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "ip-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c70b0582-d080-418e-a71b-470b449784a0",
+          "name": "Juniper Networks List VNI pools",
+          "request": {
+            "name": "Juniper Networks List VNI pools",
+            "description": {
+              "content": "Returns all VNI (VXLAN Network Identifier) pools. VNI pools provide unique identifiers for VXLAN tunnels used in the EVPN-VXLAN fabric overlay.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vni-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "570408a8-091e-461b-9fb0-2aad212808d2",
+              "name": "VNI pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vni-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"7b12ecd5-2333-79d4-e470-497ba661fbbf\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 4862,\n          \"last\": 9947\n        },\n        {\n          \"first\": 2762,\n          \"last\": 8840\n        }\n      ]\n    },\n    {\n      \"id\": \"24eb70a0-4f60-aa7d-1adc-ad37cc487439\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 6539,\n          \"last\": 6011\n        },\n        {\n          \"first\": 2480,\n          \"last\": 6769\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da97edcb-cfbc-41f7-b8f6-1abce8e4cce2",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vni-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "386fb22c-de86-4dc2-976d-acc28d9b4c55",
+      "name": "Systems",
+      "description": {
+        "content": "Managed system (device) agent lifecycle and telemetry.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad09a821-3fa5-4805-80b7-dc1d6dc63d59",
+          "name": "Juniper Networks List managed systems",
+          "request": {
+            "name": "Juniper Networks List managed systems",
+            "description": {
+              "content": "Returns all systems (network devices) known to Apstra, including their agent status, management IP, and hardware information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f67bd58-b84a-4ea1-aa99-3e5fd62cb258",
+              "name": "Systems returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"1a2b8e41-3c5c-b5df-5365-e4761eb39424\",\n      \"label\": \"string\",\n      \"hostname\": \"string\",\n      \"management_ip\": \"string\",\n      \"serial_number\": \"string\",\n      \"device_key\": \"string\",\n      \"facts\": {\n        \"os_family\": \"string\",\n        \"os_version\": \"string\",\n        \"vendor\": \"string\",\n        \"hw_model\": \"string\"\n      },\n      \"status\": \"OOS-READY\"\n    },\n    {\n      \"id\": \"1d5ce4b2-d333-9c8c-8212-c2efcfa49bd7\",\n      \"label\": \"string\",\n      \"hostname\": \"string\",\n      \"management_ip\": \"string\",\n      \"serial_number\": \"string\",\n      \"device_key\": \"string\",\n      \"facts\": {\n        \"os_family\": \"string\",\n        \"os_version\": \"string\",\n        \"vendor\": \"string\",\n        \"hw_model\": \"string\"\n      },\n      \"status\": \"OOS-READY\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "758f505a-0602-4448-b9ea-89ef549c5c00",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c67988e-ab83-43a4-9f3d-28dd58685e12",
+          "name": "Juniper Networks Get system details",
+          "request": {
+            "name": "Juniper Networks Get system details",
+            "description": {
+              "content": "Returns detailed information for a specific managed system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "systems",
+                ":system_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "system_id",
+                  "description": "(Required) System unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e11761fd-2e19-4ae4-98bf-2e0998479984",
+              "name": "System returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems",
+                    ":system_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "system_id",
+                      "description": "(Required) System unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b3826c21-b72d-1f72-77d3-ae433c61a2e0\",\n  \"label\": \"string\",\n  \"hostname\": \"string\",\n  \"management_ip\": \"string\",\n  \"serial_number\": \"string\",\n  \"device_key\": \"string\",\n  \"facts\": {\n    \"os_family\": \"string\",\n    \"os_version\": \"string\",\n    \"vendor\": \"string\",\n    \"hw_model\": \"string\"\n  },\n  \"status\": \"OOS-READY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed83be7e-b262-4279-8b5c-4f4960adc179",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "systems",
+                    ":system_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "system_id",
+                      "description": "(Required) System unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7cc8173e-4392-44fc-ab7b-70dd346601df",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,415 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Authenticate and obtain token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/aaa/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates with username and password, returns an authentication token for subsequent API calls. The token must be passed in the AuthToken header for all authenticated endpoints."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Logout and invalidate token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/aaa/logout"
+          },
+          "docs": "Invalidates the current authentication token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Design",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List logical devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/design/logical-devices"
+          },
+          "docs": "Returns all logical device definitions. Logical devices represent abstract switch models with port groups and capabilities, independent of specific hardware vendors. They define the port layout and capabilities used in rack type definitions."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create logical device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/design/logical-devices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new logical device definition."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List interface maps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/design/interface-maps"
+          },
+          "docs": "Returns all interface maps. Interface maps bind logical device port groups to physical device interfaces, connecting the abstract design to specific hardware models."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List rack types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/design/rack-types"
+          },
+          "docs": "Returns all rack type definitions. Rack types define the physical layout of a data center rack including leaf switches, access switches, generic systems, and their interconnections."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create rack type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/design/rack-types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new rack type definition."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/design/templates"
+          },
+          "docs": "Returns all data center templates. Templates combine rack types with spine layer definitions to create complete data center fabric designs using leaf-spine or 3-stage Clos topologies."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Blueprints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List blueprints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints"
+          },
+          "docs": "Returns all blueprints. Blueprints are instantiations of templates representing a specific data center network. They contain the full network graph including nodes, links, and configuration state."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/blueprints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new blueprint from a template. The blueprint will contain the initial network graph based on the template design."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific blueprint."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Delete blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a blueprint and its associated network graph."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Deploy blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/deploy",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits and deploys staged changes in the blueprint to the physical network devices. Generates device-specific configurations from the intent model and pushes them to managed switches."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List security zones (VRFs)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/security-zones",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all security zones (routing zones / VRFs) configured in the blueprint. Security zones provide network segmentation through VRF instances on leaf switches."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List virtual networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/virtual-networks",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all virtual networks in the blueprint. Virtual networks represent VLANs/VXLANs provisioned across the fabric for workload connectivity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Anomalies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List blueprint anomalies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/anomalies",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns anomalies detected in a blueprint. Anomalies represent deviations between the intended state defined in the blueprint and the actual state observed on network devices. Includes configuration drift, cabling issues, and BGP session problems."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List ASN pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/resources/asn-pools"
+          },
+          "docs": "Returns all ASN (Autonomous System Number) pools. ASN pools are allocated to spine and leaf switches for BGP peering in the data center fabric."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create ASN pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/resources/asn-pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ASN pool with defined ranges."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List IP pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/resources/ip-pools"
+          },
+          "docs": "Returns all IP address pools. IP pools are used to allocate loopback addresses, fabric link subnets, and virtual network gateways across the data center fabric."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List VNI pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/resources/vni-pools"
+          },
+          "docs": "Returns all VNI (VXLAN Network Identifier) pools. VNI pools provide unique identifiers for VXLAN tunnels used in the EVPN-VXLAN fabric overlay."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List managed systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/systems"
+          },
+          "docs": "Returns all systems (network devices) known to Apstra, including their agent status, management IP, and hardware information."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get system details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/systems/:system_id",
+            "params": [
+              {
+                "name": "system_id",
+                "value": "",
+                "type": "path",
+                "description": "System unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific managed system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IBA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List IBA probes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/iba/probes",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all Intent-Based Analytics probes in a blueprint. IBA probes continuously collect and analyze telemetry data from network devices to detect anomalies and verify intent compliance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

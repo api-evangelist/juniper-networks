@@ -1,0 +1,1931 @@
+{
+  "item": [
+    {
+      "id": "31b89463-dc7d-45a6-8b60-201e4858b7b5",
+      "name": "Configuration",
+      "description": {
+        "content": "Device configuration retrieval and modification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a85822f-068e-4cda-9e8b-41481c5176cc",
+          "name": "Juniper Networks Get device configuration",
+          "request": {
+            "name": "Juniper Networks Get device configuration",
+            "description": {
+              "content": "Returns the current candidate or committed Junos configuration in JSON or XML format. Supports filtering by configuration hierarchy path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "committed",
+                  "description": "Configuration database to read."
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Configuration hierarchy path to filter. Example: security/policies to return only security policy configuration."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cf9abb8-0960-40af-aa77-5396ae05e086",
+              "name": "Configuration returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "committed"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configuration\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3ec44c1-a6b3-4844-99ef-95d05c343544",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "committed"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f66f49fa-2180-49e1-974e-e31fad836099",
+          "name": "Juniper Networks Update configuration",
+          "request": {
+            "name": "Juniper Networks Update configuration",
+            "description": {
+              "content": "Applies configuration changes to the candidate configuration. Changes must be committed separately to take effect.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"configuration\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b570a0a1-6037-4a7d-b184-2086eb2dc3d2",
+              "name": "Configuration updated in candidate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b71e70dd-164c-4b98-99cd-50c40705bbb6",
+              "name": "Invalid request or configuration error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc7bdd47-153c-44a3-82ed-ade222c181b8",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9de43ea-41ab-4d93-a1ce-8f2e72e2f4dc",
+          "name": "Juniper Networks Commit configuration",
+          "request": {
+            "name": "Juniper Networks Commit configuration",
+            "description": {
+              "content": "Commits the candidate configuration to the active running configuration. Supports commit check, commit confirm with rollback timer, and commit comments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "configuration",
+                "commit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commit\": {\n    \"check\": \"<boolean>\",\n    \"confirm\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77a1a927-1bae-4eb8-a1c3-9e3ebc29c9bf",
+              "name": "Configuration committed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commit\": {\n    \"check\": \"<boolean>\",\n    \"confirm\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1266d55d-7439-4d98-825d-62f116440609",
+              "name": "Commit failed due to configuration errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commit\": {\n    \"check\": \"<boolean>\",\n    \"confirm\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9ad59b01-eabd-4c2f-bc39-54ae393bfecc",
+      "name": "Monitoring",
+      "description": {
+        "content": "Device and session monitoring operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ffc6c90-f1fe-40bc-a8fd-b54e910f0d4c",
+          "name": "Juniper Networks List active flow sessions",
+          "request": {
+            "name": "Juniper Networks List active flow sessions",
+            "description": {
+              "content": "Returns currently active security flow sessions on the vSRX. Equivalent to the show security flow session CLI command.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "monitoring",
+                "security",
+                "flow",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "source_prefix",
+                  "value": "<string>",
+                  "description": "Filter by source IP prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_prefix",
+                  "value": "<string>",
+                  "description": "Filter by destination IP prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application name."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c205b31c-5089-4bff-9535-2e49c89ea004",
+              "name": "Flow sessions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "monitoring",
+                    "security",
+                    "flow",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "source_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_sessions\": 1194,\n  \"sessions\": [\n    {\n      \"session_id\": 2209,\n      \"policy\": \"string\",\n      \"source_address\": \"string\",\n      \"source_port\": 1907,\n      \"destination_address\": \"string\",\n      \"destination_port\": 7402,\n      \"protocol\": \"string\",\n      \"application\": \"string\",\n      \"in_interface\": \"string\",\n      \"out_interface\": \"string\",\n      \"bytes_in\": 2020,\n      \"bytes_out\": 671,\n      \"duration\": 449\n    },\n    {\n      \"session_id\": 8339,\n      \"policy\": \"string\",\n      \"source_address\": \"string\",\n      \"source_port\": 5586,\n      \"destination_address\": \"string\",\n      \"destination_port\": 9802,\n      \"protocol\": \"string\",\n      \"application\": \"string\",\n      \"in_interface\": \"string\",\n      \"out_interface\": \"string\",\n      \"bytes_in\": 3614,\n      \"bytes_out\": 8533,\n      \"duration\": 4018\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27d495aa-ae54-4480-ba3d-55b357b87a8c",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "monitoring",
+                    "security",
+                    "flow",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "source_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4fe5288a-7237-45b2-a8ae-8bf91bde17ce",
+      "name": "NAT",
+      "description": {
+        "content": "Network address translation rule management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "176b5d96-ec05-4d0e-bbb4-b741273464c2",
+          "name": "Juniper Networks List source NAT rules",
+          "request": {
+            "name": "Juniper Networks List source NAT rules",
+            "description": {
+              "content": "Returns all source NAT rule sets and rules. Source NAT translates the source IP address of outbound traffic for internet access or address hiding.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "nat",
+                "source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9975d85-872b-4847-86b9-18877c386a97",
+              "name": "Source NAT rules returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"source-nat-rules\": [\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 9469\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 2517\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 9908\n          },\n          \"then\": {\n            \"type\": \"off\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 8087\n          },\n          \"then\": {\n            \"type\": \"off\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be25ea53-dd14-4961-b3be-d655f2fa4073",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "558c5fe3-e978-4b74-a05c-264cb692bc34",
+          "name": "Juniper Networks List destination NAT rules",
+          "request": {
+            "name": "Juniper Networks List destination NAT rules",
+            "description": {
+              "content": "Returns all destination NAT rule sets and rules. Destination NAT translates destination addresses for inbound traffic to internal server addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "nat",
+                "destination"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79e1c191-9361-47d0-80ae-dcaa7880ff9e",
+              "name": "Destination NAT rules returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"destination-nat-rules\": [\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 2725\n          },\n          \"then\": {\n            \"type\": \"interface\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 6318\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 6450\n          },\n          \"then\": {\n            \"type\": \"off\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 1350\n          },\n          \"then\": {\n            \"type\": \"interface\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1dc3f43-5ec3-47ab-90c3-476aaa69259e",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "255994e9-e437-43e3-9962-d5e7cc5a225d",
+      "name": "Security Policies",
+      "description": {
+        "content": "Security policy and zone management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ea0f698-2962-49a7-99d5-47fd7be8890a",
+          "name": "Juniper Networks List security policies",
+          "request": {
+            "name": "Juniper Networks List security policies",
+            "description": {
+              "content": "Returns all security policies configured on the vSRX. Policies are organized by from-zone to-zone pairs and evaluated top-down.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a08c922-1aef-452f-9323-cf9e9147c625",
+              "name": "Security policies returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"security-policies\": [\n    {\n      \"from_zone\": \"string\",\n      \"to_zone\": \"string\",\n      \"policies\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"permit\",\n            \"log\": true,\n            \"count\": false\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"deny\",\n            \"log\": false,\n            \"count\": true\n          }\n        }\n      ]\n    },\n    {\n      \"from_zone\": \"string\",\n      \"to_zone\": \"string\",\n      \"policies\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"deny\",\n            \"log\": true,\n            \"count\": false\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"deny\",\n            \"log\": true,\n            \"count\": false\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82e2d9de-10c3-43ae-8e60-5b4e929e4fdf",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62e00f53-feaf-40f6-8b7b-43b50407a9f5",
+          "name": "Juniper Networks List security zones",
+          "request": {
+            "name": "Juniper Networks List security zones",
+            "description": {
+              "content": "Returns all security zones configured on the vSRX. Zones are logical groupings of interfaces that define trust boundaries for policy enforcement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5556784-df42-4853-a0f1-e4c6b590d748",
+              "name": "Security zones returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"security-zones\": [\n    {\n      \"name\": \"string\",\n      \"interfaces\": [\n        \"string\",\n        \"string\"\n      ],\n      \"host_inbound_traffic\": {\n        \"system_services\": [\n          \"string\",\n          \"string\"\n        ],\n        \"protocols\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"screen\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"interfaces\": [\n        \"string\",\n        \"string\"\n      ],\n      \"host_inbound_traffic\": {\n        \"system_services\": [\n          \"string\",\n          \"string\"\n        ],\n        \"protocols\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"screen\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a63a474d-1b4f-42af-9506-0b5586189089",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2d20686b-310e-41d5-a8d2-faf98a226dfd",
+      "name": "System",
+      "description": {
+        "content": "System information and operational commands.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d63535f8-8405-45b9-a972-c19c15939cdd",
+          "name": "Juniper Networks Get system information",
+          "request": {
+            "name": "Juniper Networks Get system information",
+            "description": {
+              "content": "Returns system information including hostname, model, Junos version, serial number, and uptime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "system",
+                "information"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ede525d-6834-4a09-a68e-d7e221f009ae",
+              "name": "System information returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "system",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostname\": \"string\",\n  \"model\": \"string\",\n  \"junos_version\": \"string\",\n  \"serial_number\": \"string\",\n  \"uptime\": \"string\",\n  \"last_reboot_reason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f1ef2fc-daa3-42e6-9aeb-15d1bb47c845",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "system",
+                    "information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e658ec1-7b52-4b2c-a025-2beb7979e82f",
+          "name": "Juniper Networks List system alarms",
+          "request": {
+            "name": "Juniper Networks List system alarms",
+            "description": {
+              "content": "Returns active system alarms on the vSRX.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "system",
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a469e0aa-5881-40d6-8571-56ab770b3893",
+              "name": "System alarms returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "system",
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alarms\": [\n    {\n      \"id\": 9687,\n      \"severity\": \"minor\",\n      \"description\": \"string\",\n      \"type\": \"string\",\n      \"timestamp\": \"1953-09-17T18:42:10.224Z\"\n    },\n    {\n      \"id\": 4049,\n      \"severity\": \"major\",\n      \"description\": \"string\",\n      \"type\": \"string\",\n      \"timestamp\": \"2018-03-26T03:11:54.552Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1b224b9-bfde-4f07-bb90-cd64139c393a",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "system",
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2951793f-b2d6-4341-8434-5db773cf9285",
+      "name": "VPN",
+      "description": {
+        "content": "IPsec VPN tunnel configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0ea7fb1-5895-4402-a7e1-351b567b4041",
+          "name": "Juniper Networks List IPsec VPN tunnels",
+          "request": {
+            "name": "Juniper Networks List IPsec VPN tunnels",
+            "description": {
+              "content": "Returns all IPsec VPN tunnel configurations, including IKE gateway associations, encryption settings, and tunnel status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "ipsec",
+                "vpn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the vSRX instance.",
+                  "type": "any",
+                  "value": "{{vsrx_host}}",
+                  "key": "vsrx_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "acd71733-b34a-47f6-bcbf-13afdd7246aa",
+              "name": "IPsec VPN tunnels returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "ipsec",
+                    "vpn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ipsec-vpns\": [\n    {\n      \"name\": \"string\",\n      \"ike_gateway\": \"string\",\n      \"ike_policy\": \"string\",\n      \"ipsec_policy\": \"string\",\n      \"bind_interface\": \"string\",\n      \"establish_tunnels\": \"on-traffic\",\n      \"status\": \"down\"\n    },\n    {\n      \"name\": \"string\",\n      \"ike_gateway\": \"string\",\n      \"ike_policy\": \"string\",\n      \"ipsec_policy\": \"string\",\n      \"bind_interface\": \"string\",\n      \"establish_tunnels\": \"on-traffic\",\n      \"status\": \"up\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "937243ec-c1bd-4cf9-81cc-518ca159b849",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "ipsec",
+                    "vpn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the vSRX instance.",
+                      "type": "any",
+                      "value": "{{vsrx_host}}",
+                      "key": "vsrx_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the vSRX instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "vsrx.example.com",
+      "key": "vsrx_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{vsrx_host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e234fe67-aa25-4e12-8b5e-f549999b48d6",
+    "name": "Juniper Networks Juniper vSRX REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for managing Juniper vSRX virtual firewall instances. The vSRX provides full next-generation firewall capabilities including stateful inspection, application identification, IPS, content security, and VPN in a virtualized form factor. The REST API runs on the vSRX management plane and provides access to configuration, monitoring, and operational commands. It supports Junos configuration in JSON format and returns structured responses for security policies, zones, NAT rules, and VPN tunnels. Authentication uses HTTP Basic with Junos credentials.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper vSRX REST API",
+    "version": "23.4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Get device configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/configuration",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Configuration database to read."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Configuration hierarchy path to filter. Example: security/policies to return only security policy configuration."
+              }
+            ]
+          },
+          "docs": "Returns the current candidate or committed Junos configuration in JSON or XML format. Supports filtering by configuration hierarchy path."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{vsrx_host}/api/v1/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies configuration changes to the candidate configuration. Changes must be committed separately to take effect."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Commit configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{vsrx_host}/api/v1/configuration/commit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits the candidate configuration to the active running configuration. Supports commit check, commit confirm with rollback timer, and commit comments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List security policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/security/policies"
+          },
+          "docs": "Returns all security policies configured on the vSRX. Policies are organized by from-zone to-zone pairs and evaluated top-down."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List security zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/security/zones"
+          },
+          "docs": "Returns all security zones configured on the vSRX. Zones are logical groupings of interfaces that define trust boundaries for policy enforcement."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "NAT",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List source NAT rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/security/nat/source"
+          },
+          "docs": "Returns all source NAT rule sets and rules. Source NAT translates the source IP address of outbound traffic for internet access or address hiding."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List destination NAT rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/security/nat/destination"
+          },
+          "docs": "Returns all destination NAT rule sets and rules. Destination NAT translates destination addresses for inbound traffic to internal server addresses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "VPN",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List IPsec VPN tunnels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/security/ipsec/vpn"
+          },
+          "docs": "Returns all IPsec VPN tunnel configurations, including IKE gateway associations, encryption settings, and tunnel status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List active flow sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/monitoring/security/flow/session",
+            "params": [
+              {
+                "name": "source_prefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source IP prefix."
+              },
+              {
+                "name": "destination_prefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter by destination IP prefix."
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name."
+              }
+            ]
+          },
+          "docs": "Returns currently active security flow sessions on the vSRX. Equivalent to the show security flow session CLI command."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Get system information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/system/information"
+          },
+          "docs": "Returns system information including hostname, model, Junos version, serial number, and uptime."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List system alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vsrx_host}/api/v1/system/alarms"
+          },
+          "docs": "Returns active system alarms on the vSRX."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2167 @@
+{
+  "item": [
+    {
+      "id": "197cb052-e172-4838-86d9-7c8ddde318d8",
+      "name": "BGP Routers",
+      "description": {
+        "content": "BGP router and peering configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5cd534a-556f-43a4-b4e7-bf9714705ffd",
+          "name": "Juniper Networks List BGP routers",
+          "request": {
+            "name": "Juniper Networks List BGP routers",
+            "description": {
+              "content": "Returns all BGP router objects. BGP routers represent control plane nodes in the Contrail cluster including control nodes, compute nodes, and external MX/physical routers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgp-routers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f37be0e-9ba0-48d0-a3b2-310b6abace8c",
+              "name": "BGP routers returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgp-routers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bgp-routers\": [\n    {\n      \"href\": \"https://kcKEmiI.vnwdQLFjauiNEuuoEHRglPFmze7vL.Wc-X4im\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"1719a4d5-20f0-b4f5-ac75-1abb9a7d167f\"\n    },\n    {\n      \"href\": \"http://WGUORfRhOnf.ymlnCL4KKsdBF8X0uHE2XAqU+CmPi4PUCkIcALCrsmM\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"51671df3-6e3f-8335-34e0-fd7cb1c1d851\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ec3dc68-90ed-4062-94a5-ada038ea9efa",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgp-routers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fd76bb99-3053-4fc3-bf7c-9f816b44c7f6",
+      "name": "Floating IPs",
+      "description": {
+        "content": "Floating IP pool and association management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb9089ab-bc72-479a-868b-bd6d81058cbc",
+          "name": "Juniper Networks List floating IP pools",
+          "request": {
+            "name": "Juniper Networks List floating IP pools",
+            "description": {
+              "content": "Returns all floating IP pools. Floating IP pools provide publicly routable IP addresses that can be associated with virtual machine interfaces for external access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "floating-ip-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4247bc02-8c33-4eb2-be64-066bcc34d4ea",
+              "name": "Floating IP pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "floating-ip-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"floating-ip-pools\": [\n    {\n      \"href\": \"http://dZROiqzanCBtMDTXQUqVUXCfBrjBTUFno.rbflrzxqUNQf4RhNsBXsLHctE1Jw.2x4G8Uq3L,sbUwfN6Kct1,K7hfRNUdhgAfZ4feC2f\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"d9cdcca9-4287-84c0-3a3b-396027ed919a\"\n    },\n    {\n      \"href\": \"http://sgwMtXvqcxLnqR.fhngS2hh4+TuK\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"208295a7-931e-30ae-053a-5e1eb60baf91\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "067c72c3-5483-496f-b7f8-4be59674a94a",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "floating-ip-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c8d6d58e-72fa-4e3b-85f5-66fa5417b1b8",
+      "name": "Network Policies",
+      "description": {
+        "content": "Network policy rules for traffic control between virtual networks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09dfb7b1-1f2b-4976-8fa7-cd274c6e8310",
+          "name": "Juniper Networks List network policies",
+          "request": {
+            "name": "Juniper Networks List network policies",
+            "description": {
+              "content": "Returns all network policies. Network policies define rules that control traffic flow between virtual networks, including allow, deny, and service chain actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-policys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ec2dade-bbaf-4c44-9fe7-61a0eb4917d8",
+              "name": "Network policies returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"network-policys\": [\n    {\n      \"href\": \"https://yvIoMKlIjZoxJiplmlfD.lvqlsDspDDHsGHeDufUMaQrf.wG5ICuCpj\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"fdd61da9-f84f-d5d7-ab40-a4ad54e73c92\"\n    },\n    {\n      \"href\": \"https://gMifVftijlVxjtNtlqlQ.pmuKyI2dE8ZjiG7kDCnQBwX7HYdQ1Qbvsb5wzFKVFnwCmJ+Q3Z\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"b0cd102e-bfa8-5104-e92a-4bf31bdde8ea\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6ddc027-3322-4f2d-b800-34a05d6aa84f",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd88f6f6-a41f-42a4-87b4-7c07cf34bb19",
+          "name": "Juniper Networks Create network policy",
+          "request": {
+            "name": "Juniper Networks Create network policy",
+            "description": {
+              "content": "Creates a new network policy with traffic control rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-policys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network-policy\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"action_list\": {\n            \"simple_action\": \"<string>\",\n            \"apply_service\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"direction\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"action_list\": {\n            \"simple_action\": \"<string>\",\n            \"apply_service\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "927c0265-e78f-43ac-a667-a66ad3eceab6",
+              "name": "Network policy created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network-policy\": {\n    \"uuid\": \"9af68a8e-790f-57b9-5d7c-53ae05c5684f\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \"<>\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9944\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3796\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 2921,\n              \"end_port\": 3032\n            },\n            {\n              \"start_port\": 1227,\n              \"end_port\": 9632\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 6190,\n              \"end_port\": 4868\n            },\n            {\n              \"start_port\": 1132,\n              \"end_port\": 5201\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5982\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3410\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 6475,\n              \"end_port\": 6521\n            },\n            {\n              \"start_port\": 9269,\n              \"end_port\": 735\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 4436,\n              \"end_port\": 4722\n            },\n            {\n              \"start_port\": 6853,\n              \"end_port\": 5471\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"network-policy\": {\n    \"uuid\": \"9af68a8e-790f-57b9-5d7c-53ae05c5684f\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \"<>\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9944\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3796\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 2921,\n              \"end_port\": 3032\n            },\n            {\n              \"start_port\": 1227,\n              \"end_port\": 9632\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 6190,\n              \"end_port\": 4868\n            },\n            {\n              \"start_port\": 1132,\n              \"end_port\": 5201\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5982\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3410\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 6475,\n              \"end_port\": 6521\n            },\n            {\n              \"start_port\": 9269,\n              \"end_port\": 735\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 4436,\n              \"end_port\": 4722\n            },\n            {\n              \"start_port\": 6853,\n              \"end_port\": 5471\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cddac28-ac45-4097-8d79-46382d8b7813",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network-policy\": {\n    \"uuid\": \"9af68a8e-790f-57b9-5d7c-53ae05c5684f\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \"<>\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9944\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3796\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 2921,\n              \"end_port\": 3032\n            },\n            {\n              \"start_port\": 1227,\n              \"end_port\": 9632\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 6190,\n              \"end_port\": 4868\n            },\n            {\n              \"start_port\": 1132,\n              \"end_port\": 5201\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5982\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3410\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 6475,\n              \"end_port\": 6521\n            },\n            {\n              \"start_port\": 9269,\n              \"end_port\": 735\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 4436,\n              \"end_port\": 4722\n            },\n            {\n              \"start_port\": 6853,\n              \"end_port\": 5471\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fa78ab88-dfda-4f93-8fd9-ef48fbee4bff",
+      "name": "Projects",
+      "description": {
+        "content": "Tenant project management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d49d2f5-d654-4ad3-b6b5-c10a361f611b",
+          "name": "Juniper Networks List projects",
+          "request": {
+            "name": "Juniper Networks List projects",
+            "description": {
+              "content": "Returns all projects (tenants). Projects provide multi-tenancy isolation and serve as containers for virtual networks, policies, and other network resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8cb6f84-bc6c-4386-8fa6-430914dda74b",
+              "name": "Projects returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projects\": [\n    {\n      \"href\": \"http://yXxoiiYeYrFJSg.htAg,IMahwbO-tubptOD,Ok4U8zth3WG4Yukv5ZDCEcXEVnecrsaYxkf7IW6rIk7BqvSjab0oiO\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"8b8a44da-a546-c16c-05c0-141652d197b5\"\n    },\n    {\n      \"href\": \"http://XWl.umhljCflNp.GUMKJPl0eNZRHmszJCdP0Cq6herNcNotZC0A15JzeOZj0ar1yXm5oh0h\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"9b1e96c4-2c26-cb21-9fd8-e832ea7776f5\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdc7db61-bb3d-46d8-aebf-698481a83dc3",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ac09149b-2237-45be-a9d3-499147f20f4b",
+      "name": "Security Groups",
+      "description": {
+        "content": "Security group rules for workload micro-segmentation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd7cc9d4-39df-42f6-ac03-592315e8d5a0",
+          "name": "Juniper Networks List security groups",
+          "request": {
+            "name": "Juniper Networks List security groups",
+            "description": {
+              "content": "Returns all security groups. Security groups provide stateful packet filtering at the virtual machine interface level, similar to OpenStack security groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b221affc-d77e-4cbb-8211-a9c8a5eaefbe",
+              "name": "Security groups returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"security-groups\": [\n    {\n      \"href\": \"http://AqPhihLPJjDqt.hfep25p12RJK3mPur6,BswwJefdX\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"69e42c81-5367-6c0a-f753-8f02d2471c5c\"\n    },\n    {\n      \"href\": \"http://kVYEAlhDiGjN.qlgGP-bCBThzq7PDGRVur6HKvNXlqJ\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"808dc183-220f-84fc-9171-842946882b30\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f3e83f3-9d87-4185-a6be-f5780a772e2a",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc222113-9022-4bc2-8691-c27ab12463b3",
+          "name": "Juniper Networks Create security group",
+          "request": {
+            "name": "Juniper Networks Create security group",
+            "description": {
+              "content": "Creates a new security group with ingress/egress rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"security-group\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"security_group_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"ethertype\": \"<string>\",\n          \"src_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"security_group\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"security_group\": \"<string>\"\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"direction\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"ethertype\": \"<string>\",\n          \"src_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"security_group\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"security_group\": \"<string>\"\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc5bbc65-6c6f-42fa-98cf-e22eea293c8d",
+              "name": "Security group created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security-group\": {\n    \"uuid\": \"1f2bb83b-ffd0-f595-41e9-4bbedf7be074\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"security_group_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"ethertype\": \"IPv4\",\n          \"src_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6428\n              },\n              \"security_group\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1707\n              },\n              \"security_group\": \"string\"\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1140\n              }\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 7386\n              }\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 8367,\n              \"end_port\": 3392\n            },\n            {\n              \"start_port\": 8428,\n              \"end_port\": 8617\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"ethertype\": \"IPv6\",\n          \"src_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 8773\n              },\n              \"security_group\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9399\n              },\n              \"security_group\": \"string\"\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3425\n              }\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 848\n              }\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 7245,\n              \"end_port\": 7523\n            },\n            {\n              \"start_port\": 314,\n              \"end_port\": 8207\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5be1747-0276-4cbc-b64a-e688c2f42289",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security-group\": {\n    \"uuid\": \"1f2bb83b-ffd0-f595-41e9-4bbedf7be074\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"security_group_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"ethertype\": \"IPv4\",\n          \"src_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6428\n              },\n              \"security_group\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1707\n              },\n              \"security_group\": \"string\"\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1140\n              }\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 7386\n              }\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 8367,\n              \"end_port\": 3392\n            },\n            {\n              \"start_port\": 8428,\n              \"end_port\": 8617\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"ethertype\": \"IPv6\",\n          \"src_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 8773\n              },\n              \"security_group\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9399\n              },\n              \"security_group\": \"string\"\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3425\n              }\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 848\n              }\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 7245,\n              \"end_port\": 7523\n            },\n            {\n              \"start_port\": 314,\n              \"end_port\": 8207\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "334a86b2-9ffc-453f-9bf8-4955f1add50b",
+      "name": "Service Instances",
+      "description": {
+        "content": "Network function service instance management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f281722-9d86-4516-a700-11cd223a6e91",
+          "name": "Juniper Networks List service instances",
+          "request": {
+            "name": "Juniper Networks List service instances",
+            "description": {
+              "content": "Returns all service instances. Service instances represent deployed network functions (firewall, load balancer, etc.) inserted into a service chain between virtual networks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "service-instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "900071bc-d8c7-4707-a925-2cf9059f35f3",
+              "name": "Service instances returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service-instances\": [\n    {\n      \"href\": \"https://sa.urvii4,SosrhCMKJ+NZkfDGCKHUGIPBDSlIC1.JxYTVTwOft3OVBDa\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"d57cb66d-91e0-4c84-9d06-1c612b5f3e14\"\n    },\n    {\n      \"href\": \"http://NEXqYjBfTaBUsGJwywLRyzUbh.rnxSpK4TerVvzel8utVGO\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"9e2110de-c141-5f81-d3d6-8f78fa0c24e5\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32b5a894-fbc6-411e-af67-3b2160fb7492",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "00c960c4-e26c-42ac-8628-3d4008051717",
+      "name": "Virtual Networks",
+      "description": {
+        "content": "Virtual network creation and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79fc1c29-f09d-4c21-80a5-68b8484cb71c",
+          "name": "Juniper Networks List virtual networks",
+          "request": {
+            "name": "Juniper Networks List virtual networks",
+            "description": {
+              "content": "Returns all virtual networks accessible to the authenticated user. Virtual networks are the core abstraction in Contrail, representing isolated Layer 2/3 network segments with VXLAN/MPLS encapsulation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<uuid>",
+                  "description": "Filter by parent project UUID."
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "<boolean>",
+                  "description": "When true, returns full object details instead of references."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "730b2d9b-bca7-436c-a4b8-95c5a67ded69",
+              "name": "Virtual networks returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parent_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-networks\": [\n    {\n      \"href\": \"http://eHlOaQDMptghJbPD.umlkeWOEQcVgNptqmiQBV4VU.UrW5R.AfjdNyRqblUnxnNbHS0zze\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"9ea9aa5b-f703-9575-91e4-d6ea6762b6d1\"\n    },\n    {\n      \"href\": \"http://Dd.phttZNFAYZnWPehzuIHiss-y\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"c7bbc1a9-7cc4-f073-1c14-f010c7c83f96\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efbd0ddb-2f52-4e8e-b781-5961843013c6",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parent_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "498d8bd7-cb57-4d93-98a6-6dfbe5f4f2a0",
+          "name": "Juniper Networks Create virtual network",
+          "request": {
+            "name": "Juniper Networks Create virtual network",
+            "description": {
+              "content": "Creates a new virtual network. The network is automatically assigned a VXLAN VNI and route targets for BGP EVPN control plane operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"display_name\": \"<string>\",\n    \"parent_type\": \"<string>\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": \"<integer>\",\n      \"forwarding_mode\": \"<string>\",\n      \"rpf\": \"<string>\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"is_shared\": \"<boolean>\",\n    \"router_external\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6797ec23-0182-4289-bd8b-02fc20e5105c",
+              "name": "Virtual network created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"9845366f-a683-7b49-6938-99e7faacf6e8\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 2765,\n      \"forwarding_mode\": \"l2_l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1824\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2177\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3777\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5098\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-network\": {\n    \"uuid\": \"9845366f-a683-7b49-6938-99e7faacf6e8\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 2765,\n      \"forwarding_mode\": \"l2_l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1824\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2177\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3777\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5098\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08a15627-4bbe-429f-b08e-1a87b4f5fe1f",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"9845366f-a683-7b49-6938-99e7faacf6e8\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 2765,\n      \"forwarding_mode\": \"l2_l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1824\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2177\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3777\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5098\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7539af80-038e-4fa9-8f04-9b803d0d14e8",
+          "name": "Juniper Networks Get virtual network",
+          "request": {
+            "name": "Juniper Networks Get virtual network",
+            "description": {
+              "content": "Returns details for a specific virtual network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-network",
+                ":vn_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vn_id",
+                  "description": "(Required) Virtual network UUID."
+                },
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "371b6ade-c68d-4d9f-8ecf-0defa57c9255",
+              "name": "Virtual network returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-network\": {\n    \"uuid\": \"9845366f-a683-7b49-6938-99e7faacf6e8\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 2765,\n      \"forwarding_mode\": \"l2_l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1824\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2177\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3777\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5098\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1d60d7d-612e-404e-88d9-254adb8326ba",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "021fb9db-dbe2-48a0-80e4-ab2193de42b2",
+          "name": "Juniper Networks Update virtual network",
+          "request": {
+            "name": "Juniper Networks Update virtual network",
+            "description": {
+              "content": "Updates properties of a virtual network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-network",
+                ":vn_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vn_id",
+                  "description": "(Required) Virtual network UUID."
+                },
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"display_name\": \"<string>\",\n    \"parent_type\": \"<string>\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": \"<integer>\",\n      \"forwarding_mode\": \"<string>\",\n      \"rpf\": \"<string>\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"is_shared\": \"<boolean>\",\n    \"router_external\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e122ee2-ab22-4b1b-ae23-def7b728831b",
+              "name": "Virtual network updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"9845366f-a683-7b49-6938-99e7faacf6e8\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 2765,\n      \"forwarding_mode\": \"l2_l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1824\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2177\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3777\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5098\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd2565ec-241c-45c3-b0da-2bec63b2967e",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"9845366f-a683-7b49-6938-99e7faacf6e8\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 2765,\n      \"forwarding_mode\": \"l2_l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1824\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2177\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 3777\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 5098\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ea590bb-f276-4771-bd91-895c9db5998d",
+          "name": "Juniper Networks Delete virtual network",
+          "request": {
+            "name": "Juniper Networks Delete virtual network",
+            "description": {
+              "content": "Deletes a virtual network and releases associated resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-network",
+                ":vn_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vn_id",
+                  "description": "(Required) Virtual network UUID."
+                },
+                {
+                  "description": "Hostname or IP of the Contrail controller node.",
+                  "type": "any",
+                  "value": "{{contrail_controller}}",
+                  "key": "contrail_controller"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14acbaad-3e06-45dd-b437-185c492af0c5",
+              "name": "Virtual network deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "466a6086-82a8-4a56-9b0a-73d68049d836",
+              "name": "Virtual network has active references and cannot be deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP of the Contrail controller node.",
+                      "type": "any",
+                      "value": "{{contrail_controller}}",
+                      "key": "contrail_controller"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the Contrail controller node.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "contrail.example.com",
+      "key": "contrail_controller"
+    },
+    {
+      "type": "string",
+      "value": "https://{{contrail_controller}}:8082",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Auth-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d9afb56c-31fd-45d0-bf1f-95a519403790",
+    "name": "Juniper Networks Juniper Contrail Networking REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Contrail Networking (now Tungsten Fabric), a cloud-native SDN controller that provides virtual network orchestration for OpenStack, Kubernetes, and VMware environments. The API manages virtual networks, network policies, security groups, service chains, and BGP routing. Contrail uses a configuration API server that exposes a RESTful interface for all network objects. Objects follow a hierarchical model with domains, projects, and network resources. Authentication integrates with Keystone (OpenStack) or local authentication.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

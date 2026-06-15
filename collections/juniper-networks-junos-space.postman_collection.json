@@ -1,0 +1,1989 @@
+{
+  "item": [
+    {
+      "id": "33423af2-42f4-49ef-8c07-1e0d3e2c3b7e",
+      "name": "Configuration",
+      "description": {
+        "content": "Configuration management, templates, and deployment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8fc73c8a-4ab4-482c-8207-1e54ef61a7cd",
+          "name": "Juniper Networks Get device running configuration",
+          "request": {
+            "name": "Juniper Networks Get device running configuration",
+            "description": {
+              "content": "Returns the current running configuration of a managed device in Junos set or XML format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-management",
+                "devices",
+                ":device_id",
+                "configurations",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "device_id",
+                  "description": "(Required) Device unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.device-management.device-configuration+json;version=1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b4d6fa4-2fbf-4b00-80e3-59f45b524c23",
+              "name": "Configuration returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id",
+                    "configurations",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.device-management.device-configuration+json;version=1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.device-management.device-configuration+json;version=1"
+                }
+              ],
+              "body": "{\n  \"configuration\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28077d02-d2f2-425a-bf24-674354c2c91f",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id",
+                    "configurations",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0318cec-8472-48de-8fc7-bec3795f7904",
+          "name": "Juniper Networks List CLI configlets",
+          "request": {
+            "name": "Juniper Networks List CLI configlets",
+            "description": {
+              "content": "Returns all CLI configlets (configuration templates) stored in Junos Space. Configlets are reusable configuration snippets with parameterized variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configuration-management",
+                "cli-configlets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8026079-e796-457e-9970-4b4e1c0f5ebb",
+              "name": "Configlets returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration-management",
+                    "cli-configlets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1"
+                }
+              ],
+              "body": "{\n  \"configlets\": {\n    \"configlet\": [\n      {\n        \"@key\": 2002,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"cliConfigletContent\": \"string\",\n        \"executionType\": \"SingleExecution\"\n      },\n      {\n        \"@key\": 6657,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"cliConfigletContent\": \"string\",\n        \"executionType\": \"SingleExecution\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa67a0ce-f856-4175-a98c-bdc01ce24ea8",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration-management",
+                    "cli-configlets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6faf09f1-97bd-4d0f-bd46-702be2fe52c2",
+          "name": "Juniper Networks Apply configlet to devices",
+          "request": {
+            "name": "Juniper Networks Apply configlet to devices",
+            "description": {
+              "content": "Applies a CLI configlet to one or more managed devices. Variable values are provided in the request body and merged into the configlet template before deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configuration-management",
+                "cli-configlets",
+                ":configlet_id",
+                "apply-cli-configlet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "configlet_id",
+                  "description": "(Required) Configlet unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.net.juniper.space.configuration-management.apply-cli-configlet+json;version=1"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apply-cli-configlet-request\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"parameters\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa5d8d63-e4e9-45ca-a959-c5b6f56d6449",
+              "name": "Configlet application job initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration-management",
+                    "cli-configlets",
+                    ":configlet_id",
+                    "apply-cli-configlet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "configlet_id",
+                      "description": "(Required) Configlet unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply-cli-configlet-request\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"parameters\": {\n      \"key_0\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                }
+              ],
+              "body": "{\n  \"@key\": 3285,\n  \"jobName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobState\": \"ENABLED\",\n  \"percent\": 4009.704388629076,\n  \"createdByUserName\": \"string\",\n  \"startTime\": \"1968-10-24T06:36:31.799Z\",\n  \"endTime\": \"1961-06-08T15:15:25.680Z\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9b8e08d7-7037-47a2-88a1-209b0e75c015",
+      "name": "Devices",
+      "description": {
+        "content": "Device discovery, management, and monitoring operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c95236a-0077-47f7-9779-37a287703309",
+          "name": "Juniper Networks List managed devices",
+          "request": {
+            "name": "Juniper Networks List managed devices",
+            "description": {
+              "content": "Returns all devices managed by Junos Space, including device name, IP address, platform, OS version, and connection status. Supports pagination and filtering by device family and platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-management",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter expression for device attributes. Example: deviceFamily eq 'junos' and platform eq 'SRX'."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging",
+                  "value": "<string>",
+                  "description": "Paging parameters in format (start, limit)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.device-management.devices+json;version=2"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df0d2a3f-cab5-4ce0-99eb-f52e4c8e4d59",
+              "name": "Devices returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paging",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.device-management.devices+json;version=2"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.device-management.devices+json;version=2"
+                }
+              ],
+              "body": "{\n  \"devices\": {\n    \"device\": [\n      {\n        \"@key\": 5171,\n        \"name\": \"string\",\n        \"ipAddr\": \"string\",\n        \"platform\": \"string\",\n        \"deviceFamily\": \"string\",\n        \"OSVersion\": \"string\",\n        \"serialNumber\": \"string\",\n        \"connectionStatus\": \"up\",\n        \"managedStatus\": \"In Sync\",\n        \"ManagedDnDomainName\": \"string\"\n      },\n      {\n        \"@key\": 1068,\n        \"name\": \"string\",\n        \"ipAddr\": \"string\",\n        \"platform\": \"string\",\n        \"deviceFamily\": \"string\",\n        \"OSVersion\": \"string\",\n        \"serialNumber\": \"string\",\n        \"connectionStatus\": \"down\",\n        \"managedStatus\": \"Space Changed\",\n        \"ManagedDnDomainName\": \"string\"\n      }\n    ],\n    \"@total\": 3461\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70dfd60d-487c-4f7e-a024-13a8a4ed2f29",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paging",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11332638-9fb6-41cd-8f02-e8f25ae87e58",
+          "name": "Juniper Networks Discover and add device",
+          "request": {
+            "name": "Juniper Networks Discover and add device",
+            "description": {
+              "content": "Initiates discovery of a Junos device by IP address or hostname. The device is added to Junos Space management after successful NETCONF connectivity verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-management",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.net.juniper.space.device-management.discover-devices+json;version=2"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"system-discovery-rule\": {\n    \"ipAddressDiscoveryTarget\": {\n      \"exclude\": \"<string>\",\n      \"ipAddress\": \"<string>\"\n    },\n    \"usePing\": \"<boolean>\",\n    \"manageDiscoveredSystemsFlag\": \"<boolean>\",\n    \"sshCredential\": {\n      \"userName\": \"<string>\",\n      \"password\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e81e61b-34b0-47d4-a95e-0426dc7a403e",
+              "name": "Discovery job initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system-discovery-rule\": {\n    \"ipAddressDiscoveryTarget\": {\n      \"exclude\": \"<string>\",\n      \"ipAddress\": \"<string>\"\n    },\n    \"usePing\": \"<boolean>\",\n    \"manageDiscoveredSystemsFlag\": \"<boolean>\",\n    \"sshCredential\": {\n      \"userName\": \"<string>\",\n      \"password\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                }
+              ],
+              "body": "{\n  \"@key\": 3285,\n  \"jobName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobState\": \"ENABLED\",\n  \"percent\": 4009.704388629076,\n  \"createdByUserName\": \"string\",\n  \"startTime\": \"1968-10-24T06:36:31.799Z\",\n  \"endTime\": \"1961-06-08T15:15:25.680Z\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d6dd8d9-22c1-4953-8203-cfec7fb4a83f",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"system-discovery-rule\": {\n    \"ipAddressDiscoveryTarget\": {\n      \"exclude\": \"<string>\",\n      \"ipAddress\": \"<string>\"\n    },\n    \"usePing\": \"<boolean>\",\n    \"manageDiscoveredSystemsFlag\": \"<boolean>\",\n    \"sshCredential\": {\n      \"userName\": \"<string>\",\n      \"password\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f021b98-38c4-43a2-8eec-f93ba05be70f",
+          "name": "Juniper Networks Get device details",
+          "request": {
+            "name": "Juniper Networks Get device details",
+            "description": {
+              "content": "Returns detailed information for a specific managed device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-management",
+                "devices",
+                ":device_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "device_id",
+                  "description": "(Required) Device unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.device-management.device+json;version=2"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8c3945d-681b-4c1d-b6b7-05839ec4d42a",
+              "name": "Device returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.device-management.device+json;version=2"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.device-management.device+json;version=2"
+                }
+              ],
+              "body": "{\n  \"@key\": 5131,\n  \"name\": \"string\",\n  \"ipAddr\": \"string\",\n  \"platform\": \"string\",\n  \"deviceFamily\": \"string\",\n  \"OSVersion\": \"string\",\n  \"serialNumber\": \"string\",\n  \"connectionStatus\": \"down\",\n  \"managedStatus\": \"Device Changed\",\n  \"ManagedDnDomainName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa86cf75-560c-494c-8d1e-89fd856fd143",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4501c939-99a8-41d2-b661-98db05a1d65f",
+          "name": "Juniper Networks Remove device from management",
+          "request": {
+            "name": "Juniper Networks Remove device from management",
+            "description": {
+              "content": "Removes a device from Junos Space management. The device configuration on the device itself is not affected.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-management",
+                "devices",
+                ":device_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "device_id",
+                  "description": "(Required) Device unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b54136c2-031c-44c6-ae0f-c23526dbec3c",
+              "name": "Device removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95211332-c8f9-495b-86c7-f59f441a02a9",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1295abe3-b531-4f0f-ab88-2106eb348c9c",
+      "name": "Jobs",
+      "description": {
+        "content": "Asynchronous job tracking and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df888271-9ec6-48e8-ad96-e62c555a485f",
+          "name": "Juniper Networks List jobs",
+          "request": {
+            "name": "Juniper Networks List jobs",
+            "description": {
+              "content": "Returns all asynchronous jobs with their status. Jobs are created for device discovery, configuration deployment, script execution, and other long-running operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "job-management",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter expression for job attributes."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.jobs+json;version=3"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "401755ea-3e35-431f-832f-1e26fd53ca24",
+              "name": "Jobs returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job-management",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.jobs+json;version=3"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.jobs+json;version=3"
+                }
+              ],
+              "body": "{\n  \"jobs\": {\n    \"job\": [\n      {\n        \"@key\": 6188,\n        \"jobName\": \"string\",\n        \"jobType\": \"string\",\n        \"jobState\": \"SUCCESS\",\n        \"percent\": 212.5017656380479,\n        \"createdByUserName\": \"string\",\n        \"startTime\": \"2001-07-07T04:46:25.806Z\",\n        \"endTime\": \"1996-01-06T06:37:23.460Z\",\n        \"summary\": \"string\"\n      },\n      {\n        \"@key\": 5612,\n        \"jobName\": \"string\",\n        \"jobType\": \"string\",\n        \"jobState\": \"CANCELLED\",\n        \"percent\": 4045.7093982643046,\n        \"createdByUserName\": \"string\",\n        \"startTime\": \"2025-09-23T23:04:20.859Z\",\n        \"endTime\": \"1968-04-01T00:56:43.363Z\",\n        \"summary\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf806949-b0ab-43a2-92c3-9219ef8980bc",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job-management",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eda546a8-8999-4ec1-b487-ea13e04d46d1",
+          "name": "Juniper Networks Get job status",
+          "request": {
+            "name": "Juniper Networks Get job status",
+            "description": {
+              "content": "Returns the status and results of a specific job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "job-management",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "job_id",
+                  "description": "(Required) Job unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.job+json;version=3"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81a2a30e-88c3-4124-9573-d506919983ae",
+              "name": "Job returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job-management",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "job_id",
+                      "description": "(Required) Job unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.job+json;version=3"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.job+json;version=3"
+                }
+              ],
+              "body": "{\n  \"@key\": 3285,\n  \"jobName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobState\": \"ENABLED\",\n  \"percent\": 4009.704388629076,\n  \"createdByUserName\": \"string\",\n  \"startTime\": \"1968-10-24T06:36:31.799Z\",\n  \"endTime\": \"1961-06-08T15:15:25.680Z\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c27f172e-2479-4461-ba87-bccd2ce6c153",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job-management",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "job_id",
+                      "description": "(Required) Job unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0ba8d1e5-05a2-4cbf-8b55-873b4383675d",
+      "name": "Scripts",
+      "description": {
+        "content": "Script management and execution on managed devices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64986302-1d24-4ca9-a66d-6dd71e36db8b",
+          "name": "Juniper Networks List scripts",
+          "request": {
+            "name": "Juniper Networks List scripts",
+            "description": {
+              "content": "Returns all scripts uploaded to Junos Space. Scripts can be SLAX, XSLT, Python, or commit scripts for execution on managed Junos devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "script-management",
+                "scripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.script-management.scripts+json;version=2"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d86051a-42ad-4264-a408-a9db06a9a347",
+              "name": "Scripts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "script-management",
+                    "scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.script-management.scripts+json;version=2"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.script-management.scripts+json;version=2"
+                }
+              ],
+              "body": "{\n  \"scripts\": {\n    \"script\": [\n      {\n        \"@key\": 9389,\n        \"scriptName\": \"string\",\n        \"description\": \"string\",\n        \"scriptType\": \"event\",\n        \"scriptLanguage\": \"python\"\n      },\n      {\n        \"@key\": 5207,\n        \"scriptName\": \"string\",\n        \"description\": \"string\",\n        \"scriptType\": \"commit\",\n        \"scriptLanguage\": \"python\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee9dd681-f69c-4f7f-8113-ae68d4c5c704",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "script-management",
+                    "scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0a32f57-a6a5-4f1c-b8c7-c40ce5519a73",
+          "name": "Juniper Networks Execute script on devices",
+          "request": {
+            "name": "Juniper Networks Execute script on devices",
+            "description": {
+              "content": "Executes a script on one or more managed devices. Returns a job ID for tracking execution status and retrieving results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "script-management",
+                "scripts",
+                ":script_id",
+                "exec-scripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "script_id",
+                  "description": "(Required) Script unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.net.juniper.space.script-management.exec-scripts+json;version=2"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exec-scripts\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"scriptParams\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fcc1fc6-c7ae-438a-9b96-cbf2b8470525",
+              "name": "Script execution job initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "script-management",
+                    "scripts",
+                    ":script_id",
+                    "exec-scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "script_id",
+                      "description": "(Required) Script unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exec-scripts\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"scriptParams\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                }
+              ],
+              "body": "{\n  \"@key\": 3285,\n  \"jobName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobState\": \"ENABLED\",\n  \"percent\": 4009.704388629076,\n  \"createdByUserName\": \"string\",\n  \"startTime\": \"1968-10-24T06:36:31.799Z\",\n  \"endTime\": \"1961-06-08T15:15:25.680Z\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "101fcfea-7cff-4a74-91b6-bffdbadb3393",
+      "name": "Users",
+      "description": {
+        "content": "User and role-based access control management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c0a9130-a15e-46c2-826d-14d49f80524c",
+          "name": "Juniper Networks List users",
+          "request": {
+            "name": "Juniper Networks List users",
+            "description": {
+              "content": "Returns all user accounts configured in Junos Space, including role assignments and domain access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user-management",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Junos Space server.",
+                  "type": "any",
+                  "value": "{{space_server}}",
+                  "key": "space_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.user-management.users+json;version=1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ab4c4ff-3457-44af-a4df-03733cbdf0e4",
+              "name": "Users returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-management",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.user-management.users+json;version=1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.user-management.users+json;version=1"
+                }
+              ],
+              "body": "{\n  \"users\": {\n    \"user\": [\n      {\n        \"@key\": 2648,\n        \"name\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"AH5PAoJKOj4sFx@jUmhSbojVyUeSUU.jyn\",\n        \"status\": \"Disabled\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"@key\": 8946,\n        \"name\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"nJZGy3IeO4l@XOt.egx\",\n        \"status\": \"Disabled\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47b40b86-c18f-4e2a-88e8-22f6225c5d9c",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-management",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Junos Space server.",
+                      "type": "any",
+                      "value": "{{space_server}}",
+                      "key": "space_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Junos Space server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "space.example.com",
+      "key": "space_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{space_server}}/api/space",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "11009a12-fc69-4c6d-a46f-22bd5a23067b",
+    "name": "Juniper Networks Junos Space Network Management Platform REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Junos Space Network Management Platform. Junos Space provides centralized management for Juniper Networks devices including routers, switches, and security appliances. The REST API enables programmatic access to device management, configuration deployment, script execution, and network monitoring. The API uses HTTP Basic or certificate-based authentication and returns XML or JSON responses based on the Accept header. API resources follow HATEOAS principles with discoverable URIs and link relations.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

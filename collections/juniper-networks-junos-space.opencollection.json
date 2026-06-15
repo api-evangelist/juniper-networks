@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Junos Space Network Management Platform REST API",
+    "version": "24.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List managed devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/device-management/devices",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for device attributes. Example: deviceFamily eq 'junos' and platform eq 'SRX'."
+              },
+              {
+                "name": "paging",
+                "value": "",
+                "type": "query",
+                "description": "Paging parameters in format (start, limit)."
+              }
+            ]
+          },
+          "docs": "Returns all devices managed by Junos Space, including device name, IP address, platform, OS version, and connection status. Supports pagination and filtering by device family and platform."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Discover and add device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{space_server}/api/space/device-management/devices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates discovery of a Junos device by IP address or hostname. The device is added to Junos Space management after successful NETCONF connectivity verification."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get device details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/device-management/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific managed device."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Remove device from management",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{space_server}/api/space/device-management/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Removes a device from Junos Space management. The device configuration on the device itself is not affected."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Get device running configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/device-management/devices/:device_id/configurations/raw",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the current running configuration of a managed device in Junos set or XML format."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List CLI configlets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/configuration-management/cli-configlets"
+          },
+          "docs": "Returns all CLI configlets (configuration templates) stored in Junos Space. Configlets are reusable configuration snippets with parameterized variables."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Apply configlet to devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{space_server}/api/space/configuration-management/cli-configlets/:configlet_id/apply-cli-configlet",
+            "params": [
+              {
+                "name": "configlet_id",
+                "value": "",
+                "type": "path",
+                "description": "Configlet unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a CLI configlet to one or more managed devices. Variable values are provided in the request body and merged into the configlet template before deployment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/script-management/scripts"
+          },
+          "docs": "Returns all scripts uploaded to Junos Space. Scripts can be SLAX, XSLT, Python, or commit scripts for execution on managed Junos devices."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Execute script on devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{space_server}/api/space/script-management/scripts/:script_id/exec-scripts",
+            "params": [
+              {
+                "name": "script_id",
+                "value": "",
+                "type": "path",
+                "description": "Script unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a script on one or more managed devices. Returns a job ID for tracking execution status and retrieving results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/user-management/users"
+          },
+          "docs": "Returns all user accounts configured in Junos Space, including role assignments and domain access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/job-management/jobs",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for job attributes."
+              }
+            ]
+          },
+          "docs": "Returns all asynchronous jobs with their status. Jobs are created for device discovery, configuration deployment, script execution, and other long-running operations."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{space_server}/api/space/job-management/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Job unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the status and results of a specific job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

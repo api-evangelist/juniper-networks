@@ -1,0 +1,590 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Mist Cloud API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Get current user information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/self"
+          },
+          "docs": "Returns the profile of the currently authenticated user, including organization and site-level privileges, email, and name."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List API tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/self/apitokens"
+          },
+          "docs": "Returns all API tokens created by the authenticated user. API tokens provide bearer token authentication as an alternative to session-based login and are scoped to the user's permissions."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mist.com/api/v1/self/apitokens"
+          },
+          "docs": "Creates a new API token for the authenticated user. The token inherits the user's organization and site privileges."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/orgs"
+          },
+          "docs": "Returns all organizations the authenticated user has access to. Organizations are the top-level container for sites, devices, and configuration."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/orgs/:org_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific organization."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.mist.com/api/v1/orgs/:org_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the settings of an organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List organization sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/orgs/:org_id/sites",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all sites belonging to an organization. Sites represent physical locations such as offices, campuses, or retail stores."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mist.com/api/v1/orgs/:org_id/sites",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new site within an organization. Sites are the primary grouping for devices and network configuration."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific site."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.mist.com/api/v1/sites/:site_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a site."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Delete site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.mist.com/api/v1/sites/:site_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a site and all associated configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List site devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/devices",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type."
+              }
+            ]
+          },
+          "docs": "Returns all devices assigned to a site, including access points, switches, and gateways."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/devices/:device_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific device at a site."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/devices/:device_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific device."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WLANs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List site WLANs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/wlans",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all WLAN configurations for a site. Each WLAN defines an SSID with associated security, VLAN, and radio settings."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create WLAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/wlans",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new WLAN (SSID) at a site with specified security, VLAN, and radio configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List client statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/stats/clients",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time epoch in seconds."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time epoch in seconds."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results."
+              }
+            ]
+          },
+          "docs": "Returns statistics for wireless clients connected at a site, including signal strength, data usage, and connection quality metrics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List Marvis actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/insights/marvis",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time epoch in seconds."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time epoch in seconds."
+              }
+            ]
+          },
+          "docs": "Returns AI-driven Marvis actions for a site. Marvis uses machine learning to identify network issues, anomalies, and optimization opportunities. Actions include recommended fixes for AP health, client connectivity, and capacity issues."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List organization inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/orgs/:org_id/inventory",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              },
+              {
+                "name": "serial",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device serial number."
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device model."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type."
+              }
+            ]
+          },
+          "docs": "Returns all devices in the organization inventory, including claimed devices that may or may not be assigned to sites."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update inventory assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.mist.com/api/v1/orgs/:org_id/inventory",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns or unassigns devices from sites within the organization inventory. Used to move devices between sites or release them from site assignment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Maps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List site maps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/maps",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all floor plan maps for a site. Maps are used for indoor location, RF planning, and device placement visualization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List site alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mist.com/api/v1/sites/:site_id/alarms",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time epoch in seconds."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time epoch in seconds."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alarm type."
+              }
+            ]
+          },
+          "docs": "Returns active and recent alarms for a site. Alarms indicate device health issues, connectivity problems, and configuration anomalies detected by the Mist platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

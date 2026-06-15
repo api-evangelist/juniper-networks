@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Contrail Networking REST API",
+    "version": "5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Auth-Token",
+      "value": "{{X-Auth-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Networks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List virtual networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/virtual-networks",
+            "params": [
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent project UUID."
+              },
+              {
+                "name": "detail",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns full object details instead of references."
+              }
+            ]
+          },
+          "docs": "Returns all virtual networks accessible to the authenticated user. Virtual networks are the core abstraction in Contrail, representing isolated Layer 2/3 network segments with VXLAN/MPLS encapsulation."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{contrail_controller}:8082/virtual-networks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new virtual network. The network is automatically assigned a VXLAN VNI and route targets for BGP EVPN control plane operation."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/virtual-network/:vn_id",
+            "params": [
+              {
+                "name": "vn_id",
+                "value": "",
+                "type": "path",
+                "description": "Virtual network UUID."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific virtual network."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{contrail_controller}:8082/virtual-network/:vn_id",
+            "params": [
+              {
+                "name": "vn_id",
+                "value": "",
+                "type": "path",
+                "description": "Virtual network UUID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates properties of a virtual network."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Delete virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{contrail_controller}:8082/virtual-network/:vn_id",
+            "params": [
+              {
+                "name": "vn_id",
+                "value": "",
+                "type": "path",
+                "description": "Virtual network UUID."
+              }
+            ]
+          },
+          "docs": "Deletes a virtual network and releases associated resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Network Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List network policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/network-policys"
+          },
+          "docs": "Returns all network policies. Network policies define rules that control traffic flow between virtual networks, including allow, deny, and service chain actions."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create network policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{contrail_controller}:8082/network-policys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new network policy with traffic control rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List security groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/security-groups"
+          },
+          "docs": "Returns all security groups. Security groups provide stateful packet filtering at the virtual machine interface level, similar to OpenStack security groups."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create security group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{contrail_controller}:8082/security-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new security group with ingress/egress rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Floating IPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List floating IP pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/floating-ip-pools"
+          },
+          "docs": "Returns all floating IP pools. Floating IP pools provide publicly routable IP addresses that can be associated with virtual machine interfaces for external access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Service Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List service instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/service-instances"
+          },
+          "docs": "Returns all service instances. Service instances represent deployed network functions (firewall, load balancer, etc.) inserted into a service chain between virtual networks."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BGP Routers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List BGP routers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/bgp-routers"
+          },
+          "docs": "Returns all BGP router objects. BGP routers represent control plane nodes in the Contrail cluster including control nodes, compute nodes, and external MX/physical routers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{contrail_controller}:8082/projects"
+          },
+          "docs": "Returns all projects (tenants). Projects provide multi-tenancy isolation and serve as containers for virtual networks, policies, and other network resources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

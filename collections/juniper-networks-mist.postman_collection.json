@@ -1,0 +1,4555 @@
+{
+  "item": [
+    {
+      "id": "c462c97f-ad3b-4930-9db7-2691dab2621e",
+      "name": "Alarms",
+      "description": {
+        "content": "Alarm monitoring, acknowledgment, and notification configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "20d52836-d513-4bd0-8368-ae1bd1c1f436",
+          "name": "Juniper Networks List site alarms",
+          "request": {
+            "name": "Juniper Networks List site alarms",
+            "description": {
+              "content": "Returns active and recent alarms for a site. Alarms indicate device health issues, connectivity problems, and configuration anomalies detected by the Mist platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Start time epoch in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "End time epoch in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by alarm type."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b3692be-ce82-4079-87cc-1c8d0e7b18bc",
+              "name": "Alarms returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"03f3cae6-cd4b-5404-0b16-d1a1bc8ade3d\",\n    \"type\": \"string\",\n    \"severity\": \"info\",\n    \"group\": \"string\",\n    \"count\": 176,\n    \"last_seen\": 7703.394383940862,\n    \"acked\": false\n  },\n  {\n    \"id\": \"7abc7d4a-2f97-4e8b-f951-191331c72824\",\n    \"type\": \"string\",\n    \"severity\": \"critical\",\n    \"group\": \"string\",\n    \"count\": 9873,\n    \"last_seen\": 4835.147065983238,\n    \"acked\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17fcb72e-cb61-4b5c-9570-cbd5796659b8",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c987d3e2-4413-4aa6-b189-d374d46dc70a",
+      "name": "Authentication",
+      "description": {
+        "content": "Login, logout, two-factor authentication, and API token management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb588250-72e0-4356-847d-55ba7ad19dba",
+          "name": "Juniper Networks Get current user information",
+          "request": {
+            "name": "Juniper Networks Get current user information",
+            "description": {
+              "content": "Returns the profile of the currently authenticated user, including organization and site-level privileges, email, and name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "self"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c631fb94-3a4c-4a3f-b17a-59f3840a9609",
+              "name": "Current user profile returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "self"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"36080691-9f08-fd19-5195-1fb33215b531\",\n  \"name\": \"string\",\n  \"email\": \"4oFYovRHRaHDx@fmJzjXdLRtoltLhzZgaXmzXtMMtZ.ag\",\n  \"privileges\": [\n    {\n      \"scope\": \"org\",\n      \"org_id\": \"60317420-9c9f-1cfb-83aa-876bad0fd4fa\",\n      \"site_id\": \"c38c8e60-ef1c-1ccf-8975-f5477f224657\",\n      \"role\": \"helpdesk\"\n    },\n    {\n      \"scope\": \"org\",\n      \"org_id\": \"73efefd1-b671-1d35-7034-c3b92c90b5f5\",\n      \"site_id\": \"d5e29329-f1a5-2e0d-8374-91cba6da1446\",\n      \"role\": \"admin\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3acbb246-0d8e-4bc3-aea8-d26eee301089",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "self"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1ee40c9-91e0-4e09-8e06-40b12cf7a889",
+          "name": "Juniper Networks List API tokens",
+          "request": {
+            "name": "Juniper Networks List API tokens",
+            "description": {
+              "content": "Returns all API tokens created by the authenticated user. API tokens provide bearer token authentication as an alternative to session-based login and are scoped to the user's permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "self",
+                "apitokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d790d7ce-3e32-4f93-ab91-90169e87ee0f",
+              "name": "API tokens returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "self",
+                    "apitokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"366f6fc1-d433-da5b-fcb0-25266577dc9f\",\n    \"key\": \"string\",\n    \"created_time\": 9547.344849340789,\n    \"last_used\": 2047.9257799894713\n  },\n  {\n    \"id\": \"62940f3b-e65e-ca59-d5d3-98d4a7d70ecd\",\n    \"key\": \"string\",\n    \"created_time\": 4930.872894290351,\n    \"last_used\": 2329.832407375725\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18715daf-d5f1-44f6-b88e-e6ded49ab66a",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "self",
+                    "apitokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49fb50d6-b6cc-4964-bfd9-1a4a399b9fe4",
+          "name": "Juniper Networks Create API token",
+          "request": {
+            "name": "Juniper Networks Create API token",
+            "description": {
+              "content": "Creates a new API token for the authenticated user. The token inherits the user's organization and site privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "self",
+                "apitokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "316a318c-5f80-4cde-b411-977d0c4debc9",
+              "name": "API token created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "self",
+                    "apitokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ed94bfc5-2785-ed4c-e258-a5bf066011fa\",\n  \"key\": \"string\",\n  \"created_time\": 9284.84494855437,\n  \"last_used\": 455.63694586148176\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c8bc279-2678-4032-b268-baa21637925d",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "self",
+                    "apitokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "72ea86a1-9bfb-448c-a859-5a327ca43de3",
+      "name": "Clients",
+      "description": {
+        "content": "Wireless and wired client session monitoring and statistics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eefd6521-8f3a-4aa5-8905-9bfc4f4899a9",
+          "name": "Juniper Networks List client statistics",
+          "request": {
+            "name": "Juniper Networks List client statistics",
+            "description": {
+              "content": "Returns statistics for wireless clients connected at a site, including signal strength, data usage, and connection quality metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "stats",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Start time epoch in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "End time epoch in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a201ffc7-84b1-4fc2-88b2-af9f8f4952e0",
+              "name": "Client statistics returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "stats",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"mac\": \"string\",\n    \"hostname\": \"string\",\n    \"ip\": \"string\",\n    \"ssid\": \"string\",\n    \"ap_mac\": \"string\",\n    \"rssi\": 6791.36786113686,\n    \"snr\": 1956.0552404171417,\n    \"band\": \"string\",\n    \"channel\": 4131,\n    \"rx_bytes\": 7741,\n    \"tx_bytes\": 8080,\n    \"rx_rate\": 9798.686553224039,\n    \"tx_rate\": 8177.830236777914\n  },\n  {\n    \"mac\": \"string\",\n    \"hostname\": \"string\",\n    \"ip\": \"string\",\n    \"ssid\": \"string\",\n    \"ap_mac\": \"string\",\n    \"rssi\": 2114.263298980438,\n    \"snr\": 3815.4950689180723,\n    \"band\": \"string\",\n    \"channel\": 4529,\n    \"rx_bytes\": 6489,\n    \"tx_bytes\": 8695,\n    \"rx_rate\": 1544.7965765498993,\n    \"tx_rate\": 3388.076038047132\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06924332-b91b-4da0-a791-080a2a0b72d9",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "stats",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9858d192-a0cb-42c9-b510-b98beaed8f7c",
+      "name": "Devices",
+      "description": {
+        "content": "Access points, switches, and gateway device management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10d001e8-d90d-4675-a37c-1d156368b390",
+          "name": "Juniper Networks List site devices",
+          "request": {
+            "name": "Juniper Networks List site devices",
+            "description": {
+              "content": "Returns all devices assigned to a site, including access points, switches, and gateways.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by device type."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da218f50-d7b7-43c9-a06e-0634a0392413",
+              "name": "Devices returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"3bd51dad-375c-7340-ce08-3753eb47e9dc\",\n    \"org_id\": \"767fd93c-f2ef-f5cb-b7ff-b5e35fc0f3de\",\n    \"site_id\": \"a4da1cb8-3306-1639-fd11-59c05b871a9f\",\n    \"name\": \"string\",\n    \"type\": \"switch\",\n    \"model\": \"string\",\n    \"serial\": \"string\",\n    \"mac\": \"string\",\n    \"ip\": \"string\",\n    \"version\": \"string\",\n    \"map_id\": \"62c3b53d-b828-7d90-776b-f09392a0c9d2\",\n    \"x\": 268.48967759118824,\n    \"y\": 2042.9950530934616\n  },\n  {\n    \"id\": \"010e951a-40f2-7109-b922-6d0df9b979dd\",\n    \"org_id\": \"29511d81-5068-6200-d7d0-c998dcdb60a6\",\n    \"site_id\": \"50813956-1efc-fce4-b924-11c590ce2b0e\",\n    \"name\": \"string\",\n    \"type\": \"gateway\",\n    \"model\": \"string\",\n    \"serial\": \"string\",\n    \"mac\": \"string\",\n    \"ip\": \"string\",\n    \"version\": \"string\",\n    \"map_id\": \"0393a77e-fcbd-61a2-11f1-fedadac6d1de\",\n    \"x\": 9067.824611662149,\n    \"y\": 7864.105687457042\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ea8e788-de2c-477f-8ef4-a073ac42d869",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "700394af-5971-4672-9883-7f573c29df8b",
+          "name": "Juniper Networks Get device",
+          "request": {
+            "name": "Juniper Networks Get device",
+            "description": {
+              "content": "Returns details for a specific device at a site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "devices",
+                ":device_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "device_id",
+                  "description": "(Required) Device unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b5d0b63-f5a9-47d4-a118-6d7e93aac243",
+              "name": "Device returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"41b35951-f266-4289-1e6e-9b7f754f7ac9\",\n  \"org_id\": \"14c90e88-c0a4-d1a5-6588-e92666658fec\",\n  \"site_id\": \"4e6db180-8b64-e2fb-d8cb-426a5c456a05\",\n  \"name\": \"string\",\n  \"type\": \"ap\",\n  \"model\": \"string\",\n  \"serial\": \"string\",\n  \"mac\": \"string\",\n  \"ip\": \"string\",\n  \"version\": \"string\",\n  \"map_id\": \"5afdf69f-d453-91f8-bf1f-549df4dda1a5\",\n  \"x\": 3883.418049192504,\n  \"y\": 7516.4830979118415\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bb84865-ccb4-4af6-9f00-767cc31c6011",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffa4b891-aed0-4fcd-bd1e-a7af9c866da1",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5fd2192-1693-41b7-acba-55108b0eb238",
+          "name": "Juniper Networks Update device",
+          "request": {
+            "name": "Juniper Networks Update device",
+            "description": {
+              "content": "Updates the configuration of a specific device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "devices",
+                ":device_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "device_id",
+                  "description": "(Required) Device unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"site_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"serial\": \"<string>\",\n  \"mac\": \"<string>\",\n  \"ip\": \"<string>\",\n  \"version\": \"<string>\",\n  \"map_id\": \"<uuid>\",\n  \"x\": \"<number>\",\n  \"y\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "488a6e8a-1d04-4b36-a594-569f85addb7a",
+              "name": "Device updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"site_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"serial\": \"<string>\",\n  \"mac\": \"<string>\",\n  \"ip\": \"<string>\",\n  \"version\": \"<string>\",\n  \"map_id\": \"<uuid>\",\n  \"x\": \"<number>\",\n  \"y\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"41b35951-f266-4289-1e6e-9b7f754f7ac9\",\n  \"org_id\": \"14c90e88-c0a4-d1a5-6588-e92666658fec\",\n  \"site_id\": \"4e6db180-8b64-e2fb-d8cb-426a5c456a05\",\n  \"name\": \"string\",\n  \"type\": \"ap\",\n  \"model\": \"string\",\n  \"serial\": \"string\",\n  \"mac\": \"string\",\n  \"ip\": \"string\",\n  \"version\": \"string\",\n  \"map_id\": \"5afdf69f-d453-91f8-bf1f-549df4dda1a5\",\n  \"x\": 3883.418049192504,\n  \"y\": 7516.4830979118415\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05151db4-5852-44d4-8ab5-a0710dab0bd0",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"site_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"serial\": \"<string>\",\n  \"mac\": \"<string>\",\n  \"ip\": \"<string>\",\n  \"version\": \"<string>\",\n  \"map_id\": \"<uuid>\",\n  \"x\": \"<number>\",\n  \"y\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d9f0af3-1248-4d22-8d6d-242d3f53fa57",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "devices",
+                    ":device_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"site_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"serial\": \"<string>\",\n  \"mac\": \"<string>\",\n  \"ip\": \"<string>\",\n  \"version\": \"<string>\",\n  \"map_id\": \"<uuid>\",\n  \"x\": \"<number>\",\n  \"y\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a8b97138-6fef-4b76-ad41-1ecc4fbe0955",
+      "name": "Insights",
+      "description": {
+        "content": "AI-driven network insights, anomaly detection, and Marvis recommendations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42e603f2-c89c-4fd2-b514-a9537d121377",
+          "name": "Juniper Networks List Marvis actions",
+          "request": {
+            "name": "Juniper Networks List Marvis actions",
+            "description": {
+              "content": "Returns AI-driven Marvis actions for a site. Marvis uses machine learning to identify network issues, anomalies, and optimization opportunities. Actions include recommended fixes for AP health, client connectivity, and capacity issues.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "insights",
+                "marvis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Start time epoch in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "End time epoch in seconds."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7401763-6feb-41e3-889d-54e67733e142",
+              "name": "Marvis actions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "insights",
+                    "marvis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"string\",\n    \"details\": \"string\",\n    \"site_id\": \"1b461183-d866-a17b-23c5-5214f47b9058\",\n    \"device_id\": \"e6d54a31-b86b-10b6-5960-d875af92df35\",\n    \"severity\": \"info\",\n    \"timestamp\": 3724.3209524137555\n  },\n  {\n    \"type\": \"string\",\n    \"details\": \"string\",\n    \"site_id\": \"d4589578-1201-c201-6785-c1a9c994e7bf\",\n    \"device_id\": \"52d5f6b8-b932-f26c-2612-af59a342e35a\",\n    \"severity\": \"warning\",\n    \"timestamp\": 8849.560499569458\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49062f8f-89af-4557-99d0-671dee530c7d",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "insights",
+                    "marvis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b7a3959e-fc41-4725-99f0-85de4111cc93",
+      "name": "Inventory",
+      "description": {
+        "content": "Device claiming, unclaiming, and inventory management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a5717e-615f-41c7-b87c-17869386bd40",
+          "name": "Juniper Networks List organization inventory",
+          "request": {
+            "name": "Juniper Networks List organization inventory",
+            "description": {
+              "content": "Returns all devices in the organization inventory, including claimed devices that may or may not be assigned to sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":org_id",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "serial",
+                  "value": "<string>",
+                  "description": "Filter by device serial number."
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by device model."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by device type."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Organization unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94272a7e-0d4a-46a3-80ca-c29a7b791bfe",
+              "name": "Inventory returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serial",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"mac\": \"string\",\n    \"serial\": \"string\",\n    \"model\": \"string\",\n    \"type\": \"ap\",\n    \"site_id\": \"c33aa7d7-258a-6188-1072-603d034817f3\",\n    \"org_id\": \"60fb076c-ea55-c396-17b0-83289ad1d171\",\n    \"claimed_time\": 408.0420106714966\n  },\n  {\n    \"mac\": \"string\",\n    \"serial\": \"string\",\n    \"model\": \"string\",\n    \"type\": \"gateway\",\n    \"site_id\": \"c30d6410-a628-357b-025d-0c128a5717f7\",\n    \"org_id\": \"9ce61b7c-d7d7-778a-29e2-3a450736127b\",\n    \"claimed_time\": 9217.599069128575\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d49dacf-e0be-4de6-8123-ec033e0f94aa",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serial",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ddbe13-a705-4edc-b205-be1d91f2c902",
+          "name": "Juniper Networks Update inventory assignment",
+          "request": {
+            "name": "Juniper Networks Update inventory assignment",
+            "description": {
+              "content": "Assigns or unassigns devices from sites within the organization inventory. Used to move devices between sites or release them from site assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":org_id",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Organization unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"op\": \"<string>\",\n  \"site_id\": \"<uuid>\",\n  \"macs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serials\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbb89d9f-ae34-4d62-8491-8d96b5bc5a7a",
+              "name": "Inventory updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"op\": \"<string>\",\n  \"site_id\": \"<uuid>\",\n  \"macs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serials\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": [\n    \"string\",\n    \"string\"\n  ],\n  \"error\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64e4d749-10df-41ae-8be9-e9302a2fa235",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"op\": \"<string>\",\n  \"site_id\": \"<uuid>\",\n  \"macs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serials\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2377a014-bad0-417d-90a3-9596edec5796",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"op\": \"<string>\",\n  \"site_id\": \"<uuid>\",\n  \"macs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serials\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6ffb424d-101f-4ca9-a185-6feb7e6bc973",
+      "name": "Maps",
+      "description": {
+        "content": "Floor plan and map management for site RF planning.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ddae98d-c8a6-4980-8256-bc0ea0c80ccf",
+          "name": "Juniper Networks List site maps",
+          "request": {
+            "name": "Juniper Networks List site maps",
+            "description": {
+              "content": "Returns all floor plan maps for a site. Maps are used for indoor location, RF planning, and device placement visualization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "maps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ce604d5-f424-4079-b69e-15a396a08154",
+              "name": "Maps returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "maps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"45213d3f-021b-ff3e-f1f8-4c9188725913\",\n    \"name\": \"string\",\n    \"type\": \"google\",\n    \"width\": 4742.105814316398,\n    \"height\": 5465.74094416928,\n    \"url\": \"string\",\n    \"ppm\": 2548.3342282174235\n  },\n  {\n    \"id\": \"9c4fb6e4-466e-cd6c-51e0-87e0ee1d352d\",\n    \"name\": \"string\",\n    \"type\": \"google\",\n    \"width\": 5452.4560456141835,\n    \"height\": 2349.045149996446,\n    \"url\": \"string\",\n    \"ppm\": 5144.087276053051\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47fb030c-e651-4473-a043-dcb7a3c58317",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "maps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5d38e909-af67-4969-84dd-93ae0a5870d0",
+      "name": "Organizations",
+      "description": {
+        "content": "Organization-level settings, licenses, and inventory management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "287e14e7-ddaa-4a2d-8d73-a0823625f982",
+          "name": "Juniper Networks List organizations",
+          "request": {
+            "name": "Juniper Networks List organizations",
+            "description": {
+              "content": "Returns all organizations the authenticated user has access to. Organizations are the top-level container for sites, devices, and configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "292e8114-fd1a-4f81-ae22-cab8b77c7709",
+              "name": "Organizations returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"b2aa8585-6f99-e29d-8ee5-cb71c42accf0\",\n    \"name\": \"string\",\n    \"orggroup_ids\": [\n      \"54791f8e-a23f-eae1-eb91-ef7ceebb5462\",\n      \"2b7f859f-9858-bd3e-7a2d-8cc8735a4dda\"\n    ],\n    \"session_expiry\": 7174,\n    \"msp_id\": \"aa9c35c3-e3dd-41ad-6918-26721772f5cf\",\n    \"created_time\": 5938.933482476575,\n    \"modified_time\": 3715.157845382172\n  },\n  {\n    \"id\": \"482d0bf8-1a5d-92ca-35e6-08e2150ad7ae\",\n    \"name\": \"string\",\n    \"orggroup_ids\": [\n      \"4442ef65-ad4b-2e08-b276-37d24f649d60\",\n      \"f071e42b-3d54-aade-6f2d-fe75e2f3d458\"\n    ],\n    \"session_expiry\": 8401,\n    \"msp_id\": \"7cd718a0-424e-21d8-d928-ae35ca26f916\",\n    \"created_time\": 8251.285931201228,\n    \"modified_time\": 9638.68438555996\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cbfa53e-4438-4eb6-a038-ec84149342d7",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5596a582-4773-4f61-9c92-138e13e73765",
+          "name": "Juniper Networks Get organization",
+          "request": {
+            "name": "Juniper Networks Get organization",
+            "description": {
+              "content": "Returns the details of a specific organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":org_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Organization unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94f8da8c-dfd5-4c6d-b160-b8e999b1117f",
+              "name": "Organization returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a5f28542-1a5c-b914-287a-16c8ba4f60c6\",\n  \"name\": \"string\",\n  \"orggroup_ids\": [\n    \"2c19f220-0142-2829-f707-8df9b9cc21ee\",\n    \"217c94c9-988d-4b4a-111b-3a678d1af778\"\n  ],\n  \"session_expiry\": 8279,\n  \"msp_id\": \"004bf939-f8fe-073c-d0df-eb3e32feabc5\",\n  \"created_time\": 757.0426395062834,\n  \"modified_time\": 3122.0921229470923\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29b4b46b-ed96-467f-8b33-3499c023b273",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65101265-6ea3-4cc9-86ba-756c0df8b994",
+              "name": "Insufficient permissions for the requested operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d253a0f1-dff4-4955-8711-85b54b893e12",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77ab1f7f-cf6e-4db0-97be-4b563695dacc",
+          "name": "Juniper Networks Update organization",
+          "request": {
+            "name": "Juniper Networks Update organization",
+            "description": {
+              "content": "Updates the settings of an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":org_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Organization unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"orggroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"session_expiry\": \"<integer>\",\n  \"msp_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2fac1e17-8e7c-4879-898a-b3f38b188010",
+              "name": "Organization updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"orggroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"session_expiry\": \"<integer>\",\n  \"msp_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a5f28542-1a5c-b914-287a-16c8ba4f60c6\",\n  \"name\": \"string\",\n  \"orggroup_ids\": [\n    \"2c19f220-0142-2829-f707-8df9b9cc21ee\",\n    \"217c94c9-988d-4b4a-111b-3a678d1af778\"\n  ],\n  \"session_expiry\": 8279,\n  \"msp_id\": \"004bf939-f8fe-073c-d0df-eb3e32feabc5\",\n  \"created_time\": 757.0426395062834,\n  \"modified_time\": 3122.0921229470923\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7750dc13-a95a-44b8-9062-7f3227de64f3",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"orggroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"session_expiry\": \"<integer>\",\n  \"msp_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acb41c7f-4b2a-4662-9597-0e2e5e901fcf",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"orggroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"session_expiry\": \"<integer>\",\n  \"msp_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "731da5da-11ef-4b05-b8c8-cc470d3a1721",
+              "name": "Insufficient permissions for the requested operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"orggroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"session_expiry\": \"<integer>\",\n  \"msp_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a339809d-6728-4efe-853a-5ac9d5ac444b",
+      "name": "Sites",
+      "description": {
+        "content": "Site creation, configuration, and management within organizations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75fdf940-c260-4b4c-ba0c-88a53c924078",
+          "name": "Juniper Networks List organization sites",
+          "request": {
+            "name": "Juniper Networks List organization sites",
+            "description": {
+              "content": "Returns all sites belonging to an organization. Sites represent physical locations such as offices, campuses, or retail stores.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":org_id",
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Organization unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f47ff6dd-13f2-4cb0-9e64-408a7e5d881c",
+              "name": "Sites returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"23029a0a-cacc-d3bd-65aa-56a599189d0a\",\n    \"org_id\": \"0a463c25-5323-9c12-1706-c63b8bd0cf8d\",\n    \"name\": \"string\",\n    \"timezone\": \"string\",\n    \"country_code\": \"string\",\n    \"address\": \"string\",\n    \"latlng\": {\n      \"lat\": 5465.313354021145,\n      \"lng\": 9775.345510860276\n    },\n    \"sitegroup_ids\": [\n      \"a9a79803-39cc-3609-1664-ebcafc31e0d1\",\n      \"f28ede69-7aef-5a88-d769-953a8de4b898\"\n    ],\n    \"rftemplate_id\": \"50977e7c-bf40-f467-fae3-e6bd83628469\",\n    \"networktemplate_id\": \"3947535c-7698-8803-b036-010e1ffce4fd\",\n    \"created_time\": 7804.668223803626,\n    \"modified_time\": 5916.45542965103\n  },\n  {\n    \"id\": \"14c1a4bb-e1ca-7712-c8ee-11b7266f996a\",\n    \"org_id\": \"2793672c-b2c8-6bf7-cb70-462058b70c48\",\n    \"name\": \"string\",\n    \"timezone\": \"string\",\n    \"country_code\": \"string\",\n    \"address\": \"string\",\n    \"latlng\": {\n      \"lat\": 4521.70080898237,\n      \"lng\": 8256.918939829537\n    },\n    \"sitegroup_ids\": [\n      \"66efb583-c28f-f2af-acde-a5c954fdff46\",\n      \"0c3359d5-5d5f-ad1e-0007-517f1b88d235\"\n    ],\n    \"rftemplate_id\": \"065991eb-c942-ad89-539d-fb1b6e5ca0b0\",\n    \"networktemplate_id\": \"9758f33c-e706-900a-fd73-e21d86598d55\",\n    \"created_time\": 2603.50054361544,\n    \"modified_time\": 9548.727045933449\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5996e7bd-db40-4ec7-9c7a-43babc4471fe",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2234272-2364-4e3f-8ec2-4f6441fc6011",
+              "name": "Insufficient permissions for the requested operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ca5f156-e524-46bf-8886-ae701131a0e4",
+          "name": "Juniper Networks Create site",
+          "request": {
+            "name": "Juniper Networks Create site",
+            "description": {
+              "content": "Creates a new site within an organization. Sites are the primary grouping for devices and network configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":org_id",
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Organization unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ef48f13-b60e-447c-b84d-dc5efffb3a84",
+              "name": "Site created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"23c7cb25-5e2b-7bb0-8bc1-9ee48f1c7e88\",\n  \"org_id\": \"fe634260-cfb5-f2f9-a15e-71291e9a39d1\",\n  \"name\": \"string\",\n  \"timezone\": \"string\",\n  \"country_code\": \"string\",\n  \"address\": \"string\",\n  \"latlng\": {\n    \"lat\": 5105.569880779541,\n    \"lng\": 2415.819121800825\n  },\n  \"sitegroup_ids\": [\n    \"3d15bad0-5675-d097-c08b-d0ee1682ad63\",\n    \"e01ce6db-b395-9728-178a-f8a27cae7b0b\"\n  ],\n  \"rftemplate_id\": \"058623fc-3c80-f2c4-9979-8e507010e0f8\",\n  \"networktemplate_id\": \"25271cb1-1c84-23fe-1d63-1c98ef7f0788\",\n  \"created_time\": 2944.542569467785,\n  \"modified_time\": 3096.4958439619104\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3dccf15-ab9e-497d-8156-31406893209e",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "422844cb-dfd2-4a67-afbd-1cb76dc07cb8",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80f65f4c-c5a4-41a0-b2bc-78bd14dc99a0",
+              "name": "Insufficient permissions for the requested operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":org_id",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Organization unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de6c6781-1b12-4bf1-9d4d-6f7f352a53be",
+          "name": "Juniper Networks Get site",
+          "request": {
+            "name": "Juniper Networks Get site",
+            "description": {
+              "content": "Returns the details of a specific site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "674dc0d3-ed4e-46da-bc15-2a2021cdf00b",
+              "name": "Site returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"23c7cb25-5e2b-7bb0-8bc1-9ee48f1c7e88\",\n  \"org_id\": \"fe634260-cfb5-f2f9-a15e-71291e9a39d1\",\n  \"name\": \"string\",\n  \"timezone\": \"string\",\n  \"country_code\": \"string\",\n  \"address\": \"string\",\n  \"latlng\": {\n    \"lat\": 5105.569880779541,\n    \"lng\": 2415.819121800825\n  },\n  \"sitegroup_ids\": [\n    \"3d15bad0-5675-d097-c08b-d0ee1682ad63\",\n    \"e01ce6db-b395-9728-178a-f8a27cae7b0b\"\n  ],\n  \"rftemplate_id\": \"058623fc-3c80-f2c4-9979-8e507010e0f8\",\n  \"networktemplate_id\": \"25271cb1-1c84-23fe-1d63-1c98ef7f0788\",\n  \"created_time\": 2944.542569467785,\n  \"modified_time\": 3096.4958439619104\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33c3d09e-bf4f-458f-b0af-13da163340fd",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6048f6fb-2959-4e6b-b6f2-e5d5c5e11afb",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3517d091-5f66-4e30-8885-e8dc51e6a250",
+          "name": "Juniper Networks Update site",
+          "request": {
+            "name": "Juniper Networks Update site",
+            "description": {
+              "content": "Updates the configuration of a site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8480c749-1e88-4174-bda1-56cecdbc78f2",
+              "name": "Site updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"23c7cb25-5e2b-7bb0-8bc1-9ee48f1c7e88\",\n  \"org_id\": \"fe634260-cfb5-f2f9-a15e-71291e9a39d1\",\n  \"name\": \"string\",\n  \"timezone\": \"string\",\n  \"country_code\": \"string\",\n  \"address\": \"string\",\n  \"latlng\": {\n    \"lat\": 5105.569880779541,\n    \"lng\": 2415.819121800825\n  },\n  \"sitegroup_ids\": [\n    \"3d15bad0-5675-d097-c08b-d0ee1682ad63\",\n    \"e01ce6db-b395-9728-178a-f8a27cae7b0b\"\n  ],\n  \"rftemplate_id\": \"058623fc-3c80-f2c4-9979-8e507010e0f8\",\n  \"networktemplate_id\": \"25271cb1-1c84-23fe-1d63-1c98ef7f0788\",\n  \"created_time\": 2944.542569467785,\n  \"modified_time\": 3096.4958439619104\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ab97c5a-d896-4da3-91d0-c9f2be99bf8d",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d5d8eab-a13e-4f71-9052-57de5e362e21",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latlng\": {\n    \"lat\": \"<number>\",\n    \"lng\": \"<number>\"\n  },\n  \"sitegroup_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rftemplate_id\": \"<uuid>\",\n  \"networktemplate_id\": \"<uuid>\",\n  \"created_time\": \"<number>\",\n  \"modified_time\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9fb9031-8ff0-4c16-80ce-4444339f4f0b",
+          "name": "Juniper Networks Delete site",
+          "request": {
+            "name": "Juniper Networks Delete site",
+            "description": {
+              "content": "Deletes a site and all associated configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e61b9252-2901-493e-b136-e6754d4ba0c9",
+              "name": "Site deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f46486ad-88e5-4197-90fd-ef5e0a2dacd0",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c7e3c77-bbae-4214-b889-060ac3398221",
+              "name": "Insufficient permissions for the requested operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "694c067e-7699-4b4c-b05d-2997d667d2a3",
+      "name": "WLANs",
+      "description": {
+        "content": "Wireless LAN configuration including SSIDs, security, and VLAN assignment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a35c1db-ba9a-41f1-a9e2-b56759820b6b",
+          "name": "Juniper Networks List site WLANs",
+          "request": {
+            "name": "Juniper Networks List site WLANs",
+            "description": {
+              "content": "Returns all WLAN configurations for a site. Each WLAN defines an SSID with associated security, VLAN, and radio settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "wlans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dabbdd0-a634-48d6-8384-327affde57bd",
+              "name": "WLANs returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"e20949c0-29f7-9c91-4c36-8ea43270ffa7\",\n    \"ssid\": \"string\",\n    \"enabled\": false,\n    \"auth\": {\n      \"type\": \"eap\",\n      \"psk\": \"string\"\n    },\n    \"band\": \"both\",\n    \"vlan_enabled\": false,\n    \"vlan_id\": 789,\n    \"hide_ssid\": true,\n    \"band_steer\": false,\n    \"client_limit_down\": 407,\n    \"client_limit_up\": 8441\n  },\n  {\n    \"id\": \"6737e7b9-8aa8-6141-c59c-d9dc71e0b259\",\n    \"ssid\": \"string\",\n    \"enabled\": false,\n    \"auth\": {\n      \"type\": \"open\",\n      \"psk\": \"string\"\n    },\n    \"band\": \"6\",\n    \"vlan_enabled\": true,\n    \"vlan_id\": 5987,\n    \"hide_ssid\": true,\n    \"band_steer\": true,\n    \"client_limit_down\": 1223,\n    \"client_limit_up\": 6789\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e52ca5d-c2fa-466b-880d-620a14946d20",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f05a96a1-7cba-4b85-b9a2-6ea1b07a2e01",
+          "name": "Juniper Networks Create WLAN",
+          "request": {
+            "name": "Juniper Networks Create WLAN",
+            "description": {
+              "content": "Creates a new WLAN (SSID) at a site with specified security, VLAN, and radio configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "wlans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e7306abe-eec4-46b5-a775-dd2fda9558d3",
+              "name": "WLAN created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6194583d-2975-9e6e-3220-253de288b102\",\n  \"ssid\": \"string\",\n  \"enabled\": true,\n  \"auth\": {\n    \"type\": \"open\",\n    \"psk\": \"string\"\n  },\n  \"band\": \"5\",\n  \"vlan_enabled\": false,\n  \"vlan_id\": 7688,\n  \"hide_ssid\": true,\n  \"band_steer\": false,\n  \"client_limit_down\": 4402,\n  \"client_limit_up\": 2064\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e35031ba-f67f-444c-804c-b205b76f544c",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d35c266f-b956-4076-90f5-1bbaf7ff7909",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mist.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e4fd308-4f82-4d64-8d07-72ae129caf47",
+    "name": "Juniper Networks Juniper Mist Cloud API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for the Juniper Mist AI-driven cloud platform. Mist provides centralized management of wireless access points, wired switches, and SD-WAN gateways through a single cloud dashboard. The API enables programmatic access to organization, site, device, and client management as well as monitoring, analytics, and configuration automation. Mist uses AI and machine learning to optimize wireless performance, detect anomalies, and provide proactive insights. The API follows REST conventions with JSON request and response bodies.\n\nContact Support:\n Name: Juniper Mist Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
