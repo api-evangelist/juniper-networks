@@ -161,7 +161,7 @@ common:
     url: https://www.linkedin.com/company/juniper-networks
   - type: JSONLD
     url: json-ld/juniper-networks-context.jsonld
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.juniper.net/
   - type: Support
     url: https://support.juniper.net/

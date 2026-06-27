@@ -5,15 +5,8 @@
       "source": "https://community.hpe.com/hpeb/rss/Community?interaction.style=forum",
       "feed_url": "https://community.hpe.com/hpeb/rss/Community?interaction.style=forum",
       "title": "",
-      "saved": 20,
+      "saved": 19,
       "method": "feed"
-    },
-    {
-      "source": "https://community.juniper.net/browse/blogs",
-      "feed_url": "https://community.juniper.net/browse/blogs",
-      "title": "",
-      "saved": 0,
-      "method": "none"
     },
     {
       "source": "https://www.juniper.net/documentation/",
@@ -23,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 55,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 79,
+  "fetched": "2026-06-27T12:03:07Z"
 }
