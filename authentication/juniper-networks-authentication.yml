@@ -1,0 +1,53 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/juniper-networks-apstra-openapi.yml, openapi/juniper-networks-contrail-openapi.yml,
+  openapi/juniper-networks-junos-space-openapi.yml, openapi/juniper-networks-mist-openapi.yml,
+  openapi/juniper-networks-vsrx-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: authToken
+  type: apiKey
+  in: header
+  parameter: AuthToken
+  description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken
+    header for all authenticated API requests.
+  sources:
+  - openapi/juniper-networks-apstra-openapi.yml
+- name: keystoneToken
+  type: apiKey
+  in: header
+  parameter: X-Auth-Token
+  description: Keystone authentication token obtained from the OpenStack Identity service. For
+    standalone Contrail, local authentication returns a token via the auth/keystone/v3/auth/tokens
+    endpoint.
+  sources:
+  - openapi/juniper-networks-contrail-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication with Junos Space username and password. Also supports
+    X.509 certificate-based authentication.
+  sources:
+  - openapi/juniper-networks-junos-space-openapi.yml
+  - openapi/juniper-networks-vsrx-openapi.yml
+- name: apiToken
+  type: http
+  scheme: bearer
+  description: API token authentication. Generate tokens via the Mist dashboard under Organization
+    > Settings > API Token or via POST /self/apitokens. Pass the token in the Authorization
+    header as Bearer {token}.
+  sources:
+  - openapi/juniper-networks-mist-openapi.yml
+- name: csrfToken
+  type: apiKey
+  in: header
+  parameter: X-CSRFToken
+  description: CSRF token for session-based authentication. Obtained from the login response
+    and required for all mutating operations when using cookie authentication.
+  sources:
+  - openapi/juniper-networks-mist-openapi.yml
