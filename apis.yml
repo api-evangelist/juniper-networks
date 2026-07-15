@@ -157,6 +157,8 @@ apis:
       - type: OpenAPI
         url: openapi/juniper-networks-vsrx-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/juniper-networks-agentic-access.yml
   - type: DomainSecurity
     url: security/juniper-networks-domain-security.yml
   - type: Authentication
