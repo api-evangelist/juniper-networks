@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Security Policies API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Security Policies
+  description: Security policy and zone management.
+paths:
+  /v1/security/policies:
+    get:
+      operationId: listSecurityPolicies
+      summary: Juniper Networks List security policies
+      description: Returns all security policies configured on the vSRX. Policies are organized by from-zone to-zone pairs and evaluated top-down.
+      tags:
+      - Security Policies
+      responses:
+        '200':
+          description: Security policies returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  security-policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SecurityPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/security/zones:
+    get:
+      operationId: listSecurityZones
+      summary: Juniper Networks List security zones
+      description: Returns all security zones configured on the vSRX. Zones are logical groupings of interfaces that define trust boundaries for policy enforcement.
+      tags:
+      - Security Policies
+      responses:
+        '200':
+          description: Security zones returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  security-zones:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SecurityZone'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    SecurityPolicy:
+      type: object
+      properties:
+        from_zone:
+          type: string
+          description: Source security zone.
+        to_zone:
+          type: string
+          description: Destination security zone.
+        policies:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Policy name.
+              match:
+                type: object
+                properties:
+                  source_address:
+                    type: array
+                    items:
+                      type: string
+                  destination_address:
+                    type: array
+                    items:
+                      type: string
+                  application:
+                    type: array
+                    items:
+                      type: string
+              then:
+                type: object
+                properties:
+                  action:
+                    type: string
+                    enum:
+                    - permit
+                    - deny
+                    - reject
+                  log:
+                    type: boolean
+                  count:
+                    type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+    SecurityZone:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Zone name.
+        interfaces:
+          type: array
+          items:
+            type: string
+          description: Interfaces bound to the zone.
+        host_inbound_traffic:
+          type: object
+          properties:
+            system_services:
+              type: array
+              items:
+                type: string
+              description: Allowed host-inbound system services (ssh, https, ping, etc.).
+            protocols:
+              type: array
+              items:
+                type: string
+              description: Allowed host-inbound routing protocols (bgp, ospf, etc.).
+        screen:
+          type: string
+          description: IDS screen profile name applied to the zone.
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

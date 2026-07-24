@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Systems API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Systems
+  description: Managed system (device) agent lifecycle and telemetry.
+paths:
+  /systems:
+    get:
+      operationId: listSystems
+      summary: Juniper Networks List managed systems
+      description: Returns all systems (network devices) known to Apstra, including their agent status, management IP, and hardware information.
+      tags:
+      - Systems
+      responses:
+        '200':
+          description: Systems returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/System'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /systems/{system_id}:
+    get:
+      operationId: getSystem
+      summary: Juniper Networks Get system details
+      description: Returns detailed information for a specific managed system.
+      tags:
+      - Systems
+      parameters:
+      - $ref: '#/components/parameters/SystemId'
+      responses:
+        '200':
+          description: System returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        errors:
+          type: string
+          description: Error message.
+    System:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: System unique identifier.
+        label:
+          type: string
+          description: System label.
+        hostname:
+          type: string
+          description: Device hostname.
+        management_ip:
+          type: string
+          description: Management IP address.
+        serial_number:
+          type: string
+          description: Hardware serial number.
+        device_key:
+          type: string
+          description: Device key for agent authentication.
+        facts:
+          type: object
+          properties:
+            os_family:
+              type: string
+              description: Operating system family (e.g., junos, eos, nxos).
+            os_version:
+              type: string
+              description: Operating system version.
+            vendor:
+              type: string
+              description: Hardware vendor.
+            hw_model:
+              type: string
+              description: Hardware model.
+          description: Device hardware and software facts.
+        status:
+          type: string
+          enum:
+          - OOS-READY
+          - IS-ACTIVE
+          - MAINT
+          - DECOMM
+          description: System operational status.
+  parameters:
+    SystemId:
+      name: system_id
+      in: path
+      required: true
+      description: System unique identifier.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

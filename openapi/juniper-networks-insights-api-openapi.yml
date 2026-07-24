@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Insights API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Insights
+  description: AI-driven network insights, anomaly detection, and Marvis recommendations.
+paths:
+  /sites/{site_id}/insights/marvis:
+    get:
+      operationId: listMarvisActions
+      summary: Juniper Networks List Marvis actions
+      description: Returns AI-driven Marvis actions for a site. Marvis uses machine learning to identify network issues, anomalies, and optimization opportunities. Actions include recommended fixes for AP health, client connectivity, and capacity issues.
+      tags:
+      - Insights
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: start
+        in: query
+        description: Start time epoch in seconds.
+        schema:
+          type: integer
+      - name: end
+        in: query
+        description: End time epoch in seconds.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Marvis actions returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarvisAction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    MarvisAction:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Action category (e.g., ap_health, client_connectivity, capacity).
+        details:
+          type: string
+          description: Description of the detected issue and recommended action.
+        site_id:
+          type: string
+          format: uuid
+          description: Affected site ID.
+        device_id:
+          type: string
+          format: uuid
+          description: Affected device ID if applicable.
+        severity:
+          type: string
+          enum:
+          - critical
+          - warning
+          - info
+          description: Severity level of the action.
+        timestamp:
+          type: number
+          description: Detection timestamp in epoch seconds.
+  responses:
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

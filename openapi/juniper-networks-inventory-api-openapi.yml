@@ -1,0 +1,184 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Inventory API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Inventory
+  description: Device claiming, unclaiming, and inventory management.
+paths:
+  /orgs/{org_id}/inventory:
+    get:
+      operationId: listOrgInventory
+      summary: Juniper Networks List organization inventory
+      description: Returns all devices in the organization inventory, including claimed devices that may or may not be assigned to sites.
+      tags:
+      - Inventory
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      - name: serial
+        in: query
+        description: Filter by device serial number.
+        schema:
+          type: string
+      - name: model
+        in: query
+        description: Filter by device model.
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Filter by device type.
+        schema:
+          type: string
+          enum:
+          - ap
+          - switch
+          - gateway
+      responses:
+        '200':
+          description: Inventory returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateOrgInventory
+      summary: Juniper Networks Update inventory assignment
+      description: Assigns or unassigns devices from sites within the organization inventory. Used to move devices between sites or release them from site assignment.
+      tags:
+      - Inventory
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                op:
+                  type: string
+                  enum:
+                  - assign
+                  - unassign
+                  description: Operation to perform.
+                site_id:
+                  type: string
+                  format: uuid
+                  description: Target site ID for assignment.
+                macs:
+                  type: array
+                  items:
+                    type: string
+                  description: List of device MAC addresses.
+                serials:
+                  type: array
+                  items:
+                    type: string
+                  description: List of device serial numbers.
+      responses:
+        '200':
+          description: Inventory updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: array
+                    items:
+                      type: string
+                  error:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    InventoryItem:
+      type: object
+      properties:
+        mac:
+          type: string
+          description: Device MAC address.
+        serial:
+          type: string
+          description: Device serial number.
+        model:
+          type: string
+          description: Device model.
+        type:
+          type: string
+          enum:
+          - ap
+          - switch
+          - gateway
+          description: Device type.
+        site_id:
+          type: string
+          format: uuid
+          description: Assigned site ID, null if unassigned.
+        org_id:
+          type: string
+          format: uuid
+          description: Organization ID.
+        claimed_time:
+          type: number
+          description: Time the device was claimed in epoch seconds.
+  parameters:
+    OrgId:
+      name: org_id
+      in: path
+      required: true
+      description: Organization unique identifier.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

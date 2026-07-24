@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Clients API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Clients
+  description: Wireless and wired client session monitoring and statistics.
+paths:
+  /sites/{site_id}/stats/clients:
+    get:
+      operationId: listSiteClientStats
+      summary: Juniper Networks List client statistics
+      description: Returns statistics for wireless clients connected at a site, including signal strength, data usage, and connection quality metrics.
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: start
+        in: query
+        description: Start time epoch in seconds.
+        schema:
+          type: integer
+      - name: end
+        in: query
+        description: End time epoch in seconds.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Maximum number of results.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Client statistics returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientStat'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    ClientStat:
+      type: object
+      properties:
+        mac:
+          type: string
+          description: Client MAC address.
+        hostname:
+          type: string
+          description: Client hostname.
+        ip:
+          type: string
+          description: Client IP address.
+        ssid:
+          type: string
+          description: Connected SSID.
+        ap_mac:
+          type: string
+          description: MAC address of the connected AP.
+        rssi:
+          type: number
+          description: Received signal strength indicator in dBm.
+        snr:
+          type: number
+          description: Signal-to-noise ratio in dB.
+        band:
+          type: string
+          description: Connected radio band.
+        channel:
+          type: integer
+          description: Connected radio channel.
+        rx_bytes:
+          type: integer
+          description: Total received bytes.
+        tx_bytes:
+          type: integer
+          description: Total transmitted bytes.
+        rx_rate:
+          type: number
+          description: Receive data rate in Mbps.
+        tx_rate:
+          type: number
+          description: Transmit data rate in Mbps.
+  responses:
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

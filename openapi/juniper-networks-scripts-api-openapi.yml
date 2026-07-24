@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Scripts API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Scripts
+  description: Script management and execution on managed devices.
+paths:
+  /script-management/scripts:
+    get:
+      operationId: listScripts
+      summary: Juniper Networks List scripts
+      description: Returns all scripts uploaded to Junos Space. Scripts can be SLAX, XSLT, Python, or commit scripts for execution on managed Junos devices.
+      tags:
+      - Scripts
+      responses:
+        '200':
+          description: Scripts returned.
+          content:
+            application/vnd.net.juniper.space.script-management.scripts+json;version=2:
+              schema:
+                type: object
+                properties:
+                  scripts:
+                    type: object
+                    properties:
+                      script:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Script'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /script-management/scripts/{script_id}/exec-scripts:
+    post:
+      operationId: executeScript
+      summary: Juniper Networks Execute script on devices
+      description: Executes a script on one or more managed devices. Returns a job ID for tracking execution status and retrieving results.
+      tags:
+      - Scripts
+      parameters:
+      - name: script_id
+        in: path
+        required: true
+        description: Script unique identifier.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/vnd.net.juniper.space.script-management.exec-scripts+json;version=2:
+            schema:
+              type: object
+              properties:
+                exec-scripts:
+                  type: object
+                  properties:
+                    deviceIds:
+                      type: array
+                      items:
+                        type: integer
+                      description: Target device IDs.
+                    scriptParams:
+                      type: object
+                      additionalProperties:
+                        type: string
+                      description: Script parameter values.
+      responses:
+        '202':
+          description: Script execution job initiated.
+          content:
+            application/vnd.net.juniper.space.job-management.task+json;version=1:
+              schema:
+                $ref: '#/components/schemas/Job'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+    Script:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Script internal ID.
+        scriptName:
+          type: string
+          description: Script file name.
+        description:
+          type: string
+          description: Script description.
+        scriptType:
+          type: string
+          enum:
+          - op
+          - commit
+          - event
+          description: Script type.
+        scriptLanguage:
+          type: string
+          enum:
+          - slax
+          - xslt
+          - python
+          description: Script language.
+    Job:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Job internal ID.
+        jobName:
+          type: string
+          description: Job name.
+        jobType:
+          type: string
+          description: Job type identifier.
+        jobState:
+          type: string
+          enum:
+          - ENABLED
+          - INPROGRESS
+          - SUCCESS
+          - FAILURE
+          - CANCELLED
+          description: Current job state.
+        percent:
+          type: number
+          description: Completion percentage.
+        createdByUserName:
+          type: string
+          description: User who created the job.
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          description: Job result summary.
+  responses:
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

@@ -1,0 +1,318 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Configuration API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Configuration
+  description: Configuration management, templates, and deployment.
+paths:
+  /device-management/devices/{device_id}/configurations/raw:
+    get:
+      operationId: getDeviceConfiguration
+      summary: Juniper Networks Get device running configuration
+      description: Returns the current running configuration of a managed device in Junos set or XML format.
+      tags:
+      - Configuration
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Configuration returned.
+          content:
+            application/vnd.net.juniper.space.device-management.device-configuration+json;version=1:
+              schema:
+                type: object
+                properties:
+                  configuration:
+                    type: string
+                    description: Device configuration content.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /configuration-management/cli-configlets:
+    get:
+      operationId: listConfiglets
+      summary: Juniper Networks List CLI configlets
+      description: Returns all CLI configlets (configuration templates) stored in Junos Space. Configlets are reusable configuration snippets with parameterized variables.
+      tags:
+      - Configuration
+      responses:
+        '200':
+          description: Configlets returned.
+          content:
+            application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1:
+              schema:
+                type: object
+                properties:
+                  configlets:
+                    type: object
+                    properties:
+                      configlet:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Configlet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /configuration-management/cli-configlets/{configlet_id}/apply-cli-configlet:
+    post:
+      operationId: applyConfiglet
+      summary: Juniper Networks Apply configlet to devices
+      description: Applies a CLI configlet to one or more managed devices. Variable values are provided in the request body and merged into the configlet template before deployment.
+      tags:
+      - Configuration
+      parameters:
+      - name: configlet_id
+        in: path
+        required: true
+        description: Configlet unique identifier.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/vnd.net.juniper.space.configuration-management.apply-cli-configlet+json;version=1:
+            schema:
+              type: object
+              properties:
+                apply-cli-configlet-request:
+                  type: object
+                  properties:
+                    deviceIds:
+                      type: array
+                      items:
+                        type: integer
+                      description: Target device IDs.
+                    parameters:
+                      type: object
+                      additionalProperties:
+                        type: string
+                      description: Variable name-value pairs.
+      responses:
+        '202':
+          description: Configlet application job initiated.
+          content:
+            application/vnd.net.juniper.space.job-management.task+json;version=1:
+              schema:
+                $ref: '#/components/schemas/Job'
+  /v1/configuration:
+    get:
+      operationId: getConfiguration
+      summary: Juniper Networks Get device configuration
+      description: Returns the current candidate or committed Junos configuration in JSON or XML format. Supports filtering by configuration hierarchy path.
+      tags:
+      - Configuration
+      parameters:
+      - name: type
+        in: query
+        description: Configuration database to read.
+        schema:
+          type: string
+          enum:
+          - candidate
+          - committed
+          default: committed
+      - name: path
+        in: query
+        description: 'Configuration hierarchy path to filter. Example: security/policies to return only security policy configuration.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Configuration returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  configuration:
+                    type: object
+                    description: Junos configuration hierarchy in JSON format.
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+    put:
+      operationId: updateConfiguration
+      summary: Juniper Networks Update configuration
+      description: Applies configuration changes to the candidate configuration. Changes must be committed separately to take effect.
+      tags:
+      - Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configuration:
+                  type: object
+                  description: Junos configuration hierarchy to apply.
+      responses:
+        '200':
+          description: Configuration updated in candidate.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+  /v1/configuration/commit:
+    post:
+      operationId: commitConfiguration
+      summary: Juniper Networks Commit configuration
+      description: Commits the candidate configuration to the active running configuration. Supports commit check, commit confirm with rollback timer, and commit comments.
+      tags:
+      - Configuration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commit:
+                  type: object
+                  properties:
+                    check:
+                      type: boolean
+                      description: Only validate without committing.
+                    confirm:
+                      type: integer
+                      description: Auto-rollback timeout in minutes if not confirmed.
+                    comment:
+                      type: string
+                      description: Commit log comment.
+      responses:
+        '200':
+          description: Configuration committed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: Commit failed due to configuration errors.
+components:
+  schemas:
+    Configlet:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Configlet internal ID.
+        name:
+          type: string
+          description: Configlet name.
+        description:
+          type: string
+          description: Configlet description.
+        cliConfigletContent:
+          type: string
+          description: CLI configuration template content with variables.
+        executionType:
+          type: string
+          enum:
+          - SingleExecution
+          - GroupExecution
+          description: Execution mode.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+    Job:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Job internal ID.
+        jobName:
+          type: string
+          description: Job name.
+        jobType:
+          type: string
+          description: Job type identifier.
+        jobState:
+          type: string
+          enum:
+          - ENABLED
+          - INPROGRESS
+          - SUCCESS
+          - FAILURE
+          - CANCELLED
+          description: Current job state.
+        percent:
+          type: number
+          description: Completion percentage.
+        createdByUserName:
+          type: string
+          description: User who created the job.
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          description: Job result summary.
+    Error_2:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized_2:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    BadRequest:
+      description: Invalid request or configuration error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Device unique identifier.
+      schema:
+        type: integer
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

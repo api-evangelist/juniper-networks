@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms BGP Routers API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: BGP Routers
+  description: BGP router and peering configuration.
+paths:
+  /bgp-routers:
+    get:
+      operationId: listBgpRouters
+      summary: Juniper Networks List BGP routers
+      description: Returns all BGP router objects. BGP routers represent control plane nodes in the Contrail cluster including control nodes, compute nodes, and external MX/physical routers.
+      tags:
+      - BGP Routers
+      responses:
+        '200':
+          description: BGP routers returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bgp-routers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRef'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ObjectRef:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+          description: Resource URL.
+        fq_name:
+          type: array
+          items:
+            type: string
+          description: Fully qualified name path (domain, project, name).
+        uuid:
+          type: string
+          format: uuid
+          description: Object UUID.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

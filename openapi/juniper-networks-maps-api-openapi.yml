@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Maps API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Maps
+  description: Floor plan and map management for site RF planning.
+paths:
+  /sites/{site_id}/maps:
+    get:
+      operationId: listSiteMaps
+      summary: Juniper Networks List site maps
+      description: Returns all floor plan maps for a site. Maps are used for indoor location, RF planning, and device placement visualization.
+      tags:
+      - Maps
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: Maps returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Map'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    Map:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Map unique identifier.
+        name:
+          type: string
+          description: Map or floor plan name.
+        type:
+          type: string
+          enum:
+          - image
+          - google
+          description: Map type.
+        width:
+          type: number
+          description: Map width in meters.
+        height:
+          type: number
+          description: Map height in meters.
+        url:
+          type: string
+          description: URL to the uploaded floor plan image.
+        ppm:
+          type: number
+          description: Pixels per meter for the floor plan image.
+  responses:
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

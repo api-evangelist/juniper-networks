@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Monitoring API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Monitoring
+  description: Device and session monitoring operations.
+paths:
+  /v1/monitoring/security/flow/session:
+    get:
+      operationId: listFlowSessions
+      summary: Juniper Networks List active flow sessions
+      description: Returns currently active security flow sessions on the vSRX. Equivalent to the show security flow session CLI command.
+      tags:
+      - Monitoring
+      parameters:
+      - name: source_prefix
+        in: query
+        description: Filter by source IP prefix.
+        schema:
+          type: string
+      - name: destination_prefix
+        in: query
+        description: Filter by destination IP prefix.
+        schema:
+          type: string
+      - name: application
+        in: query
+        description: Filter by application name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Flow sessions returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_sessions:
+                    type: integer
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FlowSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    FlowSession:
+      type: object
+      properties:
+        session_id:
+          type: integer
+          description: Session identifier.
+        policy:
+          type: string
+          description: Matching security policy name.
+        source_address:
+          type: string
+          description: Source IP address.
+        source_port:
+          type: integer
+        destination_address:
+          type: string
+          description: Destination IP address.
+        destination_port:
+          type: integer
+        protocol:
+          type: string
+          description: IP protocol name.
+        application:
+          type: string
+          description: Identified application.
+        in_interface:
+          type: string
+          description: Ingress interface.
+        out_interface:
+          type: string
+          description: Egress interface.
+        bytes_in:
+          type: integer
+          description: Bytes received.
+        bytes_out:
+          type: integer
+          description: Bytes transmitted.
+        duration:
+          type: integer
+          description: Session duration in seconds.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+  responses:
+    Unauthorized:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

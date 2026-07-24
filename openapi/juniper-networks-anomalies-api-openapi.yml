@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Anomalies API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Anomalies
+  description: Network state anomaly detection and reporting.
+paths:
+  /blueprints/{blueprint_id}/anomalies:
+    get:
+      operationId: listBlueprintAnomalies
+      summary: Juniper Networks List blueprint anomalies
+      description: Returns anomalies detected in a blueprint. Anomalies represent deviations between the intended state defined in the blueprint and the actual state observed on network devices. Includes configuration drift, cabling issues, and BGP session problems.
+      tags:
+      - Anomalies
+      parameters:
+      - $ref: '#/components/parameters/BlueprintId'
+      responses:
+        '200':
+          description: Anomalies returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Anomaly'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Anomaly:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Anomaly unique identifier.
+        type:
+          type: string
+          description: Anomaly type (e.g., config, cabling, bgp, route, liveness).
+        severity:
+          type: string
+          enum:
+          - critical
+          - warning
+          - info
+          description: Anomaly severity.
+        role:
+          type: string
+          description: Node role where the anomaly was detected.
+        expected:
+          type: string
+          description: Expected state value.
+        actual:
+          type: string
+          description: Actual observed state value.
+        identity:
+          type: object
+          additionalProperties:
+            type: string
+          description: Identifying attributes of the anomalous element.
+    Error:
+      type: object
+      properties:
+        errors:
+          type: string
+          description: Error message.
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    BlueprintId:
+      name: blueprint_id
+      in: path
+      required: true
+      description: Blueprint unique identifier.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

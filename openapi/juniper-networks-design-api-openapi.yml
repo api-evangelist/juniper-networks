@@ -1,0 +1,397 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Design API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Design
+  description: Design resources including logical devices, interface maps, rack types, templates, and config templates.
+paths:
+  /design/logical-devices:
+    get:
+      operationId: listLogicalDevices
+      summary: Juniper Networks List logical devices
+      description: Returns all logical device definitions. Logical devices represent abstract switch models with port groups and capabilities, independent of specific hardware vendors. They define the port layout and capabilities used in rack type definitions.
+      tags:
+      - Design
+      responses:
+        '200':
+          description: Logical devices returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LogicalDevice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createLogicalDevice
+      summary: Juniper Networks Create logical device
+      description: Creates a new logical device definition.
+      tags:
+      - Design
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogicalDevice'
+      responses:
+        '201':
+          description: Logical device created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogicalDevice'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /design/interface-maps:
+    get:
+      operationId: listInterfaceMaps
+      summary: Juniper Networks List interface maps
+      description: Returns all interface maps. Interface maps bind logical device port groups to physical device interfaces, connecting the abstract design to specific hardware models.
+      tags:
+      - Design
+      responses:
+        '200':
+          description: Interface maps returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InterfaceMap'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /design/rack-types:
+    get:
+      operationId: listRackTypes
+      summary: Juniper Networks List rack types
+      description: Returns all rack type definitions. Rack types define the physical layout of a data center rack including leaf switches, access switches, generic systems, and their interconnections.
+      tags:
+      - Design
+      responses:
+        '200':
+          description: Rack types returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RackType'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRackType
+      summary: Juniper Networks Create rack type
+      description: Creates a new rack type definition.
+      tags:
+      - Design
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RackType'
+      responses:
+        '201':
+          description: Rack type created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RackType'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /design/templates:
+    get:
+      operationId: listTemplates
+      summary: Juniper Networks List templates
+      description: Returns all data center templates. Templates combine rack types with spine layer definitions to create complete data center fabric designs using leaf-spine or 3-stage Clos topologies.
+      tags:
+      - Design
+      responses:
+        '200':
+          description: Templates returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    InterfaceMap:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Interface map unique identifier.
+        label:
+          type: string
+          description: Display label.
+        logical_device_id:
+          type: string
+          format: uuid
+          description: Associated logical device.
+        device_profile_id:
+          type: string
+          format: uuid
+          description: Associated hardware device profile.
+        interfaces:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Physical interface name.
+              mapping:
+                type: array
+                items:
+                  type: integer
+                description: Logical port indices mapped to this interface.
+    Error:
+      type: object
+      properties:
+        errors:
+          type: string
+          description: Error message.
+    LogicalDevice:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Logical device unique identifier.
+        display_name:
+          type: string
+          description: Display name for the logical device.
+        panels:
+          type: array
+          description: Port panel definitions.
+          items:
+            type: object
+            properties:
+              panel_layout:
+                type: object
+                properties:
+                  row_count:
+                    type: integer
+                  column_count:
+                    type: integer
+              port_indexing:
+                type: object
+                properties:
+                  order:
+                    type: string
+                    enum:
+                    - T-B, L-R
+                    - L-R, T-B
+                  start_index:
+                    type: integer
+                  schema:
+                    type: string
+                    enum:
+                    - absolute
+              port_groups:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    count:
+                      type: integer
+                      description: Number of ports in the group.
+                    speed:
+                      type: object
+                      properties:
+                        unit:
+                          type: string
+                          enum:
+                          - G
+                        value:
+                          type: integer
+                      description: Port speed.
+                    roles:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - spine
+                        - leaf
+                        - peer
+                        - access
+                        - generic
+                        - superspine
+                        - unused
+                      description: Roles the port group can fulfill.
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Template unique identifier.
+        display_name:
+          type: string
+          description: Template display name.
+        type:
+          type: string
+          enum:
+          - rack_based
+          description: Template type.
+        spine:
+          type: object
+          properties:
+            count:
+              type: integer
+              description: Number of spine switches.
+            logical_device_id:
+              type: string
+              format: uuid
+              description: Logical device for spine switches.
+        rack_types:
+          type: array
+          description: Rack types included in the template.
+          items:
+            type: object
+            properties:
+              rack_type_id:
+                type: string
+                format: uuid
+              count:
+                type: integer
+    RackType:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Rack type unique identifier.
+        display_name:
+          type: string
+          description: Display name.
+        description:
+          type: string
+          description: Description of the rack type.
+        fabric_connectivity_design:
+          type: string
+          enum:
+          - l3clos
+          - l3collapsed
+          description: Fabric connectivity design pattern.
+        leaf_switches:
+          type: array
+          description: Leaf switch definitions in the rack.
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              logical_device_id:
+                type: string
+                format: uuid
+              link_per_spine_count:
+                type: integer
+              link_per_spine_speed:
+                type: object
+                properties:
+                  unit:
+                    type: string
+                  value:
+                    type: integer
+              redundancy_protocol:
+                type: string
+                enum:
+                - esi
+                - mlag
+        generic_systems:
+          type: array
+          description: Generic system (server, storage) definitions in the rack.
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              count:
+                type: integer
+              logical_device_id:
+                type: string
+                format: uuid
+              links:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    target_switch_label:
+                      type: string
+                    link_per_switch_count:
+                      type: integer
+                    link_speed:
+                      type: object
+                      properties:
+                        unit:
+                          type: string
+                        value:
+                          type: integer
+                    lag_mode:
+                      type: string
+                      enum:
+                      - lacp_active
+                      - lacp_passive
+                      - static_lag
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed payload.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms VPN API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: VPN
+  description: IPsec VPN tunnel configuration.
+paths:
+  /v1/security/ipsec/vpn:
+    get:
+      operationId: listIpsecVpns
+      summary: Juniper Networks List IPsec VPN tunnels
+      description: Returns all IPsec VPN tunnel configurations, including IKE gateway associations, encryption settings, and tunnel status.
+      tags:
+      - VPN
+      responses:
+        '200':
+          description: IPsec VPN tunnels returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ipsec-vpns:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IpsecVpn'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+    IpsecVpn:
+      type: object
+      properties:
+        name:
+          type: string
+          description: VPN tunnel name.
+        ike_gateway:
+          type: string
+          description: IKE gateway name.
+        ike_policy:
+          type: string
+          description: IKE policy name.
+        ipsec_policy:
+          type: string
+          description: IPsec policy name.
+        bind_interface:
+          type: string
+          description: Tunnel interface (e.g., st0.0).
+        establish_tunnels:
+          type: string
+          enum:
+          - immediately
+          - on-traffic
+          description: Tunnel establishment trigger.
+        status:
+          type: string
+          enum:
+          - up
+          - down
+          description: Current tunnel status.
+  responses:
+    Unauthorized:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

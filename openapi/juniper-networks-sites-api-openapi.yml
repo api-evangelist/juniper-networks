@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Sites API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Sites
+  description: Site creation, configuration, and management within organizations.
+paths:
+  /orgs/{org_id}/sites:
+    get:
+      operationId: listOrgSites
+      summary: Juniper Networks List organization sites
+      description: Returns all sites belonging to an organization. Sites represent physical locations such as offices, campuses, or retail stores.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: Sites returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Site'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createSite
+      summary: Juniper Networks Create site
+      description: Creates a new site within an organization. Sites are the primary grouping for devices and network configuration.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          description: Site created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /sites/{site_id}:
+    get:
+      operationId: getSite
+      summary: Juniper Networks Get site
+      description: Returns the details of a specific site.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: Site returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSite
+      summary: Juniper Networks Update site
+      description: Updates the configuration of a site.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          description: Site updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSite
+      summary: Juniper Networks Delete site
+      description: Deletes a site and all associated configuration.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      responses:
+        '200':
+          description: Site deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions for the requested operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+    OrgId:
+      name: org_id
+      in: path
+      required: true
+      description: Organization unique identifier.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    Site:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Site unique identifier.
+        org_id:
+          type: string
+          format: uuid
+          description: Parent organization ID.
+        name:
+          type: string
+          description: Site name.
+        timezone:
+          type: string
+          description: Site timezone in IANA format (e.g., America/Los_Angeles).
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        address:
+          type: string
+          description: Physical address of the site.
+        latlng:
+          type: object
+          properties:
+            lat:
+              type: number
+              description: Latitude.
+            lng:
+              type: number
+              description: Longitude.
+        sitegroup_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Site group membership IDs.
+        rftemplate_id:
+          type: string
+          format: uuid
+          description: RF template applied to the site.
+        networktemplate_id:
+          type: string
+          format: uuid
+          description: Network template applied to the site.
+        created_time:
+          type: number
+          description: Creation timestamp in epoch seconds.
+        modified_time:
+          type: number
+          description: Last modification timestamp in epoch seconds.
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

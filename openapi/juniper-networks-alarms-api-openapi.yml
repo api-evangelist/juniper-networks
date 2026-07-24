@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Alarms
+  description: Alarm monitoring, acknowledgment, and notification configuration.
+paths:
+  /sites/{site_id}/alarms:
+    get:
+      operationId: listSiteAlarms
+      summary: Juniper Networks List site alarms
+      description: Returns active and recent alarms for a site. Alarms indicate device health issues, connectivity problems, and configuration anomalies detected by the Mist platform.
+      tags:
+      - Alarms
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: start
+        in: query
+        description: Start time epoch in seconds.
+        schema:
+          type: integer
+      - name: end
+        in: query
+        description: End time epoch in seconds.
+        schema:
+          type: integer
+      - name: type
+        in: query
+        description: Filter by alarm type.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Alarms returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alarm'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+    Alarm:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Alarm unique identifier.
+        type:
+          type: string
+          description: Alarm type identifier.
+        severity:
+          type: string
+          enum:
+          - critical
+          - warn
+          - info
+          description: Alarm severity level.
+        group:
+          type: string
+          description: Alarm group category.
+        count:
+          type: integer
+          description: Number of occurrences.
+        last_seen:
+          type: number
+          description: Last occurrence timestamp in epoch seconds.
+        acked:
+          type: boolean
+          description: Whether the alarm has been acknowledged.
+  responses:
+    Unauthorized:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

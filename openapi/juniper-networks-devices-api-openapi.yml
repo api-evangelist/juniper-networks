@@ -1,0 +1,408 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Devices API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Devices
+  description: Device discovery, management, and monitoring operations.
+paths:
+  /device-management/devices:
+    get:
+      operationId: listDevices
+      summary: Juniper Networks List managed devices
+      description: Returns all devices managed by Junos Space, including device name, IP address, platform, OS version, and connection status. Supports pagination and filtering by device family and platform.
+      tags:
+      - Devices
+      parameters:
+      - name: filter
+        in: query
+        description: 'Filter expression for device attributes. Example: deviceFamily eq ''junos'' and platform eq ''SRX''.'
+        schema:
+          type: string
+      - name: paging
+        in: query
+        description: Paging parameters in format (start, limit).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Devices returned.
+          content:
+            application/vnd.net.juniper.space.device-management.devices+json;version=2:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: object
+                    properties:
+                      device:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Device'
+                      '@total':
+                        type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: discoverDevice
+      summary: Juniper Networks Discover and add device
+      description: Initiates discovery of a Junos device by IP address or hostname. The device is added to Junos Space management after successful NETCONF connectivity verification.
+      tags:
+      - Devices
+      requestBody:
+        required: true
+        content:
+          application/vnd.net.juniper.space.device-management.discover-devices+json;version=2:
+            schema:
+              type: object
+              properties:
+                system-discovery-rule:
+                  type: object
+                  properties:
+                    ipAddressDiscoveryTarget:
+                      type: object
+                      properties:
+                        exclude:
+                          type: string
+                        ipAddress:
+                          type: string
+                          description: Target device IP address.
+                    usePing:
+                      type: boolean
+                    manageDiscoveredSystemsFlag:
+                      type: boolean
+                    sshCredential:
+                      type: object
+                      properties:
+                        userName:
+                          type: string
+                        password:
+                          type: string
+      responses:
+        '202':
+          description: Discovery job initiated.
+          content:
+            application/vnd.net.juniper.space.job-management.task+json;version=1:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /device-management/devices/{device_id}:
+    get:
+      operationId: getDevice
+      summary: Juniper Networks Get device details
+      description: Returns detailed information for a specific managed device.
+      tags:
+      - Devices
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device returned.
+          content:
+            application/vnd.net.juniper.space.device-management.device+json;version=2:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDevice
+      summary: Juniper Networks Remove device from management
+      description: Removes a device from Junos Space management. The device configuration on the device itself is not affected.
+      tags:
+      - Devices
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '204':
+          description: Device removed.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sites/{site_id}/devices:
+    get:
+      operationId: listSiteDevices
+      summary: Juniper Networks List site devices
+      description: Returns all devices assigned to a site, including access points, switches, and gateways.
+      tags:
+      - Devices
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: type
+        in: query
+        description: Filter by device type.
+        schema:
+          type: string
+          enum:
+          - ap
+          - switch
+          - gateway
+      responses:
+        '200':
+          description: Devices returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device_2'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+  /sites/{site_id}/devices/{device_id}:
+    get:
+      operationId: getSiteDevice
+      summary: Juniper Networks Get device
+      description: Returns details for a specific device at a site.
+      tags:
+      - Devices
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DeviceId_2'
+      responses:
+        '200':
+          description: Device returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device_2'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSiteDevice
+      summary: Juniper Networks Update device
+      description: Updates the configuration of a specific device.
+      tags:
+      - Devices
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DeviceId_2'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device_2'
+      responses:
+        '200':
+          description: Device updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device_2'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+components:
+  parameters:
+    SiteId:
+      name: site_id
+      in: path
+      required: true
+      description: Site unique identifier.
+      schema:
+        type: string
+        format: uuid
+    DeviceId:
+      name: device_id
+      in: path
+      required: true
+      description: Device unique identifier.
+      schema:
+        type: integer
+    DeviceId_2:
+      name: device_id
+      in: path
+      required: true
+      description: Device unique identifier.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized_2:
+      description: Authentication required or token invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    BadRequest:
+      description: Invalid request parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+    Device_2:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Device unique identifier.
+        org_id:
+          type: string
+          format: uuid
+          description: Organization ID.
+        site_id:
+          type: string
+          format: uuid
+          description: Site ID the device is assigned to.
+        name:
+          type: string
+          description: Device name.
+        type:
+          type: string
+          enum:
+          - ap
+          - switch
+          - gateway
+          description: Device type.
+        model:
+          type: string
+          description: Device hardware model (e.g., AP45, EX4100-48P, SRX320).
+        serial:
+          type: string
+          description: Device serial number.
+        mac:
+          type: string
+          description: Device MAC address.
+        ip:
+          type: string
+          description: Device management IP address.
+        version:
+          type: string
+          description: Current firmware version.
+        map_id:
+          type: string
+          format: uuid
+          description: Map where the device is placed.
+        x:
+          type: number
+          description: X coordinate on the map in pixels.
+        y:
+          type: number
+          description: Y coordinate on the map in pixels.
+    Job:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Job internal ID.
+        jobName:
+          type: string
+          description: Job name.
+        jobType:
+          type: string
+          description: Job type identifier.
+        jobState:
+          type: string
+          enum:
+          - ENABLED
+          - INPROGRESS
+          - SUCCESS
+          - FAILURE
+          - CANCELLED
+          description: Current job state.
+        percent:
+          type: number
+          description: Completion percentage.
+        createdByUserName:
+          type: string
+          description: User who created the job.
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          description: Job result summary.
+    Device:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Device internal ID.
+        name:
+          type: string
+          description: Device name.
+        ipAddr:
+          type: string
+          description: Management IP address.
+        platform:
+          type: string
+          description: Device platform (e.g., SRX340, EX4300, MX240).
+        deviceFamily:
+          type: string
+          description: Device family (e.g., junos, junos-es).
+        OSVersion:
+          type: string
+          description: Junos OS version.
+        serialNumber:
+          type: string
+          description: Hardware serial number.
+        connectionStatus:
+          type: string
+          enum:
+          - up
+          - down
+          description: NETCONF connection status.
+        managedStatus:
+          type: string
+          enum:
+          - In Sync
+          - Out Of Sync
+          - Space Changed
+          - Device Changed
+          description: Configuration synchronization status.
+        ManagedDnDomainName:
+          type: string
+          description: Domain name the device belongs to.
+    Error_2:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Human-readable error description.
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

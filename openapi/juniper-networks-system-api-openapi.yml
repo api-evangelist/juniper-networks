@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms System API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: System
+  description: System information and operational commands.
+paths:
+  /v1/system/information:
+    get:
+      operationId: getSystemInformation
+      summary: Juniper Networks Get system information
+      description: Returns system information including hostname, model, Junos version, serial number, and uptime.
+      tags:
+      - System
+      responses:
+        '200':
+          description: System information returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/system/alarms:
+    get:
+      operationId: listSystemAlarms
+      summary: Juniper Networks List system alarms
+      description: Returns active system alarms on the vSRX.
+      tags:
+      - System
+      responses:
+        '200':
+          description: System alarms returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alarms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SystemAlarm'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+    SystemInfo:
+      type: object
+      properties:
+        hostname:
+          type: string
+          description: Device hostname.
+        model:
+          type: string
+          description: Device model (e.g., vSRX, vSRX3.0).
+        junos_version:
+          type: string
+          description: Junos OS version.
+        serial_number:
+          type: string
+          description: Virtual serial number.
+        uptime:
+          type: string
+          description: System uptime string.
+        last_reboot_reason:
+          type: string
+          description: Reason for the last reboot.
+    SystemAlarm:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Alarm identifier.
+        severity:
+          type: string
+          enum:
+          - major
+          - minor
+          description: Alarm severity.
+        description:
+          type: string
+          description: Alarm description.
+        type:
+          type: string
+          description: Alarm type.
+        timestamp:
+          type: string
+          format: date-time
+          description: Alarm trigger time.
+  responses:
+    Unauthorized:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.

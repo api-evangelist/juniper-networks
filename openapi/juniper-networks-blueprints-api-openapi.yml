@@ -1,0 +1,341 @@
+openapi: 3.1.0
+info:
+  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Blueprints API
+  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
+  version: '4.2'
+  contact:
+    name: Juniper Networks Support
+    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  license:
+    name: Proprietary
+    url: https://www.juniper.net/us/en/legal-notices.html
+servers:
+- url: https://{apstra_server}/api
+  description: Apstra server API endpoint.
+  variables:
+    apstra_server:
+      description: Hostname or IP address of the Apstra server.
+      default: apstra.example.com
+security:
+- authToken: []
+tags:
+- name: Blueprints
+  description: Blueprint lifecycle management for data center network intent, including staging, commit, and deployment.
+paths:
+  /blueprints:
+    get:
+      operationId: listBlueprints
+      summary: Juniper Networks List blueprints
+      description: Returns all blueprints. Blueprints are instantiations of templates representing a specific data center network. They contain the full network graph including nodes, links, and configuration state.
+      tags:
+      - Blueprints
+      responses:
+        '200':
+          description: Blueprints returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BlueprintSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBlueprint
+      summary: Juniper Networks Create blueprint
+      description: Creates a new blueprint from a template. The blueprint will contain the initial network graph based on the template design.
+      tags:
+      - Blueprints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - label
+              - design
+              properties:
+                label:
+                  type: string
+                  description: Blueprint display name.
+                design:
+                  type: string
+                  enum:
+                  - two_stage_l3clos
+                  description: Blueprint design type.
+                init_type:
+                  type: string
+                  enum:
+                  - template_reference
+                  description: Initialization method.
+                template_id:
+                  type: string
+                  format: uuid
+                  description: Template ID to instantiate.
+      responses:
+        '201':
+          description: Blueprint created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintSummary'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /blueprints/{blueprint_id}:
+    get:
+      operationId: getBlueprint
+      summary: Juniper Networks Get blueprint
+      description: Returns details for a specific blueprint.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/BlueprintId'
+      responses:
+        '200':
+          description: Blueprint returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteBlueprint
+      summary: Juniper Networks Delete blueprint
+      description: Deletes a blueprint and its associated network graph.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/BlueprintId'
+      responses:
+        '204':
+          description: Blueprint deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /blueprints/{blueprint_id}/deploy:
+    put:
+      operationId: deployBlueprint
+      summary: Juniper Networks Deploy blueprint
+      description: Commits and deploys staged changes in the blueprint to the physical network devices. Generates device-specific configurations from the intent model and pushes them to managed switches.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/BlueprintId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                version:
+                  type: integer
+                  description: Blueprint version to deploy.
+                description:
+                  type: string
+                  description: Deployment description.
+      responses:
+        '200':
+          description: Deployment initiated.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Blueprint has no staged changes or version conflict.
+  /blueprints/{blueprint_id}/security-zones:
+    get:
+      operationId: listSecurityZones
+      summary: Juniper Networks List security zones (VRFs)
+      description: Returns all security zones (routing zones / VRFs) configured in the blueprint. Security zones provide network segmentation through VRF instances on leaf switches.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/BlueprintId'
+      responses:
+        '200':
+          description: Security zones returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/SecurityZone'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /blueprints/{blueprint_id}/virtual-networks:
+    get:
+      operationId: listVirtualNetworks
+      summary: Juniper Networks List virtual networks
+      description: Returns all virtual networks in the blueprint. Virtual networks represent VLANs/VXLANs provisioned across the fabric for workload connectivity.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/BlueprintId'
+      responses:
+        '200':
+          description: Virtual networks returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/VirtualNetwork'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters or malformed payload.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        errors:
+          type: string
+          description: Error message.
+    SecurityZone:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+          description: Security zone name.
+        vrf_name:
+          type: string
+          description: VRF name on devices.
+        routing_policy_id:
+          type: string
+          format: uuid
+          description: Associated routing policy.
+        vni_id:
+          type: integer
+          description: L3 VNI for the security zone.
+    VirtualNetwork:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+          description: Virtual network name.
+        vn_type:
+          type: string
+          enum:
+          - vxlan
+          description: Virtual network type.
+        vn_id:
+          type: string
+          description: VXLAN VNI.
+        security_zone_id:
+          type: string
+          format: uuid
+          description: Parent security zone.
+        bound_to:
+          type: array
+          items:
+            type: object
+            properties:
+              system_id:
+                type: string
+                format: uuid
+              vlan_id:
+                type: integer
+          description: Systems and VLAN IDs where the VN is bound.
+        ipv4_subnet:
+          type: string
+          description: IPv4 gateway subnet in CIDR notation.
+        virtual_gateway_ipv4:
+          type: string
+          description: Virtual gateway IPv4 address.
+    BlueprintSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Blueprint unique identifier.
+        label:
+          type: string
+          description: Blueprint label.
+        design:
+          type: string
+          description: Design type.
+        status:
+          type: string
+          description: Blueprint deployment status.
+        build_errors_count:
+          type: integer
+          description: Number of build errors.
+        build_warnings_count:
+          type: integer
+          description: Number of build warnings.
+        version:
+          type: integer
+          description: Current blueprint version.
+    Blueprint:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+        design:
+          type: string
+        version:
+          type: integer
+        nodes:
+          type: object
+          additionalProperties:
+            type: object
+          description: Blueprint graph nodes keyed by ID.
+        relationships:
+          type: object
+          additionalProperties:
+            type: object
+          description: Blueprint graph relationships keyed by ID.
+  parameters:
+    BlueprintId:
+      name: blueprint_id
+      in: path
+      required: true
+      description: Blueprint unique identifier.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: AuthToken
+      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.
