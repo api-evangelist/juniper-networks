@@ -17,7 +17,7 @@ image: https://www.juniper.net/content/dam/juniper/images/logos/juniper-networks
 url: https://www.juniper.net
 created: '2024'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - name: Junos PyEZ
   description: Python library for automating Junos devices using NETCONF.
