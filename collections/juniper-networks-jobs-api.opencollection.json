@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Jobs API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/job-management/jobs",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for job attributes."
+              }
+            ]
+          },
+          "docs": "Returns all asynchronous jobs with their status. Jobs are created for device discovery, configuration deployment, script execution, and other long-running operations."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/job-management/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Job unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the status and results of a specific job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

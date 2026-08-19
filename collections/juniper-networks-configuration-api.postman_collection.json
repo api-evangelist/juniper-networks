@@ -1,0 +1,1089 @@
+{
+  "item": [
+    {
+      "id": "94ec27cf-f138-4b5d-8b93-67c0e4787826",
+      "name": "Configuration",
+      "description": {
+        "content": "Configuration management, templates, and deployment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab954fe9-32ca-477f-84aa-2baa38ff5581",
+          "name": "Juniper Networks Get device running configuration",
+          "request": {
+            "name": "Juniper Networks Get device running configuration",
+            "description": {
+              "content": "Returns the current running configuration of a managed device in Junos set or XML format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-management",
+                "devices",
+                ":device_id",
+                "configurations",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "device_id",
+                  "description": "(Required) Device unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.device-management.device-configuration+json;version=1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9192867e-d191-439e-b0bf-7b017ffa9e77",
+              "name": "Configuration returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id",
+                    "configurations",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.device-management.device-configuration+json;version=1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.device-management.device-configuration+json;version=1"
+                }
+              ],
+              "body": "{\n  \"configuration\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6aba99a7-3a1d-4d6a-a819-21f7d05d6c12",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-management",
+                    "devices",
+                    ":device_id",
+                    "configurations",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "device_id",
+                      "description": "(Required) Device unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcd32405-72e5-4a64-9bb2-352fbbb3a68f",
+          "name": "Juniper Networks List CLI configlets",
+          "request": {
+            "name": "Juniper Networks List CLI configlets",
+            "description": {
+              "content": "Returns all CLI configlets (configuration templates) stored in Junos Space. Configlets are reusable configuration snippets with parameterized variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configuration-management",
+                "cli-configlets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0102a503-1f48-47ff-88c2-d3dbabf7be25",
+              "name": "Configlets returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration-management",
+                    "cli-configlets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.configuration-management.cli-configlets+json;version=1"
+                }
+              ],
+              "body": "{\n  \"configlets\": {\n    \"configlet\": [\n      {\n        \"@key\": 6734,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"cliConfigletContent\": \"string\",\n        \"executionType\": \"SingleExecution\"\n      },\n      {\n        \"@key\": 4974,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"cliConfigletContent\": \"string\",\n        \"executionType\": \"SingleExecution\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba1362c8-bc55-4d5e-8da2-dad6ea842976",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration-management",
+                    "cli-configlets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9aca1391-862e-4ad3-9eb9-2ba35d43f0fa",
+          "name": "Juniper Networks Apply configlet to devices",
+          "request": {
+            "name": "Juniper Networks Apply configlet to devices",
+            "description": {
+              "content": "Applies a CLI configlet to one or more managed devices. Variable values are provided in the request body and merged into the configlet template before deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configuration-management",
+                "cli-configlets",
+                ":configlet_id",
+                "apply-cli-configlet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "configlet_id",
+                  "description": "(Required) Configlet unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.net.juniper.space.configuration-management.apply-cli-configlet+json;version=1"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apply-cli-configlet-request\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"parameters\": {\n      \"key_0\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00148dfb-8680-4b37-8d82-90664bc89857",
+              "name": "Configlet application job initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration-management",
+                    "cli-configlets",
+                    ":configlet_id",
+                    "apply-cli-configlet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "configlet_id",
+                      "description": "(Required) Configlet unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply-cli-configlet-request\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"parameters\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                }
+              ],
+              "body": "{\n  \"@key\": 3831,\n  \"jobName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobState\": \"CANCELLED\",\n  \"percent\": 1563.5558078264633,\n  \"createdByUserName\": \"string\",\n  \"startTime\": \"1953-08-31T17:01:30.187Z\",\n  \"endTime\": \"1952-07-01T04:34:20.381Z\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "534f69ca-ecb6-4e2f-be90-6dbfcc477f13",
+          "name": "Juniper Networks Get device configuration",
+          "request": {
+            "name": "Juniper Networks Get device configuration",
+            "description": {
+              "content": "Returns the current candidate or committed Junos configuration in JSON or XML format. Supports filtering by configuration hierarchy path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "committed",
+                  "description": "Configuration database to read."
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Configuration hierarchy path to filter. Example: security/policies to return only security policy configuration."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eff1f74c-ae7e-42b4-a955-f89570fbe2d6",
+              "name": "Configuration returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "committed"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configuration\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8523a4a1-6982-483b-b5c8-f32c04dea342",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "committed"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8b3a602-0f8c-4e5a-b80d-56c40ae2f323",
+          "name": "Juniper Networks Update configuration",
+          "request": {
+            "name": "Juniper Networks Update configuration",
+            "description": {
+              "content": "Applies configuration changes to the candidate configuration. Changes must be committed separately to take effect.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"configuration\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe8996f7-9b82-498e-8f12-3126f3019d3b",
+              "name": "Configuration updated in candidate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "667c03ed-dae9-4386-8f48-47b79cf014ca",
+              "name": "Invalid request or configuration error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c15193dd-cac1-4012-9e20-1de95d0a14a2",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56e0d0d2-a9b8-489f-8a4f-a88992ba5c5d",
+          "name": "Juniper Networks Commit configuration",
+          "request": {
+            "name": "Juniper Networks Commit configuration",
+            "description": {
+              "content": "Commits the candidate configuration to the active running configuration. Supports commit check, commit confirm with rollback timer, and commit comments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "configuration",
+                "commit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commit\": {\n    \"check\": \"<boolean>\",\n    \"confirm\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f03c91ef-2346-4e1f-8224-233bc404e0b4",
+              "name": "Configuration committed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commit\": {\n    \"check\": \"<boolean>\",\n    \"confirm\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "932e4387-7480-4450-81ba-504a830f8b12",
+              "name": "Commit failed due to configuration errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "configuration",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commit\": {\n    \"check\": \"<boolean>\",\n    \"confirm\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c4f1d3b-f8f7-4fed-ae1e-2fc5dd1ca655",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

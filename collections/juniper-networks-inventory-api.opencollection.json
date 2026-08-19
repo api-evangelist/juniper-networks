@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Inventory API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List organization inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/orgs/:org_id/inventory",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              },
+              {
+                "name": "serial",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device serial number."
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device model."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type."
+              }
+            ]
+          },
+          "docs": "Returns all devices in the organization inventory, including claimed devices that may or may not be assigned to sites."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update inventory assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apstra_server}/api/orgs/:org_id/inventory",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns or unassigns devices from sites within the organization inventory. Used to move devices between sites or release them from site assignment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

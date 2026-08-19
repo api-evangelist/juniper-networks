@@ -1,0 +1,257 @@
+{
+  "item": [
+    {
+      "id": "4c91d219-64f3-401c-a252-510ec665b785",
+      "name": "Monitoring",
+      "description": {
+        "content": "Device and session monitoring operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b220989-853f-407c-a199-f5f96e96495f",
+          "name": "Juniper Networks List active flow sessions",
+          "request": {
+            "name": "Juniper Networks List active flow sessions",
+            "description": {
+              "content": "Returns currently active security flow sessions on the vSRX. Equivalent to the show security flow session CLI command.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "monitoring",
+                "security",
+                "flow",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "source_prefix",
+                  "value": "<string>",
+                  "description": "Filter by source IP prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_prefix",
+                  "value": "<string>",
+                  "description": "Filter by destination IP prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application name."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61f9b3b3-b28a-475c-959a-ed5c31f807fe",
+              "name": "Flow sessions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "monitoring",
+                    "security",
+                    "flow",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "source_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_sessions\": 1394,\n  \"sessions\": [\n    {\n      \"session_id\": 8303,\n      \"policy\": \"string\",\n      \"source_address\": \"string\",\n      \"source_port\": 7759,\n      \"destination_address\": \"string\",\n      \"destination_port\": 6493,\n      \"protocol\": \"string\",\n      \"application\": \"string\",\n      \"in_interface\": \"string\",\n      \"out_interface\": \"string\",\n      \"bytes_in\": 7838,\n      \"bytes_out\": 1668,\n      \"duration\": 169\n    },\n    {\n      \"session_id\": 7777,\n      \"policy\": \"string\",\n      \"source_address\": \"string\",\n      \"source_port\": 4157,\n      \"destination_address\": \"string\",\n      \"destination_port\": 6488,\n      \"protocol\": \"string\",\n      \"application\": \"string\",\n      \"in_interface\": \"string\",\n      \"out_interface\": \"string\",\n      \"bytes_in\": 7898,\n      \"bytes_out\": 8255,\n      \"duration\": 1489\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71dc8083-edfc-4876-9ade-0ec904ceecc4",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "monitoring",
+                    "security",
+                    "flow",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "source_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2acbca98-ea0d-4085-8bef-8388bdd0b912",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Monitoring API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

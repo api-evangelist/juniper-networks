@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Devices API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List managed devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/device-management/devices",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression for device attributes. Example: deviceFamily eq 'junos' and platform eq 'SRX'."
+              },
+              {
+                "name": "paging",
+                "value": "",
+                "type": "query",
+                "description": "Paging parameters in format (start, limit)."
+              }
+            ]
+          },
+          "docs": "Returns all devices managed by Junos Space, including device name, IP address, platform, OS version, and connection status. Supports pagination and filtering by device family and platform."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Discover and add device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/device-management/devices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates discovery of a Junos device by IP address or hostname. The device is added to Junos Space management after successful NETCONF connectivity verification."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get device details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/device-management/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific managed device."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Remove device from management",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apstra_server}/api/device-management/devices/:device_id",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Removes a device from Junos Space management. The device configuration on the device itself is not affected."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List site devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/sites/:site_id/devices",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type."
+              }
+            ]
+          },
+          "docs": "Returns all devices assigned to a site, including access points, switches, and gateways."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/sites/:site_id/devices/:device_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific device at a site."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apstra_server}/api/sites/:site_id/devices/:device_id",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific device."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

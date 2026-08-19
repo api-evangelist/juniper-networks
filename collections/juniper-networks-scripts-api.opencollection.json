@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Scripts API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/script-management/scripts"
+          },
+          "docs": "Returns all scripts uploaded to Junos Space. Scripts can be SLAX, XSLT, Python, or commit scripts for execution on managed Junos devices."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Execute script on devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/script-management/scripts/:script_id/exec-scripts",
+            "params": [
+              {
+                "name": "script_id",
+                "value": "",
+                "type": "path",
+                "description": "Script unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a script on one or more managed devices. Returns a job ID for tracking execution status and retrieving results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

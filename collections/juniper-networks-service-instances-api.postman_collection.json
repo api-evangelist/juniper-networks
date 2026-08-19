@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "7971c083-766b-4590-9a22-dcda179151f0",
+      "name": "Service Instances",
+      "description": {
+        "content": "Network function service instance management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "97c5a92a-9c7f-4d6d-b0a6-5d28c79b1582",
+          "name": "Juniper Networks List service instances",
+          "request": {
+            "name": "Juniper Networks List service instances",
+            "description": {
+              "content": "Returns all service instances. Service instances represent deployed network functions (firewall, load balancer, etc.) inserted into a service chain between virtual networks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "service-instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0580c9ed-0618-497e-b463-7e914e5d7ce9",
+              "name": "Service instances returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service-instances\": [\n    {\n      \"href\": \"https://JfgytQcAFEuTkjxNlmLwyvpOHnz.fnjbOyiLmxnt+mlZ4A.ZMAHEfOA2lNia3lqRob6PkB2h+NKpxbgtMcHljrWL5NlA5ISxKKbvqtBNg\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"bac36236-831b-c494-8172-cf8c1b7afff0\"\n    },\n    {\n      \"href\": \"http://f.etVS8wsa\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"19a10bd7-6c03-eca5-520d-7661abf150ca\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a674a432-1162-49c8-9e34-ce311e030420",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a4037b2-aca2-4076-b9e2-9fcb3e519f48",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Service Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

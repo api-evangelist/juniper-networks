@@ -1,0 +1,203 @@
+{
+  "item": [
+    {
+      "id": "81a57f3f-f6f3-4ff5-aec2-c06e66182ef1",
+      "name": "Users",
+      "description": {
+        "content": "User and role-based access control management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e619c324-980f-47f7-9734-d4b57975b755",
+          "name": "Juniper Networks List users",
+          "request": {
+            "name": "Juniper Networks List users",
+            "description": {
+              "content": "Returns all user accounts configured in Junos Space, including role assignments and domain access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user-management",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.user-management.users+json;version=1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0c78ff6-7667-4b69-8bfe-913a50ecf635",
+              "name": "Users returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-management",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.user-management.users+json;version=1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.user-management.users+json;version=1"
+                }
+              ],
+              "body": "{\n  \"users\": {\n    \"user\": [\n      {\n        \"@key\": 3542,\n        \"name\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"6Kc4@LBrgbAHEgnboAgnUuhJ.jo\",\n        \"status\": \"Disabled\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"@key\": 6692,\n        \"name\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"B8Am@NXNjgLIZhpCjNWJjzBGQZtN.hlu\",\n        \"status\": \"Disabled\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e3f2e4a-9871-49d4-a1c9-22230d819d9b",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-management",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8e59b528-5bd6-4c4e-89de-ce1d24e9fde2",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

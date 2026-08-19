@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Virtual Networks API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Networks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List virtual networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/virtual-networks",
+            "params": [
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent project UUID."
+              },
+              {
+                "name": "detail",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns full object details instead of references."
+              }
+            ]
+          },
+          "docs": "Returns all virtual networks accessible to the authenticated user. Virtual networks are the core abstraction in Contrail, representing isolated Layer 2/3 network segments with VXLAN/MPLS encapsulation."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/virtual-networks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new virtual network. The network is automatically assigned a VXLAN VNI and route targets for BGP EVPN control plane operation."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/virtual-network/:vn_id",
+            "params": [
+              {
+                "name": "vn_id",
+                "value": "",
+                "type": "path",
+                "description": "Virtual network UUID."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific virtual network."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apstra_server}/api/virtual-network/:vn_id",
+            "params": [
+              {
+                "name": "vn_id",
+                "value": "",
+                "type": "path",
+                "description": "Virtual network UUID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates properties of a virtual network."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Delete virtual network",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apstra_server}/api/virtual-network/:vn_id",
+            "params": [
+              {
+                "name": "vn_id",
+                "value": "",
+                "type": "path",
+                "description": "Virtual network UUID."
+              }
+            ]
+          },
+          "docs": "Deletes a virtual network and releases associated resources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

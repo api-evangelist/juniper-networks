@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "81509977-f4eb-40e1-b1fe-ab9c640a552b",
+      "name": "BGP Routers",
+      "description": {
+        "content": "BGP router and peering configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aee16378-d6e8-4dbf-8104-2ac3303a5f55",
+          "name": "Juniper Networks List BGP routers",
+          "request": {
+            "name": "Juniper Networks List BGP routers",
+            "description": {
+              "content": "Returns all BGP router objects. BGP routers represent control plane nodes in the Contrail cluster including control nodes, compute nodes, and external MX/physical routers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgp-routers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3edbbc33-104f-41c9-b733-007697f4d445",
+              "name": "BGP routers returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgp-routers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bgp-routers\": [\n    {\n      \"href\": \"https://yBkKFxSeSsOJJuADrPgQaPCLNXJaO.xhfckdpjhDK.iJ7-1wuBw1yKMHVYuba0sWGHpeUogHV772\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"e2dc13dd-1afe-d02a-1d48-ceba94e9448a\"\n    },\n    {\n      \"href\": \"https://rpwoKjMBgJNrRnR.iichvnoK-RTZ2LgGgrMLuzZzCdjijCjvSAAbqLVzCQGZFZmhc4IG\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"d16bd33d-bf36-6f49-4d07-bfba46f5f675\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d9c86aa-e8e9-4362-bfc8-99b90644720a",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgp-routers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f61a7b91-5f48-426f-80ae-c2e1d498eb04",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms BGP Routers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

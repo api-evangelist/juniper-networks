@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Clients API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List client statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/sites/:site_id/stats/clients",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time epoch in seconds."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time epoch in seconds."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results."
+              }
+            ]
+          },
+          "docs": "Returns statistics for wireless clients connected at a site, including signal strength, data usage, and connection quality metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

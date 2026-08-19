@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Insights API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List Marvis actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/sites/:site_id/insights/marvis",
+            "params": [
+              {
+                "name": "site_id",
+                "value": "",
+                "type": "path",
+                "description": "Site unique identifier."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time epoch in seconds."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time epoch in seconds."
+              }
+            ]
+          },
+          "docs": "Returns AI-driven Marvis actions for a site. Marvis uses machine learning to identify network issues, anomalies, and optimization opportunities. Actions include recommended fixes for AP health, client connectivity, and capacity issues."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

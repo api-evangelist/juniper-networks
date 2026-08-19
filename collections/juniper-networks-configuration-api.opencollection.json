@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Configuration API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Get device running configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/device-management/devices/:device_id/configurations/raw",
+            "params": [
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Device unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the current running configuration of a managed device in Junos set or XML format."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List CLI configlets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/configuration-management/cli-configlets"
+          },
+          "docs": "Returns all CLI configlets (configuration templates) stored in Junos Space. Configlets are reusable configuration snippets with parameterized variables."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Apply configlet to devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/configuration-management/cli-configlets/:configlet_id/apply-cli-configlet",
+            "params": [
+              {
+                "name": "configlet_id",
+                "value": "",
+                "type": "path",
+                "description": "Configlet unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a CLI configlet to one or more managed devices. Variable values are provided in the request body and merged into the configlet template before deployment."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get device configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/v1/configuration",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Configuration database to read."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Configuration hierarchy path to filter. Example: security/policies to return only security policy configuration."
+              }
+            ]
+          },
+          "docs": "Returns the current candidate or committed Junos configuration in JSON or XML format. Supports filtering by configuration hierarchy path."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Update configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apstra_server}/api/v1/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies configuration changes to the candidate configuration. Changes must be committed separately to take effect."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Commit configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/v1/configuration/commit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits the candidate configuration to the active running configuration. Supports commit check, commit confirm with rollback timer, and commit comments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

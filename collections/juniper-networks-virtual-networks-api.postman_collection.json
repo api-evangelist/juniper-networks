@@ -1,0 +1,911 @@
+{
+  "item": [
+    {
+      "id": "28361266-4215-4f3a-b1b8-35a425e4d0a5",
+      "name": "Virtual Networks",
+      "description": {
+        "content": "Virtual network creation and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a411fb2-4865-4e9a-b95d-712c5d0f44d3",
+          "name": "Juniper Networks List virtual networks",
+          "request": {
+            "name": "Juniper Networks List virtual networks",
+            "description": {
+              "content": "Returns all virtual networks accessible to the authenticated user. Virtual networks are the core abstraction in Contrail, representing isolated Layer 2/3 network segments with VXLAN/MPLS encapsulation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<uuid>",
+                  "description": "Filter by parent project UUID."
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "<boolean>",
+                  "description": "When true, returns full object details instead of references."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11f7072c-6ff8-441e-a5bb-212c9ae58fe2",
+              "name": "Virtual networks returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parent_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-networks\": [\n    {\n      \"href\": \"https://IVls.exSeil7GAkSyIL7cRSq1YacZZ4MS7L\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"8d76ba43-50ea-dfa2-9bd4-e90780fd0d33\"\n    },\n    {\n      \"href\": \"http://gwUjOpceEUOYeqGVXlEMDr.ixmmVG,ggukF34TYxUwadt7PDi3ERx3aUMQJizEi4d\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"68640e64-ef9b-84b4-8d75-97e8f27bd5ff\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba3c84c1-cdb0-4d94-a5ef-46b73ab417a3",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parent_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "519685a1-e637-4aab-9851-5a215fc38ed2",
+          "name": "Juniper Networks Create virtual network",
+          "request": {
+            "name": "Juniper Networks Create virtual network",
+            "description": {
+              "content": "Creates a new virtual network. The network is automatically assigned a VXLAN VNI and route targets for BGP EVPN control plane operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"display_name\": \"<string>\",\n    \"parent_type\": \"<string>\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": \"<integer>\",\n      \"forwarding_mode\": \"<string>\",\n      \"rpf\": \"<string>\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"is_shared\": \"<boolean>\",\n    \"router_external\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc330790-78e7-4f2e-a951-81fe0267eef0",
+              "name": "Virtual network created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"827735b7-0e58-6203-acd3-6b2dcc978471\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 9245,\n      \"forwarding_mode\": \"l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2238\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6023\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9651\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6468\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-network\": {\n    \"uuid\": \"827735b7-0e58-6203-acd3-6b2dcc978471\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 9245,\n      \"forwarding_mode\": \"l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2238\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6023\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9651\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6468\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ede31bc1-1e85-438f-a58c-6fba7eb24176",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"827735b7-0e58-6203-acd3-6b2dcc978471\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 9245,\n      \"forwarding_mode\": \"l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2238\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6023\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9651\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6468\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58d55581-b085-45b8-a84b-71a847d1b095",
+          "name": "Juniper Networks Get virtual network",
+          "request": {
+            "name": "Juniper Networks Get virtual network",
+            "description": {
+              "content": "Returns details for a specific virtual network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-network",
+                ":vn_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vn_id",
+                  "description": "(Required) Virtual network UUID."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62a34e05-0ccf-4816-8df4-48efc507b198",
+              "name": "Virtual network returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-network\": {\n    \"uuid\": \"827735b7-0e58-6203-acd3-6b2dcc978471\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 9245,\n      \"forwarding_mode\": \"l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2238\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6023\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9651\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6468\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "760d8753-66d7-4b73-b482-0238fefe0d91",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8029104-dd41-4573-acab-c35f4e2cf9b2",
+          "name": "Juniper Networks Update virtual network",
+          "request": {
+            "name": "Juniper Networks Update virtual network",
+            "description": {
+              "content": "Updates properties of a virtual network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-network",
+                ":vn_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vn_id",
+                  "description": "(Required) Virtual network UUID."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"display_name\": \"<string>\",\n    \"parent_type\": \"<string>\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": \"<integer>\",\n      \"forwarding_mode\": \"<string>\",\n      \"rpf\": \"<string>\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              },\n              \"default_gateway\": \"<string>\",\n              \"dns_server_address\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"is_shared\": \"<boolean>\",\n    \"router_external\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "380c5083-6665-4552-8571-e9389d941935",
+              "name": "Virtual network updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"827735b7-0e58-6203-acd3-6b2dcc978471\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 9245,\n      \"forwarding_mode\": \"l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2238\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6023\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9651\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6468\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e707b1a-2c5e-436c-b607-7766453f3c66",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-network\": {\n    \"uuid\": \"827735b7-0e58-6203-acd3-6b2dcc978471\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"display_name\": \"string\",\n    \"parent_type\": \"string\",\n    \"virtual_network_properties\": {\n      \"vxlan_network_identifier\": 9245,\n      \"forwarding_mode\": \"l3\",\n      \"rpf\": \"disable\"\n    },\n    \"network_ipam_refs\": [\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2238\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6023\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      },\n      {\n        \"to\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attr\": {\n          \"ipam_subnets\": [\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9651\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            },\n            {\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 6468\n              },\n              \"default_gateway\": \"string\",\n              \"dns_server_address\": \"string\"\n            }\n          ]\n        }\n      }\n    ],\n    \"route_target_list\": {\n      \"route_target\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"is_shared\": false,\n    \"router_external\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea1e9d94-adfe-4a81-8930-7d78878e5a89",
+          "name": "Juniper Networks Delete virtual network",
+          "request": {
+            "name": "Juniper Networks Delete virtual network",
+            "description": {
+              "content": "Deletes a virtual network and releases associated resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-network",
+                ":vn_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vn_id",
+                  "description": "(Required) Virtual network UUID."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "668b1b11-35eb-49c6-a35f-fc181043ae2b",
+              "name": "Virtual network deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2da23c1b-89ba-43b0-b724-c58051c314fe",
+              "name": "Virtual network has active references and cannot be deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-network",
+                    ":vn_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vn_id",
+                      "description": "(Required) Virtual network UUID."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1200383f-04a2-49fa-987b-e49ea7a50abc",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Virtual Networks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

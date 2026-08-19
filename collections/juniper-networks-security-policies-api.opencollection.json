@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Security Policies API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List security policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/v1/security/policies"
+          },
+          "docs": "Returns all security policies configured on the vSRX. Policies are organized by from-zone to-zone pairs and evaluated top-down."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List security zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/v1/security/zones"
+          },
+          "docs": "Returns all security zones configured on the vSRX. Zones are logical groupings of interfaces that define trust boundaries for policy enforcement."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

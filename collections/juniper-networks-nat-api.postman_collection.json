@@ -1,0 +1,360 @@
+{
+  "item": [
+    {
+      "id": "4c208345-9d28-4c0c-b92d-3f5fafcd1f74",
+      "name": "NAT",
+      "description": {
+        "content": "Network address translation rule management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9b3ba79-9069-4b2c-bd1c-1b5caa888cc3",
+          "name": "Juniper Networks List source NAT rules",
+          "request": {
+            "name": "Juniper Networks List source NAT rules",
+            "description": {
+              "content": "Returns all source NAT rule sets and rules. Source NAT translates the source IP address of outbound traffic for internet access or address hiding.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "nat",
+                "source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d74cb5df-80ca-4705-b4ad-6e95e970420a",
+              "name": "Source NAT rules returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"source-nat-rules\": [\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 9143\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 6497\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 894\n          },\n          \"then\": {\n            \"type\": \"false\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 7761\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "649ae9b0-023e-4c5a-b2d0-925b73edec09",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cd7c701-4db7-44aa-8b63-beda42733e4c",
+          "name": "Juniper Networks List destination NAT rules",
+          "request": {
+            "name": "Juniper Networks List destination NAT rules",
+            "description": {
+              "content": "Returns all destination NAT rule sets and rules. Destination NAT translates destination addresses for inbound traffic to internal server addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "nat",
+                "destination"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e2d2ef9-32bc-4ffb-8acf-1c80d2828cb8",
+              "name": "Destination NAT rules returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"destination-nat-rules\": [\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 4274\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 1645\n          },\n          \"then\": {\n            \"type\": \"pool\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"from\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"to\": {\n        \"zone\": \"string\",\n        \"interface\": \"string\"\n      },\n      \"rules\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 3911\n          },\n          \"then\": {\n            \"type\": \"interface\",\n            \"pool_name\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_port\": 866\n          },\n          \"then\": {\n            \"type\": \"false\",\n            \"pool_name\": \"string\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ec3159a-b0a8-45d1-bbec-ff1e0defdb38",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "nat",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bdb01c27-ea4a-4efd-aab7-1738eed8eab4",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms NAT API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

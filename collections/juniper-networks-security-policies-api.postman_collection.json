@@ -1,0 +1,354 @@
+{
+  "item": [
+    {
+      "id": "da31a19f-917b-4aa0-a0e8-b1770fca73ed",
+      "name": "Security Policies",
+      "description": {
+        "content": "Security policy and zone management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "813b63da-1538-470f-9b4f-6b313233eb8b",
+          "name": "Juniper Networks List security policies",
+          "request": {
+            "name": "Juniper Networks List security policies",
+            "description": {
+              "content": "Returns all security policies configured on the vSRX. Policies are organized by from-zone to-zone pairs and evaluated top-down.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63a258bf-8405-4cab-ba6d-8c709fa669ef",
+              "name": "Security policies returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"security-policies\": [\n    {\n      \"from_zone\": \"string\",\n      \"to_zone\": \"string\",\n      \"policies\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"deny\",\n            \"log\": false,\n            \"count\": false\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"reject\",\n            \"log\": false,\n            \"count\": true\n          }\n        }\n      ]\n    },\n    {\n      \"from_zone\": \"string\",\n      \"to_zone\": \"string\",\n      \"policies\": [\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"reject\",\n            \"log\": true,\n            \"count\": true\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"match\": {\n            \"source_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"destination_address\": [\n              \"string\",\n              \"string\"\n            ],\n            \"application\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"then\": {\n            \"action\": \"reject\",\n            \"log\": false,\n            \"count\": false\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52a4efef-b255-41fd-9e69-38068cab43c2",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abfae5f4-c2a1-45f6-96ef-1f56dc02cd8b",
+          "name": "Juniper Networks List security zones",
+          "request": {
+            "name": "Juniper Networks List security zones",
+            "description": {
+              "content": "Returns all security zones configured on the vSRX. Zones are logical groupings of interfaces that define trust boundaries for policy enforcement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "security",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02a06871-4fbc-42ad-8845-0a76a5cbea36",
+              "name": "Security zones returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"security-zones\": [\n    {\n      \"name\": \"string\",\n      \"interfaces\": [\n        \"string\",\n        \"string\"\n      ],\n      \"host_inbound_traffic\": {\n        \"system_services\": [\n          \"string\",\n          \"string\"\n        ],\n        \"protocols\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"screen\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"interfaces\": [\n        \"string\",\n        \"string\"\n      ],\n      \"host_inbound_traffic\": {\n        \"system_services\": [\n          \"string\",\n          \"string\"\n        ],\n        \"protocols\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"screen\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c50ba52f-0f7c-4e78-a03e-760ea6862fdf",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "security",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1f36e1b3-7b30-4e94-b791-a2b218625e29",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Security Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

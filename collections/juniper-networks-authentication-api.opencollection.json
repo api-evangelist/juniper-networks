@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Authentication API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks Authenticate and obtain token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/aaa/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates with username and password, returns an authentication token for subsequent API calls. The token must be passed in the AuthToken header for all authenticated endpoints."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Logout and invalidate token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/aaa/logout"
+          },
+          "docs": "Invalidates the current authentication token."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get current user information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/self"
+          },
+          "docs": "Returns the profile of the currently authenticated user, including organization and site-level privileges, email, and name."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List API tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/self/apitokens"
+          },
+          "docs": "Returns all API tokens created by the authenticated user. API tokens provide bearer token authentication as an alternative to session-based login and are scoped to the user's permissions."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/self/apitokens"
+          },
+          "docs": "Creates a new API token for the authenticated user. The token inherits the user's organization and site privileges."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

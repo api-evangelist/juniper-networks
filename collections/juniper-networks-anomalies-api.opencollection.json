@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Anomalies API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Anomalies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List blueprint anomalies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/anomalies",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns anomalies detected in a blueprint. Anomalies represent deviations between the intended state defined in the blueprint and the actual state observed on network devices. Includes configuration drift, cabling issues, and BGP session problems."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,371 @@
+{
+  "item": [
+    {
+      "id": "ebace64d-65b5-48cf-b29e-22f75bdf6d06",
+      "name": "Network Policies",
+      "description": {
+        "content": "Network policy rules for traffic control between virtual networks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f4043b3-ffb0-45b5-a2ae-4070d280bb7b",
+          "name": "Juniper Networks List network policies",
+          "request": {
+            "name": "Juniper Networks List network policies",
+            "description": {
+              "content": "Returns all network policies. Network policies define rules that control traffic flow between virtual networks, including allow, deny, and service chain actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-policys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfbadd7e-7f78-4ade-873d-6baf00ac2b4b",
+              "name": "Network policies returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"network-policys\": [\n    {\n      \"href\": \"https://BiuXWEiCYFlAroSdXfqagk.yxooZpHjaWm5DbjGYt\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"7be361ff-df4e-c303-b14f-9d14676a51ba\"\n    },\n    {\n      \"href\": \"http://ECkTPLF.zxfspO-d,h\",\n      \"fq_name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uuid\": \"342ad3fb-0975-8319-7f50-533aa8c7f3e5\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7f9a5c5-2268-412d-bede-c0ef99c1c31f",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b587aa78-0bc2-4a86-8af0-6db4df7c89b0",
+          "name": "Juniper Networks Create network policy",
+          "request": {
+            "name": "Juniper Networks Create network policy",
+            "description": {
+              "content": "Creates a new network policy with traffic control rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network-policys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network-policy\": {\n    \"uuid\": \"<uuid>\",\n    \"fq_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"action_list\": {\n            \"simple_action\": \"<string>\",\n            \"apply_service\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"direction\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"action_list\": {\n            \"simple_action\": \"<string>\",\n            \"apply_service\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\",\n              \"subnet\": {\n                \"ip_prefix\": \"<string>\",\n                \"ip_prefix_len\": \"<integer>\"\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            },\n            {\n              \"virtual_network\": \"<string>\",\n              \"security_group\": \"<string>\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            },\n            {\n              \"start_port\": \"<integer>\",\n              \"end_port\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48543cae-8162-48d0-ab20-b6403a8545f2",
+              "name": "Network policy created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network-policy\": {\n    \"uuid\": \"c0cb8451-b0a9-63f8-f9c4-592858300c7b\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 4284\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2229\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 8322,\n              \"end_port\": 1034\n            },\n            {\n              \"start_port\": 7896,\n              \"end_port\": 3347\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 7357,\n              \"end_port\": 4757\n            },\n            {\n              \"start_port\": 2505,\n              \"end_port\": 9477\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"deny\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9224\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1742\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 3038,\n              \"end_port\": 8398\n            },\n            {\n              \"start_port\": 9587,\n              \"end_port\": 5015\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 8733,\n              \"end_port\": 3899\n            },\n            {\n              \"start_port\": 3253,\n              \"end_port\": 8435\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"network-policy\": {\n    \"uuid\": \"c0cb8451-b0a9-63f8-f9c4-592858300c7b\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 4284\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2229\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 8322,\n              \"end_port\": 1034\n            },\n            {\n              \"start_port\": 7896,\n              \"end_port\": 3347\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 7357,\n              \"end_port\": 4757\n            },\n            {\n              \"start_port\": 2505,\n              \"end_port\": 9477\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"deny\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9224\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1742\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 3038,\n              \"end_port\": 8398\n            },\n            {\n              \"start_port\": 9587,\n              \"end_port\": 5015\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 8733,\n              \"end_port\": 3899\n            },\n            {\n              \"start_port\": 3253,\n              \"end_port\": 8435\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9c1cb49-0d6f-4842-b296-76ab9645f05e",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network-policys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network-policy\": {\n    \"uuid\": \"c0cb8451-b0a9-63f8-f9c4-592858300c7b\",\n    \"fq_name\": [\n      \"string\",\n      \"string\"\n    ],\n    \"network_policy_entries\": {\n      \"policy_rule\": [\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"pass\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 4284\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 2229\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 8322,\n              \"end_port\": 1034\n            },\n            {\n              \"start_port\": 7896,\n              \"end_port\": 3347\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 7357,\n              \"end_port\": 4757\n            },\n            {\n              \"start_port\": 2505,\n              \"end_port\": 9477\n            }\n          ]\n        },\n        {\n          \"direction\": \">\",\n          \"protocol\": \"string\",\n          \"action_list\": {\n            \"simple_action\": \"deny\",\n            \"apply_service\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"src_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 9224\n              }\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\",\n              \"subnet\": {\n                \"ip_prefix\": \"string\",\n                \"ip_prefix_len\": 1742\n              }\n            }\n          ],\n          \"dst_addresses\": [\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            },\n            {\n              \"virtual_network\": \"string\",\n              \"security_group\": \"string\"\n            }\n          ],\n          \"src_ports\": [\n            {\n              \"start_port\": 3038,\n              \"end_port\": 8398\n            },\n            {\n              \"start_port\": 9587,\n              \"end_port\": 5015\n            }\n          ],\n          \"dst_ports\": [\n            {\n              \"start_port\": 8733,\n              \"end_port\": 3899\n            },\n            {\n              \"start_port\": 3253,\n              \"end_port\": 8435\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0f768a9a-ba08-4766-801f-282b61320ab6",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Network Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

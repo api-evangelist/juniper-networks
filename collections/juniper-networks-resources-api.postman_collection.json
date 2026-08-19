@@ -1,0 +1,667 @@
+{
+  "item": [
+    {
+      "id": "331d334f-07f7-441f-80ed-4abd0e7c61ae",
+      "name": "Resources",
+      "description": {
+        "content": "Resource pool management for ASN, IP, and VNI allocation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a644383c-70fa-409f-ab05-3775d3ac2974",
+          "name": "Juniper Networks List ASN pools",
+          "request": {
+            "name": "Juniper Networks List ASN pools",
+            "description": {
+              "content": "Returns all ASN (Autonomous System Number) pools. ASN pools are allocated to spine and leaf switches for BGP peering in the data center fabric.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "asn-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6b4efcb-fcd2-432d-b1b2-399b3015fdee",
+              "name": "ASN pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"625fc99b-ba35-81c3-2146-11e443f6d98f\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 9020,\n          \"last\": 9205\n        },\n        {\n          \"first\": 7080,\n          \"last\": 3982\n        }\n      ],\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"6c316d02-0d35-00ca-cf48-327e22f83905\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 4317,\n          \"last\": 9764\n        },\n        {\n          \"first\": 8512,\n          \"last\": 352\n        }\n      ],\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb9b6264-0d4c-476f-b9de-58518f40312e",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0c1db91-04d8-4ac3-a3df-05c61bb8e787",
+          "name": "Juniper Networks Create ASN pool",
+          "request": {
+            "name": "Juniper Networks Create ASN pool",
+            "description": {
+              "content": "Creates a new ASN pool with defined ranges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "asn-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"ranges\": [\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    },\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "609a100a-2dc7-47c4-ab98-704383343816",
+              "name": "ASN pool created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"ranges\": [\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    },\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"504d2b1a-6855-cf2b-62cd-ffcac681cea4\",\n  \"display_name\": \"string\",\n  \"ranges\": [\n    {\n      \"first\": 1881,\n      \"last\": 3987\n    },\n    {\n      \"first\": 2128,\n      \"last\": 7102\n    }\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6c9101f-521c-43f3-93a4-4cb6eb8fc9db",
+              "name": "Invalid request parameters or malformed payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "asn-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"ranges\": [\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    },\n    {\n      \"first\": \"<integer>\",\n      \"last\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0731701d-313b-4b8d-a584-a97fa46afa28",
+          "name": "Juniper Networks List IP pools",
+          "request": {
+            "name": "Juniper Networks List IP pools",
+            "description": {
+              "content": "Returns all IP address pools. IP pools are used to allocate loopback addresses, fabric link subnets, and virtual network gateways across the data center fabric.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "ip-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3634a2e-93e7-427f-a2b0-b538aa7f4fe5",
+              "name": "IP pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "ip-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"bf2156aa-8b9d-eb6f-c698-cf80e2daa00d\",\n      \"display_name\": \"string\",\n      \"subnets\": [\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        },\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"c7a8f16c-ca4d-555d-db13-d31c3116b012\",\n      \"display_name\": \"string\",\n      \"subnets\": [\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        },\n        {\n          \"network\": \"string\",\n          \"status\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cf28673-f8c0-4954-b436-e817154a3019",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "ip-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1b41904-fa4d-4d93-8ee0-3b6e02155171",
+          "name": "Juniper Networks List VNI pools",
+          "request": {
+            "name": "Juniper Networks List VNI pools",
+            "description": {
+              "content": "Returns all VNI (VXLAN Network Identifier) pools. VNI pools provide unique identifiers for VXLAN tunnels used in the EVPN-VXLAN fabric overlay.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vni-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0521ecc-2997-4f22-b6b8-645b2ca83497",
+              "name": "VNI pools returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vni-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"ae3e7f6c-2816-94d5-c998-f4448db0f783\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 5317,\n          \"last\": 2684\n        },\n        {\n          \"first\": 2037,\n          \"last\": 4512\n        }\n      ]\n    },\n    {\n      \"id\": \"795452ad-f8d5-107d-b282-ad00fa887e21\",\n      \"display_name\": \"string\",\n      \"ranges\": [\n        {\n          \"first\": 2816,\n          \"last\": 701\n        },\n        {\n          \"first\": 2240,\n          \"last\": 8372\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66e6ae02-8d82-4d0a-a54c-ae5338f7ca22",
+              "name": "Authentication required or token expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vni-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8eff7711-b86f-4dcd-b7be-667500d1adb8",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Resources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

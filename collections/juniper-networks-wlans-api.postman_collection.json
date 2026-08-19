@@ -1,0 +1,492 @@
+{
+  "item": [
+    {
+      "id": "d6ad1e29-e04c-4932-a4e0-641be7769dc2",
+      "name": "WLANs",
+      "description": {
+        "content": "Wireless LAN configuration including SSIDs, security, and VLAN assignment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9cc072a-2428-42d6-b069-7cdaea9513de",
+          "name": "Juniper Networks List site WLANs",
+          "request": {
+            "name": "Juniper Networks List site WLANs",
+            "description": {
+              "content": "Returns all WLAN configurations for a site. Each WLAN defines an SSID with associated security, VLAN, and radio settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "wlans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70c8ab2d-6c06-4958-a5f3-b0aadf50f645",
+              "name": "WLANs returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"1b18f4f1-92a4-2e58-a68b-4424b528e149\",\n    \"ssid\": \"string\",\n    \"enabled\": false,\n    \"auth\": {\n      \"type\": \"open\",\n      \"psk\": \"string\"\n    },\n    \"band\": \"2.4\",\n    \"vlan_enabled\": true,\n    \"vlan_id\": 3294,\n    \"hide_ssid\": false,\n    \"band_steer\": true,\n    \"client_limit_down\": 7490,\n    \"client_limit_up\": 3175\n  },\n  {\n    \"id\": \"c800bdef-fca1-10c3-d636-4134cffd4b4d\",\n    \"ssid\": \"string\",\n    \"enabled\": false,\n    \"auth\": {\n      \"type\": \"open\",\n      \"psk\": \"string\"\n    },\n    \"band\": \"both\",\n    \"vlan_enabled\": true,\n    \"vlan_id\": 5048,\n    \"hide_ssid\": true,\n    \"band_steer\": true,\n    \"client_limit_down\": 3623,\n    \"client_limit_up\": 9295\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c50a237-b763-48ab-9988-8e59ca8baad0",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f661ff1-b3fb-4916-b4f4-3778037d9a31",
+          "name": "Juniper Networks Create WLAN",
+          "request": {
+            "name": "Juniper Networks Create WLAN",
+            "description": {
+              "content": "Creates a new WLAN (SSID) at a site with specified security, VLAN, and radio configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site_id",
+                "wlans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "site_id",
+                  "description": "(Required) Site unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3fa088b-f087-41cb-ab93-fcfa79a8f388",
+              "name": "WLAN created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"2ad25959-c2dc-cea8-c81d-056086fccad1\",\n  \"ssid\": \"string\",\n  \"enabled\": true,\n  \"auth\": {\n    \"type\": \"eap\",\n    \"psk\": \"string\"\n  },\n  \"band\": \"2.4\",\n  \"vlan_enabled\": true,\n  \"vlan_id\": 6740,\n  \"hide_ssid\": true,\n  \"band_steer\": false,\n  \"client_limit_down\": 4126,\n  \"client_limit_up\": 1522\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af62d057-ee58-43af-b9d2-3418f7664afd",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e68bba8b-4ef6-4e73-b8b9-8338f85eee0a",
+              "name": "Authentication required or token invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site_id",
+                    "wlans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "site_id",
+                      "description": "(Required) Site unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"ssid\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"auth\": {\n    \"type\": \"<string>\",\n    \"psk\": \"<string>\"\n  },\n  \"band\": \"<string>\",\n  \"vlan_enabled\": \"<boolean>\",\n  \"vlan_id\": \"<integer>\",\n  \"hide_ssid\": \"<boolean>\",\n  \"band_steer\": \"<boolean>\",\n  \"client_limit_down\": \"<integer>\",\n  \"client_limit_up\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "88ae87db-1f5d-4687-94fe-383cb2cf478d",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms WLANs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

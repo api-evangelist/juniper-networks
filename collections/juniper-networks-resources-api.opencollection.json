@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Resources API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List ASN pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/resources/asn-pools"
+          },
+          "docs": "Returns all ASN (Autonomous System Number) pools. ASN pools are allocated to spine and leaf switches for BGP peering in the data center fabric."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create ASN pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/resources/asn-pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ASN pool with defined ranges."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List IP pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/resources/ip-pools"
+          },
+          "docs": "Returns all IP address pools. IP pools are used to allocate loopback addresses, fabric link subnets, and virtual network gateways across the data center fabric."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List VNI pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/resources/vni-pools"
+          },
+          "docs": "Returns all VNI (VXLAN Network Identifier) pools. VNI pools provide unique identifiers for VXLAN tunnels used in the EVPN-VXLAN fabric overlay."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

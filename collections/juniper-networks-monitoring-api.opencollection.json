@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Monitoring API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List active flow sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/v1/monitoring/security/flow/session",
+            "params": [
+              {
+                "name": "source_prefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source IP prefix."
+              },
+              {
+                "name": "destination_prefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter by destination IP prefix."
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name."
+              }
+            ]
+          },
+          "docs": "Returns currently active security flow sessions on the vSRX. Equivalent to the show security flow session CLI command."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

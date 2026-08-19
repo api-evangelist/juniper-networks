@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms NAT API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NAT",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List source NAT rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/v1/security/nat/source"
+          },
+          "docs": "Returns all source NAT rule sets and rules. Source NAT translates the source IP address of outbound traffic for internet access or address hiding."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List destination NAT rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/v1/security/nat/destination"
+          },
+          "docs": "Returns all destination NAT rule sets and rules. Destination NAT translates destination addresses for inbound traffic to internal server addresses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

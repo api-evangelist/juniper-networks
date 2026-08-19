@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Blueprints API",
+    "version": "4.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AuthToken",
+      "value": "{{AuthToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blueprints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Juniper Networks List blueprints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints"
+          },
+          "docs": "Returns all blueprints. Blueprints are instantiations of templates representing a specific data center network. They contain the full network graph including nodes, links, and configuration state."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Create blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apstra_server}/api/blueprints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new blueprint from a template. The blueprint will contain the initial network graph based on the template design."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Get blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific blueprint."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Delete blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a blueprint and its associated network graph."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks Deploy blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/deploy",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits and deploys staged changes in the blueprint to the physical network devices. Generates device-specific configurations from the intent model and pushes them to managed switches."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List security zones (VRFs)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/security-zones",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all security zones (routing zones / VRFs) configured in the blueprint. Security zones provide network segmentation through VRF instances on leaf switches."
+        },
+        {
+          "info": {
+            "name": "Juniper Networks List virtual networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apstra_server}/api/blueprints/:blueprint_id/virtual-networks",
+            "params": [
+              {
+                "name": "blueprint_id",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns all virtual networks in the blueprint. Virtual networks represent VLANs/VXLANs provisioned across the fabric for workload connectivity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

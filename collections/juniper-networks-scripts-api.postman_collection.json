@@ -1,0 +1,336 @@
+{
+  "item": [
+    {
+      "id": "aa9e8881-74be-494b-aef7-406107f2bd12",
+      "name": "Scripts",
+      "description": {
+        "content": "Script management and execution on managed devices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9553f86-12d2-444a-93a8-eb1ed4baa1bb",
+          "name": "Juniper Networks List scripts",
+          "request": {
+            "name": "Juniper Networks List scripts",
+            "description": {
+              "content": "Returns all scripts uploaded to Junos Space. Scripts can be SLAX, XSLT, Python, or commit scripts for execution on managed Junos devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "script-management",
+                "scripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.script-management.scripts+json;version=2"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64f6518a-a700-459d-9834-27baa97e7a55",
+              "name": "Scripts returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "script-management",
+                    "scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.script-management.scripts+json;version=2"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.script-management.scripts+json;version=2"
+                }
+              ],
+              "body": "{\n  \"scripts\": {\n    \"script\": [\n      {\n        \"@key\": 620,\n        \"scriptName\": \"string\",\n        \"description\": \"string\",\n        \"scriptType\": \"event\",\n        \"scriptLanguage\": \"python\"\n      },\n      {\n        \"@key\": 3559,\n        \"scriptName\": \"string\",\n        \"description\": \"string\",\n        \"scriptType\": \"commit\",\n        \"scriptLanguage\": \"slax\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6903a5cd-ff22-4453-aef8-d73f98c722b4",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "script-management",
+                    "scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b92d2f9f-c24a-42fa-a0e1-a8b2c5df79f7",
+          "name": "Juniper Networks Execute script on devices",
+          "request": {
+            "name": "Juniper Networks Execute script on devices",
+            "description": {
+              "content": "Executes a script on one or more managed devices. Returns a job ID for tracking execution status and retrieving results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "script-management",
+                "scripts",
+                ":script_id",
+                "exec-scripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "script_id",
+                  "description": "(Required) Script unique identifier."
+                },
+                {
+                  "description": "Hostname or IP address of the Apstra server.",
+                  "type": "any",
+                  "value": "{{apstra_server}}",
+                  "key": "apstra_server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.net.juniper.space.script-management.exec-scripts+json;version=2"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exec-scripts\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"scriptParams\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f1dbc9b-c798-4dd0-ba57-024726d4c1c4",
+              "name": "Script execution job initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "script-management",
+                    "scripts",
+                    ":script_id",
+                    "exec-scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "script_id",
+                      "description": "(Required) Script unique identifier."
+                    },
+                    {
+                      "description": "Hostname or IP address of the Apstra server.",
+                      "type": "any",
+                      "value": "{{apstra_server}}",
+                      "key": "apstra_server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AuthToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exec-scripts\": {\n    \"deviceIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"scriptParams\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.net.juniper.space.job-management.task+json;version=1"
+                }
+              ],
+              "body": "{\n  \"@key\": 9351,\n  \"jobName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobState\": \"ENABLED\",\n  \"percent\": 9309.656068799091,\n  \"createdByUserName\": \"string\",\n  \"startTime\": \"1958-02-15T11:15:20.828Z\",\n  \"endTime\": \"2019-05-22T08:34:34.598Z\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Apstra server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apstra.example.com",
+      "key": "apstra_server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apstra_server}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AuthToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dcb0eb0e-ab18-417e-8cb9-8eeef914ef34",
+    "name": "Juniper Networks Juniper Apstra Intent-Based Networking Alarms Scripts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.\n\nContact Support:\n Name: Juniper Networks Support",
+      "type": "text/plain"
+    }
+  }
+}
