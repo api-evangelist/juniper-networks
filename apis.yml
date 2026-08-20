@@ -626,6 +626,8 @@ apis:
   humanURL: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
   baseURL: https://<apstra-server>/api
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -836,6 +838,8 @@ apis:
   humanURL: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
   baseURL: https://<apstra-server>/api
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -878,6 +882,8 @@ apis:
   humanURL: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
   baseURL: https://<apstra-server>/api
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -1256,6 +1262,8 @@ apis:
   humanURL: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
   baseURL: https://<apstra-server>/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -1460,6 +1468,15 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 tags:
+  - Automation
+  - Cloud
+  - Data-Center
+  - Enterprise
+  - Networking
+  - SDN
+  - Security
+  - Fortune 1000
+tags_raw:
   - Automation
   - Cloud
   - Data Center
