@@ -1,0 +1,126 @@
+slug: juniper-networks
+provider: Juniper Networks
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 12
+edges:
+- tag: Virtual Networks
+  spec_file: juniper-networks-virtual-networks-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /virtual-networks 'Create virtual network'; schema VirtualNetwork
+  reason: CRUD over virtual networks in a data center automation platform is squarely network infrastructure
+    management.
+- tag: Devices
+  spec_file: juniper-networks-devices-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /device-management/devices 'List managed devices'; POST /device-management/devices 'Discover
+    and add device'
+  reason: Discovery, onboarding, retrieval and removal of managed network devices — core network/IT infrastructure
+    estate management.
+- tag: WLANs
+  spec_file: juniper-networks-wlans-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /sites/{site_id}/wlans 'List site WLANs'; POST 'Create WLAN'
+  reason: Wireless LAN configuration per site is network infrastructure management.
+- tag: Blueprints
+  spec_file: juniper-networks-blueprints-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.76
+  evidence: PUT /blueprints/{blueprint_id}/deploy deployBlueprint; 'List security zones (VRFs)'; 'List
+    virtual networks'
+  reason: Creation and deployment of network design blueprints, VRFs and virtual networks — provisioning
+    and operating network infrastructure, an IT Infrastructure Management capability.
+- tag: Alarms
+  spec_file: juniper-networks-alarms-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: GET /sites/{site_id}/alarms  listSiteAlarms; 'continuously validates that the network state
+    matches the intended configuration and raises anomalies when deviations occur'
+  reason: Network infrastructure alarms from an intent-based networking platform — operational monitoring
+    of IT/network estate, not financial-crime or business alerting. Maps to IT Operations Management (monitoring);
+    could arguably be IT Infrastructure Management, hence 0.75.
+- tag: Configuration
+  spec_file: juniper-networks-configuration-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /device-management/devices/{device_id}/configurations/raw 'Get device running configuration';
+    POST /v1/configuration/commit 'Commit configuration'
+  reason: Retrieving, updating and committing running configuration of network devices and applying CLI
+    configlets — network infrastructure configuration management.
+- tag: NAT
+  spec_file: juniper-networks-nat-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: listSourceNatRules / listDestinationNatRules, schema NatRuleSet
+  reason: NAT rule sets are network device configuration objects, squarely infrastructure (network) management.
+- tag: Resources
+  spec_file: juniper-networks-resources-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /resources/asn-pools  listAsnPools; GET /resources/ip-pools  listIpPools; GET /resources/vni-pools  listVniPools
+  reason: ASN, IP and VNI address pools are network infrastructure resource pools managed for fabric provisioning.
+- tag: Systems
+  spec_file: juniper-networks-systems-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.72
+  evidence: GET /systems 'List managed systems'; GET /systems/{system_id} 'Get system details'
+  reason: Inventory of managed network devices/systems — infrastructure management.
+- tag: Network Policies
+  spec_file: juniper-networks-network-policies-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /network-policys  createNetworkPolicy  Create network policy; schema NetworkPolicy
+  reason: Creation and listing of network connectivity policies in a data-centre fabric controller — network
+    infrastructure configuration, not corporate policy management.
+- tag: Sites
+  spec_file: juniper-networks-sites-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: GET /orgs/{org_id}/sites listOrgSites — 'List organization sites', 'Create site' within an
+    intent-based networking platform for data center automation
+  reason: Sites are network infrastructure locations managed by the network automation platform; maps
+    to IT Infrastructure Management. Generic CRUD so moderate confidence.
+- tag: System
+  spec_file: juniper-networks-system-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /v1/system/information 'Get system information'; GET /v1/system/alarms 'List system alarms'
+  reason: System information and alarm listing is day-to-day IT operations monitoring of the network platform,
+    not business alerting.

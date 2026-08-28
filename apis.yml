@@ -1,5 +1,17 @@
 name: Juniper Networks
 description: APIs and developer resources for Juniper Networks networking products and services.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -1427,6 +1439,9 @@ apis:
   - type: Documentation
     url: https://www.juniper.net/documentation/product/us/en/vsrx/
 common:
+  - type: CapabilityMap
+    url: capabilities/juniper-networks-capability-edges.yml
+    name: Juniper Networks Business Capability Map
   - type: AgenticAccess
     url: agentic-access/juniper-networks-agentic-access.yml
   - type: DomainSecurity
