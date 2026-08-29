@@ -1,23 +1,23 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms VPN API
-  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
-  version: '4.2'
+  title: Juniper Networks Juniper vSRX REST VPN API
+  description: RESTful API for managing Juniper vSRX virtual firewall instances. The vSRX provides full next-generation firewall capabilities including stateful inspection, application identification, IPS, content security, and VPN in a virtualized form factor. The REST API runs on the vSRX management plane and provides access to configuration, monitoring, and operational commands. It supports Junos configuration in JSON format and returns structured responses for security policies, zones, NAT rules, and VPN tunnels. Authentication uses HTTP Basic with Junos credentials.
+  version: '23.4'
   contact:
     name: Juniper Networks Support
-    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+    url: https://www.juniper.net/documentation/product/us/en/vsrx/
   license:
     name: Proprietary
     url: https://www.juniper.net/us/en/legal-notices.html
 servers:
-- url: https://{apstra_server}/api
-  description: Apstra server API endpoint.
+- url: https://{vsrx_host}/api
+  description: vSRX REST API endpoint.
   variables:
-    apstra_server:
-      description: Hostname or IP address of the Apstra server.
-      default: apstra.example.com
+    vsrx_host:
+      description: Hostname or IP address of the vSRX instance.
+      default: vsrx.example.com
 security:
-- authToken: []
+- basicAuth: []
 tags:
 - name: VPN
   description: IPsec VPN tunnel configuration.
@@ -44,6 +44,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -81,16 +88,8 @@ components:
           - up
           - down
           description: Current tunnel status.
-  responses:
-    Unauthorized:
-      description: Authentication required.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
-    authToken:
-      type: apiKey
-      in: header
-      name: AuthToken
-      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using Junos device credentials. The user must have appropriate class permissions for the requested operations.

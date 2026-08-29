@@ -1,23 +1,26 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Juniper Networks Juniper Apstra Intent-Based Networking Alarms Configuration API
-  description: RESTful API for Juniper Apstra, an intent-based networking platform for automating data center network design, deployment, and operations. Apstra abstracts network infrastructure into design blueprints with logical models, rack types, templates, and connectivity. The platform continuously validates that the network state matches the intended configuration and raises anomalies when deviations occur. The API provides full access to design resources, blueprints, device management, telemetry, and IBA (Intent-Based Analytics) probes. Authentication uses token-based sessions obtained via the login endpoint.
-  version: '4.2'
-  contact:
-    name: Juniper Networks Support
-    url: https://www.juniper.net/documentation/product/us/en/juniper-apstra/
+  title: Juniper Networks Configuration API
   license:
     name: Proprietary
     url: https://www.juniper.net/us/en/legal-notices.html
+  version: '1.0'
+  description: 'Operations tagged Configuration across 2 of this provider''s published API definitions: juniper-networks-junos-space-openapi.yml, juniper-networks-vsrx-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://{apstra_server}/api
-  description: Apstra server API endpoint.
+- url: https://{space_server}/api/space
+  description: Junos Space Platform API endpoint.
   variables:
-    apstra_server:
-      description: Hostname or IP address of the Apstra server.
-      default: apstra.example.com
+    space_server:
+      description: Hostname or IP address of the Junos Space server.
+      default: space.example.com
+- url: https://{vsrx_host}/api
+  description: vSRX REST API endpoint.
+  variables:
+    vsrx_host:
+      description: Hostname or IP address of the vSRX instance.
+      default: vsrx.example.com
 security:
-- authToken: []
+- basicAuth: []
 tags:
 - name: Configuration
   description: Configuration management, templates, and deployment.
@@ -44,6 +47,13 @@ paths:
                     description: Device configuration content.
         '404':
           $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://{space_server}/api/space
+      description: Junos Space Platform API endpoint.
+      variables:
+        space_server:
+          description: Hostname or IP address of the Junos Space server.
+          default: space.example.com
   /configuration-management/cli-configlets:
     get:
       operationId: listConfiglets
@@ -68,6 +78,13 @@ paths:
                           $ref: '#/components/schemas/Configlet'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://{space_server}/api/space
+      description: Junos Space Platform API endpoint.
+      variables:
+        space_server:
+          description: Hostname or IP address of the Junos Space server.
+          default: space.example.com
   /configuration-management/cli-configlets/{configlet_id}/apply-cli-configlet:
     post:
       operationId: applyConfiglet
@@ -109,6 +126,13 @@ paths:
             application/vnd.net.juniper.space.job-management.task+json;version=1:
               schema:
                 $ref: '#/components/schemas/Job'
+    servers:
+    - url: https://{space_server}/api/space
+      description: Junos Space Platform API endpoint.
+      variables:
+        space_server:
+          description: Hostname or IP address of the Junos Space server.
+          default: space.example.com
   /v1/configuration:
     get:
       operationId: getConfiguration
@@ -167,6 +191,13 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized_2'
+    servers:
+    - url: https://{vsrx_host}/api
+      description: vSRX REST API endpoint.
+      variables:
+        vsrx_host:
+          description: Hostname or IP address of the vSRX instance.
+          default: vsrx.example.com
   /v1/configuration/commit:
     post:
       operationId: commitConfiguration
@@ -206,29 +237,15 @@ paths:
                     type: string
         '400':
           description: Commit failed due to configuration errors.
+    servers:
+    - url: https://{vsrx_host}/api
+      description: vSRX REST API endpoint.
+      variables:
+        vsrx_host:
+          description: Hostname or IP address of the vSRX instance.
+          default: vsrx.example.com
 components:
   schemas:
-    Configlet:
-      type: object
-      properties:
-        '@key':
-          type: integer
-          description: Configlet internal ID.
-        name:
-          type: string
-          description: Configlet name.
-        description:
-          type: string
-          description: Configlet description.
-        cliConfigletContent:
-          type: string
-          description: CLI configuration template content with variables.
-        executionType:
-          type: string
-          enum:
-          - SingleExecution
-          - GroupExecution
-          description: Execution mode.
     Error:
       type: object
       properties:
@@ -271,6 +288,27 @@ components:
         summary:
           type: string
           description: Job result summary.
+    Configlet:
+      type: object
+      properties:
+        '@key':
+          type: integer
+          description: Configlet internal ID.
+        name:
+          type: string
+          description: Configlet name.
+        description:
+          type: string
+          description: Configlet description.
+        cliConfigletContent:
+          type: string
+          description: CLI configuration template content with variables.
+        executionType:
+          type: string
+          enum:
+          - SingleExecution
+          - GroupExecution
+          description: Execution mode.
     Error_2:
       type: object
       properties:
@@ -280,6 +318,12 @@ components:
   responses:
     NotFound:
       description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed.
       content:
         application/json:
           schema:
@@ -296,12 +340,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error_2'
-    Unauthorized:
-      description: Authentication failed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     DeviceId:
       name: device_id
@@ -311,8 +349,10 @@ components:
       schema:
         type: integer
   securitySchemes:
-    authToken:
-      type: apiKey
-      in: header
-      name: AuthToken
-      description: Authentication token obtained from POST /api/aaa/login. Include in the AuthToken header for all authenticated API requests.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with Junos Space username and password. Also supports X.509 certificate-based authentication.
+x-refined-from:
+- juniper-networks-junos-space-openapi.yml
+- juniper-networks-vsrx-openapi.yml
